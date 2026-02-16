@@ -103,7 +103,18 @@
 	hitsound = list('sound/combat/hits/bladed/genchop (1).ogg', 'sound/combat/hits/bladed/genchop (2).ogg', 'sound/combat/hits/bladed/genchop (3).ogg')
 	penfactor = 30
 
+/datum/intent/dagger/cut/blunt
+	blade_class = BCLASS_BLUNT
+	
+/datum/intent/dagger/thrust/blunt
+	blade_class = BCLASS_BLUNT
+
+/datum/intent/dagger/thrust/pick/blunt
+	blade_class = BCLASS_BLUNT
+
 //knife and dagger objs ฅ^•ﻌ•^ฅ
+
+
 
 /obj/item/rogueweapon/huntingknife
 	force = 12
@@ -570,10 +581,12 @@
 /obj/item/rogueweapon/huntingknife/idagger/dtace
 	name = "'De Tace'"
 	desc = "The right hand of the right hand, this narrow length of steel serves as a quick solution to petty greviences."
-	icon_state = "stiletto"
-	sheathe_icon = "stiletto"
+	icon = 'icons/roguetown/weapons/special/hand32.dmi'
+	icon_state = "sdaggerhand"
+	sheathe_icon = "sdaggerhand"
 	force = 25
 	max_integrity = 200
+	sellprice = 200
 	smeltresult = /obj/item/ingot/steel
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/rondel
@@ -587,12 +600,20 @@
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/parrying
 	name = "steel parrying dagger"
+	desc = "A dagger with an enlongated crossguard, curved upwards on both ends to catch oncoming strikes."
+	wdefense = 9
+
+/obj/item/rogueweapon/huntingknife/idagger/steel/parrying/hand
+	name = "'Repeta'"
+	desc = "The left hand of the right hand, this sturdy length of steel serves as a perfect counterpart to any offense."
 	force = 12
 	throwforce = 12
-	desc = "This is a parrying dagger made of solid steel, used to catch opponent's weapons in the handguard. It's a bit more dull, however."
-	sheathe_icon = "spdagger"
-	max_integrity = 175
-	wdefense = 8		//This way with expert dagger skill you'd have ~12 defense. 1 higher than a kiteshield, but no arrow protection.
+	icon = 'icons/roguetown/weapons/special/hand32.dmi'
+	icon_state = "spdaggerhand"
+	sheathe_icon = "spdaggerhand"
+	max_integrity = 200
+	wdefense = 9
+
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/parrying/vaquero
 	name = "sail dagger"
@@ -613,6 +634,16 @@
 	wrapping of twisted cordage provides a secure grip."
 	icon_state = "eastdagger"
 	sheathe_icon = "tanto"
+
+/obj/item/rogueweapon/huntingknife/idagger/steel/fire
+	name = "fire dagger"
+	desc = "A dagger enchanted with lost arcyne arts to render it as Astrata's wrath, but only for a short duration."
+	icon_state = "fdagger"
+	sheathe_icon = "fdagger"
+	smeltresult = null
+	special = /datum/special_intent/ignite_dagger
+	var/active_intents =  list(/datum/intent/dagger/thrust/blunt,/datum/intent/dagger/cut/blunt, /datum/intent/dagger/thrust/pick/blunt, /datum/intent/dagger/sucker_punch)
+	var/inactive_intents = list()
 
 /obj/item/rogueweapon/huntingknife/idagger/steel/bone
 	name = "bone dagger"
@@ -808,6 +839,28 @@
 	wdefense = 1
 	resistance_flags = FLAMMABLE
 
+/obj/item/rogueweapon/huntingknife/stoneknife/kukri
+	name = "jade kukri"
+	desc = "A kukri made out of jade. Its more of a ceremonial piece than it is an implement of war, its somewhat fragile. Be gentle with it."
+	icon = 'icons/roguetown/gems/gem_jade.dmi'
+	icon_state = "kukri_jade"
+	max_integrity = 75
+	max_blade_int = 50
+	wdefense = 3
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	sellprice = 75
+
+/obj/item/rogueweapon/huntingknife/stoneknife/opalknife
+	name = "opal knife"
+	desc = "A beautiful knife carved out of opal. Its not intended for combat. It's presence is vital in some Crimson Elven ceremonies."
+	icon = 'icons/roguetown/gems/gem_opal.dmi'
+	icon_state = "knife_opal"
+	max_integrity = 75
+	max_blade_int = 50
+	wdefense = 3
+	resistance_flags = FIRE_PROOF | ACID_PROOF
+	sellprice = 105
+
 /obj/item/rogueweapon/huntingknife/idagger/silver/elvish
 	name = "elvish dagger"
 	desc = "A wave-bladed dagger of Elven design, who's silvered beauty is only rivaled by its deceptive lethality."
@@ -870,6 +923,48 @@
 		w_class = WEIGHT_CLASS_SMALL
 		throwforce = 5
 		icon_state = "navaja_c"
+		attack_verb = list("stubbed", "poked")
+		sharpness = IS_BLUNT
+		wdefense = 2
+		wdefense_dynamic = 2
+		equip_delay_self = 0 SECONDS
+		unequip_delay_self = 0 SECONDS
+		inv_storage_delay = 0 SECONDS
+
+/obj/item/rogueweapon/huntingknife/idagger/navaja/freifechter
+	possible_item_intents = list(/datum/intent/dagger/thrust,/datum/intent/dagger/cut, /datum/intent/dagger/chop, /datum/intent/dagger/thrust/pick)
+	name = "mountaineer's navaja"
+	icon = 'icons/roguetown/weapons/special/freifechter32.dmi'
+	desc = "A folding Etruscan knife valued by merchants, mercenaries and peasants for its convenience. This specific kind of ornate navaja is endemic to Szöréndnížina."
+	force = 5
+	icon_state = "mtnavaja_c"
+	item_state = "elfdag"
+	wdefense = 2
+	sellprice = 50
+
+/obj/item/rogueweapon/huntingknife/idagger/navaja/freifechter/attack_self(mob/user)
+	extended = !extended
+	playsound(src.loc, 'sound/blank.ogg', 50, TRUE)
+	if(extended)
+		force = 20
+		force_dynamic = 20
+		wdefense = 7
+		wdefense_dynamic = 7
+		w_class = WEIGHT_CLASS_NORMAL
+		throwforce = 23
+		icon_state = "mtnavaja_o"
+		attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
+		sharpness = IS_SHARP
+		playsound(user, 'sound/items/knife_open.ogg', 100, TRUE)
+		equip_delay_self = initial(equip_delay_self)
+		unequip_delay_self = initial(unequip_delay_self)
+		inv_storage_delay = initial(inv_storage_delay)
+	else
+		force = 5
+		force_dynamic = 5
+		w_class = WEIGHT_CLASS_SMALL
+		throwforce = 5
+		icon_state = "mtnavaja_c"
 		attack_verb = list("stubbed", "poked")
 		sharpness = IS_BLUNT
 		wdefense = 2
