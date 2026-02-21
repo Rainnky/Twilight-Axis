@@ -546,6 +546,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Load prefs
 	S["job_preferences"] >> job_preferences
 
+	S["job_characters"] >> job_characters //TA EDIT
+
 	//Quirks
 	S["all_quirks"] >> all_quirks
 
@@ -683,6 +685,14 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 		if(job_preferences[j] != JP_LOW && job_preferences[j] != JP_MEDIUM && job_preferences[j] != JP_HIGH)
 			job_preferences -= j
 
+	if(!islist(job_characters)) //TA EDIT START
+		job_characters = list()
+	for(var/job_title in job_characters)
+		
+		var/slot_num = job_characters[job_title]
+		if(!isnum(slot_num) || slot_num < 1 || slot_num > max_save_slots)
+			job_characters -= job_title //TA EDIT END
+	
 	all_quirks = SANITIZE_LIST(all_quirks)
 
 	S["customizer_entries"] >> customizer_entries
@@ -752,6 +762,8 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	//Write prefs
 	WRITE_FILE(S["job_preferences"] , job_preferences)
 
+	WRITE_FILE(S["job_characters"]  , job_characters) //TA EDIT
+
 	//Quirks
 	WRITE_FILE(S["all_quirks"]			, all_quirks)
 
@@ -817,6 +829,10 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	WRITE_FILE(S["loadout_1_hex"], loadout_1_hex)
 	WRITE_FILE(S["loadout_2_hex"], loadout_2_hex)
 	WRITE_FILE(S["loadout_3_hex"], loadout_3_hex)
+
+	if(loaded_job_slots["[default_slot]"]) //TA EDIT
+		loaded_job_slots["[default_slot]"] = null
+
 
 	return TRUE
 
