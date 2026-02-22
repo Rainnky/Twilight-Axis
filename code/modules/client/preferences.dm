@@ -1009,7 +1009,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 				index = 0
 
 			if(job.title in splitJobs)
-				HTML += "<tr bgcolor='#000000'><td width='60%' align='right'><hr></td></tr>"
+				
+				HTML += "<tr bgcolor='#000000'><td colspan='2'><hr></td></tr>"
 
 			HTML += "<tr bgcolor='#000000'><td width='60%' align='right'>"
 			var/rank = job.title
@@ -1043,7 +1044,8 @@ GLOBAL_LIST_EMPTY(chosen_names)
 				continue
 
 			if(!job.validate_prefs_for_job(char_prefs))
-				HTML += "<font color='#a561a5'>[used_name] (Disallowed by Slot [char_prefs.loaded_slot] Traits)</font></td> <td> </td></tr>"
+				HTML += "<font color='#a56161'>[used_name]</font></td>"
+				HTML += "<td width='40%'><font color='#a56161'> (Disallowed)</font></td></tr>"
 				continue
 
 			var/job_unavailable = JOB_AVAILABLE
