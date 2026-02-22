@@ -3023,7 +3023,6 @@
 #include "virtues\size.dm"
 #include "virtues\thief.dm"
 #include "virtues\utility.dm"
-#include "modular_twilight_axis\modules.dme"
 #include "modular_twilight_axis\code\game\objects\items\rogueweapons\melee\axes.dm"
 #include "modular_twilight_axis\code\game\objects\items\rogueweapons\melee\special.dm"
 #include "modular_twilight_axis\code\game\objects\items\rogueweapons\melee\whip.dm"
