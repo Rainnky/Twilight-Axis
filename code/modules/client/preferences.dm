@@ -1406,11 +1406,29 @@ GLOBAL_LIST_EMPTY(chosen_names)
 				var/datum/job/J = SSjob.GetJob(job_title)
 				if(!J) return 1
 				
+				if(!path || !fexists(path))
+					return 1
+
 				var/list/valid_slots = list("Active Slot (Default)" = "default")
+				
+				
+				var/savefile/S = new /savefile(path)
+				
+				
+				var/datum/preferences/dummy_pref = new(parent)
+				
+				
 				for(var/i = 1 to max_save_slots)
-					var/datum/preferences/dummy = get_job_prefs(job_title, i)
-					if(J.validate_prefs_for_job(dummy))
-						valid_slots["Slot [i] - [dummy.real_name]"] = i
+					
+					if(i % 5 == 0) 
+						CHECK_TICK
+					
+					
+					dummy_pref.fast_scan_for_job(S, i)
+					
+					
+					if(J.validate_prefs_for_job(dummy_pref))
+						valid_slots["Slot [i] - [dummy_pref.real_name] ([dummy_pref.pref_species.name])"] = i
 
 				var/choice = input(user, "Choose character for [job_title]:", "Character Select") as null|anything in valid_slots
 				if(choice)

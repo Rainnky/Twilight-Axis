@@ -697,8 +697,56 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 
 	S["customizer_entries"] >> customizer_entries
 	validate_customizer_entries()
-
+	
 	return TRUE
+
+/datum/preferences/proc/fast_scan_for_job(savefile/S, slot)
+	S.cd = "/character[slot]"
+	
+	
+	S["real_name"] >> real_name
+	if(!real_name) real_name = "Slot [slot]"
+
+	
+	var/species_name
+	S["species"] >> species_name
+	if(species_name && GLOB.species_list[species_name])
+		var/race_type = GLOB.species_list[species_name]
+		pref_species = new race_type
+	else
+		pref_species = new default_species.type
+
+	
+	S["age"] >> age
+	S["gender"] >> gender
+
+	
+	var/patron_typepath
+	S["selected_patron"] >> patron_typepath
+	if(patron_typepath && GLOB.patronlist[patron_typepath])
+		selected_patron = GLOB.patronlist[patron_typepath]
+	else
+		selected_patron = GLOB.patronlist[default_patron]
+
+	
+	var/virtue_type
+	var/virtuetwo_type
+	var/origin_type
+	S["virtue"] >> virtue_type
+	S["virtuetwo"] >> virtuetwo_type
+	S["virtue_origin"] >> origin_type
+	
+	virtue = virtue_type ? new virtue_type : new /datum/virtue/none
+	virtuetwo = virtuetwo_type ? new virtuetwo_type : new /datum/virtue/none
+	virtue_origin = origin_type ? new origin_type : new /datum/virtue/none
+
+	
+	charflaws.Cut()
+	var/list/loaded_flaws
+	S["charflaws"] >> loaded_flaws
+	if(loaded_flaws)
+		for(var/ftype in loaded_flaws)
+			if(ispath(ftype)) charflaws += new ftype
 
 /datum/preferences/proc/save_character()
 	if(!path)
