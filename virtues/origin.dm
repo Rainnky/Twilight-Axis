@@ -64,7 +64,7 @@
 /datum/virtue/origin/raneshen
 	name = "Ranesheni"
 	origin_name = "Raneshan"
-	added_languages = list(/datum/language/celestial)
+	added_languages = list(/datum/language/raneshi)
 	desc = "I originate from the lush valleys and harsh badlands of Raneshen. Home to the zealous sun elves, the region sits at the gateway between the East and West. Recently engulfed in a violent holy war between the followers of the Old God and the Solarin.<br>"
 	origin_desc = "Home to the zealous sun elves, the region of Raneshen sits at the gateway between the East and West.<br> Its lands were once ruled by the Solarin, a divine \
 	caste of Astratan sun elf paladins who deeply venerated Astrata and practiced widespread humen slavery. The empire met its end when an Otavan missionary brought the \
@@ -148,13 +148,13 @@
 
 /datum/virtue/origin/racial/underdark
 	name = "Underdweller"
-	added_languages = list(/datum/language/otavan)
+	added_languages = list(/datum/language/undercommon)
 	origin_name = "the Underdark"
 	desc = "I originate from the treacherous Underdark, a cavernous region beneath Otava and Grenzelhoft. This unforgiving land is dominated by the prosperous and cruel dark elves and their pets. Most surfacedwellers only come here in chains.<br>"
 	races = list(/datum/species/elf/dark,
 				/datum/species/human/halfelf,
 				/datum/species/kobold,
-				/datum/species/dwarf,
+				/datum/species/dwarf/mountain,
 				/datum/species/dwarf/gnome,
 				/datum/species/goblinp,
 				/datum/species/anthromorphsmall
