@@ -23,6 +23,10 @@
 /obj/effect/proc_holder/spell/invoked/shrink/cast(list/targets, mob/user = usr)
 	if(isliving(targets[1]))
 		var/mob/living/carbon/target = targets[1]
+		if(target.has_status_effect (/datum/status_effect/debuff/shrink))
+			to_chat(user, "<span class='warning'>They're too small to shrink!</span>")
+			revert_cast()
+			return
 		target.transform = target.transform.Scale(0.65, 0.65)
 		target.transform = target.transform.Translate(0, -(0.35 * 16))
 		target.update_transform()
@@ -34,6 +38,8 @@
 		return TRUE
 
 /obj/effect/proc_holder/spell/invoked/shrink/proc/remove_debuff(mob/living/carbon/target)
+	if(!target || QDELETED(target))
+		return
 	target.transform = target.transform.Translate(0, (0.35 * 16))
 	target.transform = target.transform.Scale(1/0.65, 1/0.65)      
 	target.update_transform()
