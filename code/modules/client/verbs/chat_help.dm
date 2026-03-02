@@ -6,7 +6,7 @@
 	var/dat = {"
 		<b>Speech Modes (Prefix):</b><br>
 		no prefix - Normal speech, heard within 7 tiles.<br>
-		<b>#</b> - Whisper. Quiet speech, only heard within 1 tile. Others can see you whispering.<br>
+		<b># or №</b> - Whisper. Quiet speech, only heard within 1 tile. Others can see you whispering.<br>
 		<b>%</b> - Singing. Wraps your message in musical notes.<br>
 		<br>
 		<b>Custom Emotes:</b><br>
