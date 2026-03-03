@@ -119,6 +119,7 @@
 							K.try_knot_link(btm, P, receiving, penis_unit_id = 0, force_level = best_link.force)
 
 			controller.handle_inject(best_link, P, INJECT_ORGAN, who)
+			do_climax_effects(who, best_link)
 		else
 			var/datum/reagents/Rp = P.extract_reagents(ERP_CLIMAX_AMOUNT_SINGLE)
 			if(Rp)
@@ -150,6 +151,7 @@
 
 		if(best_link_v)
 			controller.handle_inject(best_link_v, V, INJECT_ORGAN, who)
+			do_climax_effects(who, best_link_v)
 		else
 			var/datum/reagents/Rv = V.extract_reagents(ERP_CLIMAX_AMOUNT_SINGLE)
 			if(Rv)
@@ -182,6 +184,7 @@
 
 		if(best_link_b)
 			controller.handle_inject(best_link_b, B, INJECT_ORGAN, who)
+			do_climax_effects(who, best_link_b)
 		else
 			var/datum/reagents/Rb = B.extract_reagents(ERP_CLIMAX_AMOUNT_SINGLE)
 			if(Rb)
@@ -191,52 +194,6 @@
 
 	controller.ui?.request_update()
 	return
-
-/datum/erp_climax_service/proc/do_solo_climax_effects(mob/living/carbon/human/who)
-	if(!istype(who) || who.stat == DEAD)
-		return FALSE
-
-	var/datum/erp_actor/A = controller.get_actor_by_mob(who)
-	if(!A)
-		return FALSE
-
-	var/datum/erp_sex_organ/penis/P = null
-	var/list/pens = A.get_organs_ref(SEX_ORGAN_PENIS)
-	if(islist(pens) && pens.len)
-		P = pens[1]
-
-	if(P && P.producing && P.producing.producing_reagent)
-		var/datum/reagents/Rp = P.extract_reagents(ERP_CLIMAX_AMOUNT_SINGLE)
-		if(Rp)
-			P.on_inject(null, INJECT_GROUND, get_turf(who), Rp, who)
-			P.route_reagents(Rp, INJECT_GROUND, get_turf(who))
-			qdel(Rp)
-
-	var/datum/erp_sex_organ/vagina/V = null
-	var/list/vags = A.get_organs_ref(SEX_ORGAN_VAGINA)
-	if(islist(vags) && vags.len)
-		V = vags[1]
-
-	if(V)
-		var/datum/reagents/Rv = V.extract_reagents(ERP_CLIMAX_AMOUNT_SINGLE)
-		if(Rv)
-			V.on_inject(null, INJECT_GROUND, get_turf(who), Rv, who)
-			V.route_reagents(Rv, INJECT_GROUND, get_turf(who))
-			qdel(Rv)
-
-	var/datum/erp_sex_organ/B = null
-	var/list/br = A.get_organs_ref(SEX_ORGAN_BREASTS)
-	if(islist(br) && br.len)
-		B = br[1]
-
-	if(B && B.producing && B.producing.producing_reagent)
-		var/datum/reagents/Rb = B.extract_reagents(ERP_CLIMAX_AMOUNT_SINGLE)
-		if(Rb)
-			B.on_inject(null, INJECT_GROUND, get_turf(who), Rb, who)
-			B.route_reagents(Rb, INJECT_GROUND, get_turf(who))
-			qdel(Rb)
-
-	return TRUE
 
 /// Picks best link for climax scoring.
 /datum/erp_climax_service/proc/pick_best_climax_link(mob/living/carbon/human/who, list/active_links)
@@ -393,46 +350,39 @@
 	var/datum/erp_sex_organ/orgasm_organ = ctx["organ"]
 	var/datum/erp_sex_organ/other_organ = ctx["other_organ"]
 	var/mob/living/carbon/human/partner = ctx["partner"]
-
-	if(!orgasm_organ)
+	if(!orgasm_organ || QDELETED(orgasm_organ))
 		return FALSE
 
 	var/mob/living/carbon/human/active_mob = best.actor_active?.physical
 	var/mob/living/carbon/human/passive_mob = best.actor_passive?.physical
 	var/two_actors = (istype(active_mob) && istype(passive_mob) && active_mob != passive_mob)
-
 	var/organ_type = orgasm_organ.erp_organ_type
 	if(!(organ_type in list(SEX_ORGAN_PENIS, SEX_ORGAN_VAGINA, SEX_ORGAN_BREASTS)))
 		return FALSE
 
-	if(!two_actors || !istype(partner) || partner == who)
-		if(organ_type == SEX_ORGAN_VAGINA)
-			return apply_coating_and_puddle(orgasm_organ, who, "groin", who, ERP_CLIMAX_AMOUNT_COATING, 30)
+	var/mob/living/carbon/human/receiver = who
+	if(two_actors && istype(partner) && partner != who)
+		receiver = partner
 
-		if(organ_type == SEX_ORGAN_BREASTS)
-			if(!orgasm_organ.producing || !orgasm_organ.producing.producing_reagent)
-				return FALSE
-			return apply_coating_and_puddle(orgasm_organ, who, "chest", who, ERP_CLIMAX_AMOUNT_COATING, 30)
+	var/zone = "groin"
+	if(other_organ && !QDELETED(other_organ))
+		switch(other_organ.erp_organ_type)
+			if(SEX_ORGAN_MOUTH)
+				zone = "face"
+			if(SEX_ORGAN_BREASTS)
+				zone = "chest"
+			else
+				zone = "groin"
 
-		if(organ_type == SEX_ORGAN_PENIS)
-			if(!orgasm_organ.producing || !orgasm_organ.producing.producing_reagent)
-				return FALSE
-			return apply_coating_and_puddle(orgasm_organ, who, "groin", who, ERP_CLIMAX_AMOUNT_COATING, 30)
+	var/mob/living/carbon/human/feet_mob = receiver
+	if(!istype(feet_mob))
+		feet_mob = who
 
-		return FALSE
-
-	if(organ_type == SEX_ORGAN_VAGINA)
-		return apply_coating_and_puddle(orgasm_organ, who, "groin", who, ERP_CLIMAX_AMOUNT_COATING, 30)
-
-	if(organ_type == SEX_ORGAN_BREASTS)
+	if(organ_type == SEX_ORGAN_PENIS || organ_type == SEX_ORGAN_BREASTS)
 		if(!orgasm_organ.producing || !orgasm_organ.producing.producing_reagent)
 			return FALSE
-		return apply_coating_and_puddle(orgasm_organ, who, "chest", who, ERP_CLIMAX_AMOUNT_COATING, 30)
 
 	if(organ_type == SEX_ORGAN_PENIS)
-		if(!orgasm_organ.producing || !orgasm_organ.producing.producing_reagent)
-			return FALSE
-
 		var/datum/erp_sex_organ/penis/Pk = orgasm_organ
 		var/mob/living/carbon/human/top = orgasm_organ.get_owner()
 		if(controller.do_knot_action && top && Pk.have_knot)
@@ -447,7 +397,7 @@
 					continue
 
 				var/datum/erp_sex_organ/receiving = (L.init_organ == orgasm_organ) ? L.target_organ : L.init_organ
-				if(!receiving)
+				if(!receiving || QDELETED(receiving))
 					continue
 				if(!(receiving.erp_organ_type in list(SEX_ORGAN_VAGINA, SEX_ORGAN_ANUS, SEX_ORGAN_MOUTH)))
 					continue
@@ -482,7 +432,7 @@
 			inside_target_organ = other_organ
 
 		if(mode == "inside")
-			if(!inside_target_organ)
+			if(!inside_target_organ || QDELETED(inside_target_organ))
 				mode = "outside"
 			else
 				var/it = inside_target_organ.erp_organ_type
@@ -496,14 +446,19 @@
 
 			orgasm_organ.route_reagents(Rin, INJECT_ORGAN, inside_target_organ)
 			qdel(Rin)
-
 			if(istype(inside_target_organ, /datum/erp_sex_organ/vagina))
-				var/datum/erp_sex_organ/vagina/V = inside_target_organ
-				V.on_climax(top, 0, 0)
+				var/datum/erp_sex_organ/vagina/Vin = inside_target_organ
+				Vin.on_climax(top, 0, 0)
 
 			return TRUE
 
-		return apply_coating_and_puddle(orgasm_organ, who, "groin", partner, ERP_CLIMAX_AMOUNT_COATING, 30)
+		return apply_coating_and_puddle(orgasm_organ, receiver, zone, feet_mob, ERP_CLIMAX_AMOUNT_COATING, 30)
+
+	if(organ_type == SEX_ORGAN_VAGINA)
+		return apply_coating_and_puddle(orgasm_organ, who, "groin", who, ERP_CLIMAX_AMOUNT_COATING, 30)
+
+	if(organ_type == SEX_ORGAN_BREASTS)
+		return apply_coating_and_puddle(orgasm_organ, who, "chest", who, ERP_CLIMAX_AMOUNT_COATING, 30)
 
 	return FALSE
 
