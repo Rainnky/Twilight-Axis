@@ -633,6 +633,8 @@
 			wrists = /obj/item/clothing/neck/roguetown/psicross/silver/noc 
 		else
 			wrists = /obj/item/clothing/neck/roguetown/psicross/silver/undivided
+	
+	H.AddComponent(/datum/component/trophy_hunter) //TA edit - added trophy_hunter component
 
 	//Old people get the option to become glass cannons. Expert Knives + Expert in their chosen weapon, but a permenant -I STR, -I PER, -2 SPD and -2 CON debuff.
 
