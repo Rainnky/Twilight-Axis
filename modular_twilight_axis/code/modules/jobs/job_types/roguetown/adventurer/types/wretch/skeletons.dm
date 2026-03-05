@@ -54,7 +54,8 @@
 	for(var/datum/charflaw/cf in H.charflaws)
 		H.charflaws.Remove(cf)
 		QDEL_NULL(cf)
-
+	H.dna.species.soundpack_m = new /datum/voicepack/skeleton()
+	H.dna.species.soundpack_f = new /datum/voicepack/skeleton()
 
 /datum/outfit/job/roguetown/wretch/hero/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -133,6 +134,5 @@
 		var/obj/item/rogueweapon/greatsword/grenz/flamberge/paalloy/W = new(get_turf(H))
 		if(!H.put_in_hands(W))
 			W.forceMove(get_turf(H))
-	H.dna.species.soundpack_m = new /datum/voicepack/skeleton()
-	H.dna.species.soundpack_f = new /datum/voicepack/skeleton()
+
 		//no castifico, you're a fucking skeleton. Life already punched you
