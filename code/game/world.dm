@@ -511,9 +511,13 @@ GLOBAL_VAR(restart_counter)
 	if(!announce_channel)
 		return
 
+	var/map_name = "Неизвестно"
+	if(SSmapping && SSmapping.next_map_config)
+		map_name = SSmapping.config?.map_name
+
 	var/datum/tgs_chat_embed/structure/embed = new()
 	embed.title = "Сервер запущен!"
-	embed.description = "История вот-вот начнется..."
+	embed.description = "История вот-вот начнется на **[map_name]**..."
 	embed.colour = "#B9B28A"
 
 	var/ping_role_id = CONFIG_GET(string/game_alert_role_id)
