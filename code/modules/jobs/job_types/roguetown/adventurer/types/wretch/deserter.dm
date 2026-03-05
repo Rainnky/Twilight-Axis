@@ -15,7 +15,7 @@
 		STATKEY_CON = 2,
 		STATKEY_STR = 2,
 		STATKEY_PER = 2,
-		STATKEY_FOR = 1
+		STATKEY_LCK = 1
 	)
 	subclass_skills = list(
 		/datum/skill/combat/polearms = SKILL_LEVEL_EXPERT,
