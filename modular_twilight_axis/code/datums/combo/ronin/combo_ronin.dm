@@ -65,9 +65,9 @@
 	if(bound_blades?.len)
 		for(var/obj/item/rogueweapon/W as anything in bound_blades)
 			// снять глоу
-			if(W && !QDELETED(W) && hascall(W, "remove_filter"))
-				call(W, "remove_filter")(RONIN_GLOW_BOUND_FILTER)
-				call(W, "remove_filter")(RONIN_GLOW_PREP_FILTER)
+			if(W && !QDELETED(W))
+				W.remove_filter(RONIN_GLOW_BOUND_FILTER)
+				W.remove_filter(RONIN_GLOW_PREP_FILTER)
 
 	if(listened_blade && !QDELETED(listened_blade))
 		UnregisterSignal(listened_blade, COMSIG_ITEM_ATTACK_SUCCESS)
@@ -235,19 +235,25 @@
 	if(force <= 0)
 		return
 	var/burn = max(1, round(force * mult))
-	if(hascall(target, "apply_damage"))
-		target.apply_damage(burn, BURN, zone)
-	else
-		if(hascall(target, "adjustFireLoss"))
-			target.adjustFireLoss(burn)
+	target.adjustFireLoss(burn)
 
-/datum/component/combo_core/ronin/proc/_ApplyBleed(mob/living/target, severity = 4)
-	if(!target)
+/datum/component/combo_core/ronin/proc/_ApplyBleed(mob/living/target, zone, amount)
+	if(!target || !amount || amount <= 0)
 		return
-	if(hascall(target, "apply_status_effect"))
-		target.apply_status_effect(/datum/status_effect/debuff/bleeding, severity)
-	else
-		to_chat(owner, span_warning("[target] starts bleeding (severity [severity])!"))
+	if(!iscarbon(target))
+		return
+
+	var/mob/living/carbon/C = target
+	var/obj/item/bodypart/BP = C.get_bodypart(zone)
+	if(!BP)
+		BP = C.get_bodypart(BODY_ZONE_CHEST)
+	if(!BP)
+		return
+
+	if(!BP.can_bloody_wound())
+		return
+
+	BP.bleeding = max(0, round(BP.bleeding + amount, 0.1))
 
 /datum/component/combo_core/ronin/proc/_ApplyArmorWearForward(mult = 0.5, tiles = 2, zone = BODY_ZONE_CHEST)
 	if(!owner)
@@ -349,31 +355,28 @@
 
 	for(var/i in 1 to 2)
 		var/dmg = max(1, round(force * 0.35))
-		if(hascall(victim, "apply_damage"))
-			victim.apply_damage(dmg, BRUTE, zone)
-		else if(hascall(victim, "adjustBruteLoss"))
-			victim.adjustBruteLoss(dmg)
+		victim.adjustBruteLoss(dmg)
 
-	_ApplyBleed(victim, 4)
+	_ApplyBleed(victim, zone, 4)
 
 // ----------------------------------------------------
 // Tanuki: PER buff counters
 // ----------------------------------------------------
 
 /datum/component/combo_core/ronin/proc/_StartTanukiPerBuff()
+	if(!owner)
+		return
+
 	tanuki_per_hits_left = RONIN_TANUKI_PER_HITS
-	// TODO: your stat system hook (PER +4)
-	// Примерные варианты:
-	// owner.AddStatBuff(STATKEY_PER, RONIN_TANUKI_PER_BONUS, "ronin_tanuki")
-	// owner.add_stat_modifier("ronin_tanuki", STATKEY_PER, RONIN_TANUKI_PER_BONUS)
-	to_chat(owner, span_notice("Tanuki's insight: +[RONIN_TANUKI_PER_BONUS] PER for [RONIN_TANUKI_PER_HITS] hits."))
+	owner.apply_status_effect(/datum/status_effect/buff/tanuki_insight)
+	to_chat(owner, span_notice("Tanuki's insight begins."))
 
 /datum/component/combo_core/ronin/proc/_EndTanukiPerBuff()
-	if(tanuki_per_hits_left <= 0)
+	if(!owner)
 		return
+
 	tanuki_per_hits_left = 0
-	// TODO: remove stat buff hook
-	// owner.RemoveStatBuff("ronin_tanuki")
+	owner.remove_status_effect(/datum/status_effect/buff/tanuki_insight)
 	to_chat(owner, span_notice("Tanuki's insight fades."))
 
 /datum/component/combo_core/ronin/proc/_HandleTanukiPerOnHit()
@@ -385,7 +388,6 @@
 
 /datum/component/combo_core/ronin/proc/_StartElderTanukiRiposte()
 	elder_tanuki_riposte_hits_left = 4
-	to_chat(owner, span_notice("Tanuki's riposte is set: triggers on the 4th hit."))
 
 /datum/component/combo_core/ronin/proc/_HandleElderTanukiRiposteOnHit(mob/living/target, zone)
 	if(elder_tanuki_riposte_hits_left <= 0)
@@ -401,13 +403,14 @@
 
 	var/force = _GetBladeForce()
 	var/extra = max(1, round(force * 0.5))
-
-	if(hascall(target, "apply_damage"))
-		target.apply_damage(extra, BRUTE, zone)
-	else if(hascall(target, "adjustBruteLoss"))
-		target.adjustBruteLoss(extra)
-
+	target.adjustBruteLoss(extra)
 	target.Stun(1 SECONDS)
+	target.OffBalance(2 SECONDS)
+	target.Immobilize(2 SECONDS)
+	target.Slowdown(3)
+	target.apply_status_effect(/datum/status_effect/debuff/baited)
+	target.apply_status_effect(/datum/status_effect/debuff/exposed)
+	target.apply_status_effect(/datum/status_effect/debuff/clickcd, 5 SECONDS)
 
 	owner.visible_message(
 		span_danger("[owner] answers with a perfect riposte!"),
@@ -533,7 +536,7 @@
 			_StartTanukiPerBuff()
 
 		if("tengu")
-			_ApplyBleed(target, 4)
+			_ApplyBleed(target, zone, 4)
 
 	ShowMinorComboIcon(target, rule_id)
 	owner.visible_message(
@@ -564,7 +567,6 @@
 			else
 				ronin_stacks = min(ronin_stacks + 2, RONIN_MAX_STACKS_OVERDRIVE)
 				ApplyBoundForceMultiplier()
-				to_chat(owner, span_notice("Ryu hardens your edge (+2 stacks)."))
 
 		if("kitsune")
 			_ApplyArmorWearForward(0.5, 2, zone)
@@ -634,7 +636,6 @@
 			if(2) icon_state = "cv_input"
 			if(3) icon_state = "cd_input"
 		_ronin_overhead(owner, icon_file, icon_state, 1.5 SECONDS, 20)
-		to_chat(owner, span_notice("Minor confirmed on hit: [pending_hit_input]."))
 		RegisterInput(pending_hit_input, target, user.zone_selected)
 		pending_hit_input = null
 
@@ -644,7 +645,7 @@
 		W.ronin_prepared_combo = null
 		W.ronin_prepared_at = 0
 		_ronin_apply_weapon_glow(W)
-		to_chat(owner, span_danger("ELDER COMBO RELEASED: [rule_id] (stacks=[ronin_stacks])!"))
+		to_chat(owner, span_danger("ELDER COMBO RELEASED: [rule_id]!"))
 		ExecuteElderCombo(rule_id, target, user.zone_selected)
 
 /datum/component/combo_core/ronin/_sig_register_input(datum/source, skill_id, mob/living/target, zone)
@@ -660,7 +661,6 @@
 
 	if(HasDrawnBoundBlade())
 		pending_hit_input = skill_id
-		to_chat(owner, span_notice("Minor queued: [skill_id] (stacks=[ronin_stacks]). Hit to confirm."))
 		return
 
 	RegisterInput(skill_id, null, zone)
