@@ -781,6 +781,8 @@
 	icon = 'modular_twilight_axis/firearms/icons/pistol/pistol.dmi'
 	icon_state = "pistol"
 	item_state = "pistol"
+	pixel_y = 0
+	pixel_x = 0
 	force = 10
 	possible_item_intents = list(/datum/intent/shoot/twilight_firearm, /datum/intent/arc/twilight_firearm, /datum/intent/mace/strike/wood)
 	associated_skill = /datum/skill/combat/maces
@@ -940,6 +942,8 @@
 /obj/item/gun/ballistic/twilight_firearm/arquebus_pistol/mortar
 	name = "hand mortar"
 	desc = "Ручная мортирка со стволом из бронзы, дополнительно прижатым к лафету крепким ремнём из кожи. Стреляет картечью и ядрами на малые расстояния и с меньшей силой. Такие часто использовали каперы под флагами Грензельхофта"
+	pixel_y = 0
+	pixel_x = 0
 	damfactor = 0.8
 	npcdamfactor = 1.5
 	mag_type = /obj/item/ammo_box/magazine/internal/twilight_firearm/mortar
