@@ -2,7 +2,7 @@
 #define RONIN_MAX_STACKS_NORMAL      5
 #define RONIN_MAX_STACKS_OVERDRIVE   20
 #define RONIN_OVERDRIVE_DURATION     (25 SECONDS)
-#define RONIN_FORCE_PER_STACK        0.01
+#define RONIN_FORCE_PER_STACK        0.02
 
 #define RONIN_GLOW_BOUND_FILTER    "ronin_bound_glow"
 #define RONIN_GLOW_PREP_FILTER     "ronin_prepared_glow"
