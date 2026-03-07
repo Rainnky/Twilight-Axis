@@ -95,11 +95,11 @@
 	next_stack_tick = world.time + RONIN_STACK_TICK
 
 	var/overdrive = (world.time < overdrive_until)
-	if(owner.cmode)
+	if(owner.cmode && HasBoundBladeSheathed())
 		if(overdrive)
-			ronin_stacks = min(ronin_stacks + 2, RONIN_MAX_STACKS_OVERDRIVE)
+			_set_ronin_stacks(min(ronin_stacks + 2, RONIN_MAX_STACKS_OVERDRIVE))
 		else
-			ronin_stacks = min(ronin_stacks + 1, RONIN_MAX_STACKS_NORMAL)
+			_set_ronin_stacks(min(ronin_stacks + 1, RONIN_MAX_STACKS_NORMAL))
 
 	ApplyBoundForceMultiplier()
 
@@ -237,9 +237,7 @@
 	var/burn = max(1, round(force * mult))
 	target.adjustFireLoss(burn)
 
-/datum/component/combo_core/ronin/proc/_ApplyBleed(mob/living/target, zone, amount)
-	if(!target || !amount || amount <= 0)
-		return
+/datum/component/combo_core/ronin/proc/_ApplyBleed(mob/living/target, zone)
 	if(!iscarbon(target))
 		return
 
@@ -253,7 +251,7 @@
 	if(!BP.can_bloody_wound())
 		return
 
-	BP.bleeding = max(0, round(BP.bleeding + amount, 0.1))
+	BP.add_wound(/datum/wound/dynamic/slash, silent = TRUE)
 
 /datum/component/combo_core/ronin/proc/_ApplyArmorWearForward(mult = 0.5, tiles = 2, zone = BODY_ZONE_CHEST)
 	if(!owner)
@@ -357,7 +355,7 @@
 		var/dmg = max(1, round(force * 0.35))
 		victim.adjustBruteLoss(dmg)
 
-	_ApplyBleed(victim, zone, 4)
+	_ApplyBleed(victim, zone)
 
 // ----------------------------------------------------
 // Tanuki: PER buff counters
@@ -484,7 +482,7 @@
 		if(!W || QDELETED(W))
 			continue
 
-		if(!istype(W.loc, /obj/item/rogueweapon/scabbard))
+		if(!GetBladeHolster(W))
 			continue
 
 		if(!W.ronin_prepared_combo)
@@ -536,7 +534,7 @@
 			_StartTanukiPerBuff()
 
 		if("tengu")
-			_ApplyBleed(target, zone, 4)
+			_ApplyBleed(target, zone)
 
 	ShowMinorComboIcon(target, rule_id)
 	owner.visible_message(
@@ -565,7 +563,7 @@
 			else if(force > stam)
 				target.OffBalance(2 SECONDS)
 			else
-				ronin_stacks = min(ronin_stacks + 2, RONIN_MAX_STACKS_OVERDRIVE)
+				_set_ronin_stacks(min(ronin_stacks + 2, RONIN_MAX_STACKS_OVERDRIVE))
 				ApplyBoundForceMultiplier()
 
 		if("kitsune")
@@ -706,6 +704,7 @@
 	if(!(active_blade in bound_blades))
 		return FALSE
 
+	owner.apply_status_effect(/datum/status_effect/buff/empowered_strike)
 	active_blade.attack(attacker, owner)
 	return TRUE
 
@@ -713,19 +712,22 @@
 	if(!owner || !bound_blades.len)
 		return FALSE
 
-	var/obj/item/rogueweapon/W = bound_blades[bound_blades.len]
-	if(!W)
-		return FALSE
+	var/obj/item/rogueweapon/W = null
+	var/obj/item/sheath_item = null
+	var/datum/component/holster/H = null
 
-	var/obj/item/sheath_item = W.loc
-	if(!isitem(sheath_item))
-		return FALSE
+	for(var/obj/item/rogueweapon/candidate as anything in bound_blades)
+		if(!candidate || QDELETED(candidate))
+			continue
 
-	var/datum/component/holster/H = get_holster_component(sheath_item)
-	if(!H)
-		return FALSE
+		var/obj/item/found_sheath = GetBladeHolster(candidate)
+		if(found_sheath)
+			W = candidate
+			sheath_item = found_sheath
+			H = get_holster_component(sheath_item)
+			break
 
-	if(H.sheathed != W)
+	if(!W || !sheath_item || !H)
 		return FALSE
 
 	var/free_hand = 0
@@ -747,7 +749,8 @@
 	UpdateAttackSuccessListener()
 
 	if(consume_stacks)
-		ronin_stacks = 0
+		_set_ronin_stacks(0)
+	else
 		ApplyBoundForceMultiplier()
 
 	return TRUE
@@ -841,3 +844,40 @@
 	if(!I)
 		return null
 	return I.GetComponent(/datum/component/holster)
+
+/datum/component/combo_core/ronin/proc/_set_ronin_stacks(new_value, show_balloon = TRUE)
+	var/old_value = ronin_stacks
+	ronin_stacks = max(0, new_value)
+
+	if(old_value == ronin_stacks)
+		return
+
+	ApplyBoundForceMultiplier()
+
+	if(show_balloon && owner?.client)
+		owner.balloon_alert(owner, "Ronin stacks: [ronin_stacks]")
+
+/datum/component/combo_core/ronin/proc/HasBoundBladeSheathed()
+	if(!bound_blades || !bound_blades.len)
+		return FALSE
+
+	for(var/obj/item/rogueweapon/W as anything in bound_blades)
+		if(!W || QDELETED(W))
+			continue
+		if(GetBladeHolster(W))
+			return TRUE
+
+	return FALSE
+
+/datum/component/combo_core/ronin/proc/GetBladeHolster(obj/item/rogueweapon/W)
+	if(!owner || !W)
+		return null
+
+	for(var/obj/item/I in owner.contents)
+		var/datum/component/holster/H = get_holster_component(I)
+		if(!H)
+			continue
+		if(H.sheathed == W)
+			return I
+
+	return null
