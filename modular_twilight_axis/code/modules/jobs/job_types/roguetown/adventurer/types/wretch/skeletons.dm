@@ -10,6 +10,7 @@
 	tutorial = "You're a shkeleton! You already forgot how you got all these bones, but people fears you, they want to dig you down. Do it first."
 	outfit = /datum/outfit/job/roguetown/wretch/hero
 	category_tags = list(CTAG_WRETCH)
+	class_select_category = CLASS_CAT_ACCURSED
 	min_pq = 30				//better RP?
 	maximum_possible_slots = 2
 	extra_context = "You're a SKELETON, be ready to shackle your bones. Minimum PQ Required: 30"
@@ -39,6 +40,7 @@
 	ADD_TRAIT(H, TRAIT_LIMBATTACHMENT, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_NOLIMBDISABLE, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_ZOMBIE_IMMUNE, TRAIT_GENERIC)
+	ADD_TRAIT(H, TRAIT_FACELESS_KNOWN, TRAIT_GENERIC)
 	H.dna.species.species_traits |= NOBLOOD
 	H.mob_biotypes = MOB_UNDEAD
 	for(var/obj/item/bodypart/B in H.bodyparts)
