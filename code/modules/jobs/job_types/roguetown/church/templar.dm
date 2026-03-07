@@ -29,7 +29,7 @@
 		/datum/advclass/templar/crusader,
 		/datum/advclass/templar/noc_spellblade,
 		/datum/advclass/templar/vigilant,
-		/datum/advclass/noctite_spellblade //TA EDIT
+//		/datum/advclass/noctite_spellblade //TA EDIT
 	)
 
 /datum/outfit/job/roguetown/templar
