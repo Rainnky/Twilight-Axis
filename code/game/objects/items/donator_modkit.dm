@@ -302,6 +302,7 @@
 		/obj/item/rogueweapon/stoneaxe/woodcut	  						= /obj/item/rogueweapon/stoneaxe/woodcut/triumph
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/stoneaxe/woodcut/triumph
 
 /obj/item/enchantingkit/triumph_weaponkit_axedouble
 	name = "'Doublehead' axe morphing elixir"
@@ -315,6 +316,7 @@
 		/obj/item/rogueweapon/stoneaxe/battle	  						= /obj/item/rogueweapon/stoneaxe/battle/triumph
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/stoneaxe/battle/triumph
 
 /obj/item/enchantingkit/triumph_weaponkit_sword
 	name = "'Valorian' sword morphing elixir"
