@@ -122,20 +122,6 @@ SUBSYSTEM_DEF(job)
 	JobDebug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
 	var/list/candidates = list()
 	for(var/mob/dead/new_player/player in unassigned)
-<<<<<<< pref
-		if(is_banned_from(player.ckey, job.title) || QDELETED(player)) continue
-		if(!job.player_old_enough(player.client)) continue
-		if(job.required_playtime_remaining(player.client)) continue
-		if(flag && (!(flag in player.client.prefs.be_special))) continue
-		if(player.mind && (job.title in player.mind.restricted_roles)) continue
-		
-		
-		var/datum/preferences/char_prefs = player.client.prefs.get_job_prefs(job.title)
-
-		if(!job.validate_prefs_for_job(char_prefs)) continue
-
-		if(job.plevel_req > player.client.patreonlevel()) continue
-=======
 		if(is_banned_from(player.ckey, job.title) || QDELETED(player))
 			JobDebug("FOC isbanned failed, Player: [player]")
 			continue
@@ -172,7 +158,6 @@ SUBSYSTEM_DEF(job)
 		if(job.plevel_req > player.client.patreonlevel())
 			JobDebug("FOC incompatible with PATREON LEVEL, Player: [player], Job: [job.title], Race: [player.client.prefs.pref_species.name]")
 			continue
->>>>>>> main
 		#ifdef USES_PQ
 		if(!isnull(job.min_pq) && (get_playerquality(player.ckey) < job.min_pq)) continue
 		if(!isnull(job.max_pq) && (get_playerquality(player.ckey) > job.max_pq)) continue
@@ -191,20 +176,6 @@ SUBSYSTEM_DEF(job)
 	JobDebug("GRJ Giving random job, Player: [player]")
 	. = FALSE
 	for(var/datum/job/job in shuffle(occupations))
-<<<<<<< pref
-		if(!job) continue
-		if(job.title in GLOB.noble_positions) continue
-		if(is_banned_from(player.ckey, job.title) || QDELETED(player)) continue
-		if(!job.can_random) continue
-		if(!job.player_old_enough(player.client)) continue
-		if(job.required_playtime_remaining(player.client)) continue
-		if(player.mind && (job.title in player.mind.restricted_roles)) continue
-
-		var/datum/preferences/char_prefs = player.client.prefs.get_job_prefs(job.title)
-		if(!job.validate_prefs_for_job(char_prefs)) continue
-
-		if(job.plevel_req > player.client.patreonlevel()) continue
-=======
 		if(!job)
 			continue
 
@@ -220,6 +191,9 @@ SUBSYSTEM_DEF(job)
 				break
 			JobDebug("GRJ isbanned failed, Player: [player], Job: [job.title]")
 			continue
+
+		var/datum/preferences/char_prefs = player.client.prefs.get_job_prefs(job.title)
+		if(!job.validate_prefs_for_job(char_prefs)) continue
 
 		if(!job.can_random)
 			JobDebug("GRJ can't random into this job, Job: [job.title], Player: [player]")
@@ -271,7 +245,6 @@ SUBSYSTEM_DEF(job)
 			JobDebug("GRJ incompatible with sex, Player: [player], Job: [job.title]")
 			continue
 
->>>>>>> main
 		#ifdef USES_PQ
 		if(!isnull(job.min_pq) && (get_playerquality(player.ckey) < job.min_pq)) continue
 		if(!isnull(job.max_pq) && (get_playerquality(player.ckey) > job.max_pq)) continue
@@ -475,26 +448,21 @@ SUBSYSTEM_DEF(job)
 					JobDebug("DO incompatible with antagonist role, Player: [player], Job:[job.title]")
 					continue
 
-<<<<<<< pref
-				// =========================================================================
-				// НОВЫЙ КОД: Загружаем префы конкретного слота для этой работы
-				// =========================================================================
-				var/datum/preferences/char_prefs = player.client.prefs.get_job_prefs(job.title)
-
-				if(!job.validate_prefs_for_job(char_prefs))
-					JobDebug("DO incompatible with character traits (Race/Faith/Vices/etc), Player: [player], Job: [job.title]")
-=======
 				if(length(job.allowed_races) && !(player.client.prefs.pref_species.type in job.allowed_races))
 					JobDebug("DO incompatible with species, Player: [player], Job: [job.title], Race: [player.client.prefs.pref_species.name]")
 					continue
 
+				var/datum/preferences/char_prefs = player.client.prefs.get_job_prefs(job.title)
+
+				if(!job.validate_prefs_for_job(char_prefs))
+					JobDebug("DO incompatible with character traits (Race/Faith/Vices/etc), Player: [player], Job: [job.title]")
+				
 				if(length(job.allowed_patrons) && !(player.client.prefs.selected_patron?.type in job.allowed_patrons))
 					JobDebug("DO incompatible with patron, Player: [player], Job: [job.title], Race: [player.client.prefs.pref_species.name]")
 					continue
 
 				if(length(job.virtue_restrictions) && ((player.client.prefs.virtue?.type in job.virtue_restrictions) || (player.client.prefs.virtuetwo?.type in job.virtue_restrictions) || (player.client.prefs.virtue_origin?.type in job.virtue_restrictions)))
 					JobDebug("DO incompatible with virtues, Player: [player], Job: [job.title], Virtue 1: [player.client.prefs.virtue?.name]")
->>>>>>> main
 					continue
 				// =========================================================================
 
@@ -558,13 +526,12 @@ SUBSYSTEM_DEF(job)
 				if(job.required_playtime_remaining(player.client)) continue
 				if(player.mind && (job.title in player.mind.restricted_roles)) continue
 
-<<<<<<< pref
-				var/datum/preferences/char_prefs = player.client.prefs.get_job_prefs(job.title)
-				if(!job.validate_prefs_for_job(char_prefs)) continue
-=======
 				if(is_banned_from(player.ckey, job.title))
 					continue
-
+				
+				var/datum/preferences/char_prefs = player.client.prefs.get_job_prefs(job.title)
+				if(!job.validate_prefs_for_job(char_prefs)) continue
+				
 				if(QDELETED(player))
 					break
 
@@ -594,7 +561,6 @@ SUBSYSTEM_DEF(job)
 							break
 					if(has_restricted_vice)
 						continue
->>>>>>> main
 
 				#ifdef USES_PQ
 				if(!isnull(job.min_pq) && (get_playerquality(player.ckey) < job.min_pq) && level != JP_LOW) continue
