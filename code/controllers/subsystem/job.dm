@@ -122,6 +122,7 @@ SUBSYSTEM_DEF(job)
 	JobDebug("Running FOC, Job: [job], Level: [level], Flag: [flag]")
 	var/list/candidates = list()
 	for(var/mob/dead/new_player/player in unassigned)
+<<<<<<< pref
 		if(is_banned_from(player.ckey, job.title) || QDELETED(player)) continue
 		if(!job.player_old_enough(player.client)) continue
 		if(job.required_playtime_remaining(player.client)) continue
@@ -134,6 +135,44 @@ SUBSYSTEM_DEF(job)
 		if(!job.validate_prefs_for_job(char_prefs)) continue
 
 		if(job.plevel_req > player.client.patreonlevel()) continue
+=======
+		if(is_banned_from(player.ckey, job.title) || QDELETED(player))
+			JobDebug("FOC isbanned failed, Player: [player]")
+			continue
+		if(!job.player_old_enough(player.client))
+			JobDebug("FOC player not old enough, Player: [player]")
+			continue
+		if(job.required_playtime_remaining(player.client))
+			JobDebug("FOC player not enough xp, Player: [player]")
+			continue
+		if(flag && (!(flag in player.client.prefs.be_special)))
+			JobDebug("FOC flag failed, Player: [player], Flag: [flag], ")
+			continue
+		if(player.mind && (job.title in player.mind.restricted_roles))
+			JobDebug("FOC incompatible with antagonist role, Player: [player]")
+			continue
+		if(length(job.allowed_races) && !(player.client.prefs.pref_species.type in job.allowed_races))
+			JobDebug("FOC incompatible with species, Player: [player], Job: [job.title], Race: [player.client.prefs.pref_species.name]")
+			continue
+		if(length(job.allowed_patrons) && !(player.client.prefs.selected_patron?.type in job.allowed_patrons))
+			JobDebug("FOC incompatible with patron, Player: [player], Job: [job.title], Race: [player.client.prefs.pref_species.name]")
+			continue
+		if(length(job.virtue_restrictions) && ((player.client.prefs.virtue?.type in job.virtue_restrictions) || (player.client.prefs.virtuetwo?.type in job.virtue_restrictions) || (player.client.prefs.virtue_origin?.type in job.virtue_restrictions)))
+			JobDebug("FOC incompatible with virtues, Player: [player], Job: [job.title], Virtue 1: [player.client.prefs.virtue?.name]")
+			continue
+		if(length(job.vice_restrictions))
+			var/has_restricted_vice = FALSE
+			for(var/datum/charflaw/cf in player.client.prefs.charflaws)
+				if(cf.type in job.vice_restrictions)
+					JobDebug("FOC incompatible with vices, Player: [player], Job: [job.title], Vice: [cf.name]")
+					has_restricted_vice = TRUE
+					break
+			if(has_restricted_vice)
+				continue
+		if(job.plevel_req > player.client.patreonlevel())
+			JobDebug("FOC incompatible with PATREON LEVEL, Player: [player], Job: [job.title], Race: [player.client.prefs.pref_species.name]")
+			continue
+>>>>>>> main
 		#ifdef USES_PQ
 		if(!isnull(job.min_pq) && (get_playerquality(player.ckey) < job.min_pq)) continue
 		if(!isnull(job.max_pq) && (get_playerquality(player.ckey) > job.max_pq)) continue
@@ -152,6 +191,7 @@ SUBSYSTEM_DEF(job)
 	JobDebug("GRJ Giving random job, Player: [player]")
 	. = FALSE
 	for(var/datum/job/job in shuffle(occupations))
+<<<<<<< pref
 		if(!job) continue
 		if(job.title in GLOB.noble_positions) continue
 		if(is_banned_from(player.ckey, job.title) || QDELETED(player)) continue
@@ -164,6 +204,74 @@ SUBSYSTEM_DEF(job)
 		if(!job.validate_prefs_for_job(char_prefs)) continue
 
 		if(job.plevel_req > player.client.patreonlevel()) continue
+=======
+		if(!job)
+			continue
+
+//		if(istype(job, GetJob(SSjob.overflow_role))) // We don't want to give him assistant, that's boring!
+//			continue
+
+		if(job.title in GLOB.noble_positions) //If you want a command position, select it!
+			continue
+
+		if(is_banned_from(player.ckey, job.title) || QDELETED(player))
+			if(QDELETED(player))
+				JobDebug("GRJ isbanned failed, Player deleted")
+				break
+			JobDebug("GRJ isbanned failed, Player: [player], Job: [job.title]")
+			continue
+
+		if(!job.can_random)
+			JobDebug("GRJ can't random into this job, Job: [job.title], Player: [player]")
+			continue
+
+		if(!job.player_old_enough(player.client))
+			JobDebug("GRJ player not old enough, Player: [player]")
+			continue
+
+		if(job.required_playtime_remaining(player.client))
+			JobDebug("GRJ player not enough xp, Player: [player]")
+			continue
+
+		if(player.mind && (job.title in player.mind.restricted_roles))
+			JobDebug("GRJ incompatible with antagonist role, Player: [player], Job: [job.title]")
+			continue
+
+		if(length(job.allowed_races) && !(player.client.prefs.pref_species.type in job.allowed_races))
+			JobDebug("GRJ incompatible with species, Player: [player], Job: [job.title], Race: [player.client.prefs.pref_species.name]")
+			continue
+
+		if(length(job.allowed_patrons) && !(player.client.prefs.selected_patron?.type in job.allowed_patrons))
+			JobDebug("GRJ incompatible with patron, Player: [player], Job: [job.title], Race: [player.client.prefs.pref_species.name]")
+			continue
+
+		if(length(job.virtue_restrictions) && ((player.client.prefs.virtue?.type in job.virtue_restrictions) || (player.client.prefs.virtuetwo?.type in job.virtue_restrictions) || (player.client.prefs.virtue_origin?.type in job.virtue_restrictions)))
+			JobDebug("GRJ incompatible with virtues, Player: [player], Job: [job.title], Virtue 1: [player.client.prefs.virtue?.name]")
+			continue
+
+		if(length(job.vice_restrictions))
+			var/has_restricted_vice = FALSE
+			for(var/datum/charflaw/cf in player.client.prefs.charflaws)
+				if(cf.type in job.vice_restrictions)
+					JobDebug("GRJ incompatible with vices, Player: [player], Job: [job.title], Vice: [cf.name]")
+					has_restricted_vice = TRUE
+					break
+			if(has_restricted_vice)
+				continue
+
+		if(job.plevel_req > player.client.patreonlevel())
+			JobDebug("GRJ incompatible with PATREON LEVEL, Player: [player], Job: [job.title], Race: [player.client.prefs.pref_species.name]")
+			continue
+
+		if(length(job.allowed_ages) && !(player.client.prefs.age in job.allowed_ages))
+			JobDebug("GRJ incompatible with age, Player: [player], Job: [job.title], Race: [player.client.prefs.pref_species.name]")
+			continue
+
+		if(length(job.allowed_sexes) && !(player.client.prefs.gender in job.allowed_sexes))
+			JobDebug("GRJ incompatible with sex, Player: [player], Job: [job.title]")
+			continue
+
+>>>>>>> main
 		#ifdef USES_PQ
 		if(!isnull(job.min_pq) && (get_playerquality(player.ckey) < job.min_pq)) continue
 		if(!isnull(job.max_pq) && (get_playerquality(player.ckey) > job.max_pq)) continue
@@ -191,6 +299,38 @@ SUBSYSTEM_DEF(job)
 	unassigned = list()
 	return
 
+/datum/controller/subsystem/job/proc/bitflag_to_department(department_flag, obsfuscated = FALSE)
+	var/key = "Wanderers"
+	if(obsfuscated)
+		return key
+	switch(department_flag) // Omega tier slop.
+		if(NOBLEMEN)
+			key = "Noblemen"
+		if(COURTIERS)
+			key = "Courtiers"
+		if(RETINUE)
+			key = "Retinue"
+		if(GARRISON)
+			key = "Garrison"
+		if(CITYWATCH)
+			key = "City Watch"
+		if(VANGUARD)
+			key = "Vanguard"
+		if(CHURCHMEN)
+			key = "Church"
+		if(BURGHERS)
+			key = "Burghers"
+		if(PEASANTS)
+			key = "Peasants"
+		if(INQUISITION)
+			key = "Inquisition"
+		if(SIDEFOLK)
+			key = "Sidefolk"
+		if(WANDERERS)
+			key = "Wanderers"
+		else
+			key = "Wanderers"
+	return key
 
 //This proc is called before the level loop of DivideOccupations() and will try to select a head, ignoring ALL non-head preferences for every level until
 //it locates a head or runs out of levels to check
@@ -335,6 +475,7 @@ SUBSYSTEM_DEF(job)
 					JobDebug("DO incompatible with antagonist role, Player: [player], Job:[job.title]")
 					continue
 
+<<<<<<< pref
 				// =========================================================================
 				// НОВЫЙ КОД: Загружаем префы конкретного слота для этой работы
 				// =========================================================================
@@ -342,6 +483,18 @@ SUBSYSTEM_DEF(job)
 
 				if(!job.validate_prefs_for_job(char_prefs))
 					JobDebug("DO incompatible with character traits (Race/Faith/Vices/etc), Player: [player], Job: [job.title]")
+=======
+				if(length(job.allowed_races) && !(player.client.prefs.pref_species.type in job.allowed_races))
+					JobDebug("DO incompatible with species, Player: [player], Job: [job.title], Race: [player.client.prefs.pref_species.name]")
+					continue
+
+				if(length(job.allowed_patrons) && !(player.client.prefs.selected_patron?.type in job.allowed_patrons))
+					JobDebug("DO incompatible with patron, Player: [player], Job: [job.title], Race: [player.client.prefs.pref_species.name]")
+					continue
+
+				if(length(job.virtue_restrictions) && ((player.client.prefs.virtue?.type in job.virtue_restrictions) || (player.client.prefs.virtuetwo?.type in job.virtue_restrictions) || (player.client.prefs.virtue_origin?.type in job.virtue_restrictions)))
+					JobDebug("DO incompatible with virtues, Player: [player], Job: [job.title], Virtue 1: [player.client.prefs.virtue?.name]")
+>>>>>>> main
 					continue
 				// =========================================================================
 
@@ -405,8 +558,43 @@ SUBSYSTEM_DEF(job)
 				if(job.required_playtime_remaining(player.client)) continue
 				if(player.mind && (job.title in player.mind.restricted_roles)) continue
 
+<<<<<<< pref
 				var/datum/preferences/char_prefs = player.client.prefs.get_job_prefs(job.title)
 				if(!job.validate_prefs_for_job(char_prefs)) continue
+=======
+				if(is_banned_from(player.ckey, job.title))
+					continue
+
+				if(QDELETED(player))
+					break
+
+				if(!job.player_old_enough(player.client))
+					continue
+
+				if(job.required_playtime_remaining(player.client))
+					continue
+
+				if(player.mind && (job.title in player.mind.restricted_roles))
+					continue
+
+				if(length(job.allowed_races) && !(player.client.prefs.pref_species.type in job.allowed_races))
+					continue
+				
+				if(length(job.allowed_patrons) && !(player.client.prefs.selected_patron?.type in job.allowed_patrons))
+					continue
+
+				if(length(job.virtue_restrictions) && ((player.client.prefs.virtue?.type in job.virtue_restrictions) || (player.client.prefs.virtuetwo?.type in job.virtue_restrictions) || (player.client.prefs.virtue_origin?.type in job.virtue_restrictions)))
+					continue
+					
+				if(length(job.vice_restrictions))
+					var/has_restricted_vice = FALSE
+					for(var/datum/charflaw/cf in player.client.prefs.charflaws)
+						if(cf.type in job.vice_restrictions)
+							has_restricted_vice = TRUE
+							break
+					if(has_restricted_vice)
+						continue
+>>>>>>> main
 
 				#ifdef USES_PQ
 				if(!isnull(job.min_pq) && (get_playerquality(player.ckey) < job.min_pq) && level != JP_LOW) continue

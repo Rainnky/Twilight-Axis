@@ -410,16 +410,16 @@
 			lol++
 			switch(lol)
 				if(1)
-					intent1 = image(icon='icons/mob/roguehud.dmi',icon_state=intenty.icon_state, pixel_x = 64, pixel_y = 16, layer = layer+0.02)
+					intent1 = image(icon=intenty.icon,icon_state=intenty.icon_state, pixel_x = 64, pixel_y = 16, layer = layer+0.02)
 					add_overlay(intent1, TRUE)
 				if(2)
-					intent2 = image(icon='icons/mob/roguehud.dmi',icon_state=intenty.icon_state, pixel_x = 96, pixel_y = 16, layer = layer+0.02)
+					intent2 = image(icon=intenty.icon,icon_state=intenty.icon_state, pixel_x = 96, pixel_y = 16, layer = layer+0.02)
 					add_overlay(intent2, TRUE)
 				if(3)
-					intent3 = image(icon='icons/mob/roguehud.dmi',icon_state=intenty.icon_state, pixel_x = 64, layer = layer+0.02)
+					intent3 = image(icon=intenty.icon,icon_state=intenty.icon_state, pixel_x = 64, layer = layer+0.02)
 					add_overlay(intent3, TRUE)
 				if(4)
-					intent4 = image(icon='icons/mob/roguehud.dmi',icon_state=intenty.icon_state, pixel_x = 96, layer = layer+0.02)
+					intent4 = image(icon=intenty.icon,icon_state=intenty.icon_state, pixel_x = 96, layer = layer+0.02)
 					add_overlay(intent4, TRUE)
 		if(ismob(usr))
 			var/mob/M = usr
@@ -1828,10 +1828,13 @@
 			to_chat(M, "<span class='info'>* --- *</span>")
 
 /mob/living/proc/swap_rmb_intent(type, num)
+	if(QDELETED(src))
+		return
 	if(!possible_rmb_intents?.len)
 		return
 	if(type)
 		if(type in possible_rmb_intents)
+			qdel(rmb_intent)
 			rmb_intent = new type()
 			if(hud_used?.rmb_intent)
 				hud_used.rmb_intent.update_icon()
@@ -1841,6 +1844,7 @@
 			return
 		var/A = possible_rmb_intents[num]
 		if(A)
+			qdel(rmb_intent)
 			rmb_intent = new A()
 			if(hud_used?.rmb_intent)
 				hud_used.rmb_intent.update_icon()

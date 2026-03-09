@@ -88,7 +88,7 @@ GLOBAL_LIST_INIT(special_traits, build_special_traits())
 
 	var/virtuous = FALSE
 	var/heretic = FALSE
-	var/species = character.dna.species.type
+	var/species = character.dna.species
 
 	if(istype(player.prefs.selected_patron, /datum/patron/inhumen))
 		heretic = TRUE
@@ -111,6 +111,12 @@ GLOBAL_LIST_INIT(special_traits, build_special_traits())
 		else
 			to_chat(character, "Incorrect Second Virtue parameters! It will not be applied.")
 	if(origin_type)
+		if(istype(origin_type, /datum/virtue/origin/azuria) && SSmapping.config.map_name == "Rockhill")
+			var/pick = alert(character, "Ваш персонаж имеет азурийское происхождение. Хотели бы Вы изменить его на происхождение с Энигмы?", "ПРОШЛОЕ", "Да", "Нет")
+			if(!pick)
+				pick = "Нет"
+			if(pick == "Да")
+				origin_type = new /datum/virtue/origin/enigma
 		if((language_type && language_type != "None"))
 			character.grant_language(language_type)
 		if(origin_type.job_origin == TRUE)
@@ -175,9 +181,14 @@ GLOBAL_LIST_INIT(special_traits, build_special_traits())
 	if(bonus in GLOB.roguetraits)
 		ADD_TRAIT(character, bonus, SPECIES_TRAIT)
 
-/proc/virtue_check(var/datum/virtue/V, heretic = FALSE)
+/proc/virtue_check(var/datum/virtue/V, heretic = FALSE, datum/species/species)
 	if(V)
 		if(istype(V,/datum/virtue/heretic) && !heretic)
+			return FALSE
+		if(V.restricted)
+			if((species.type in V.races))
+				return FALSE
+		if(V.type in species.restricted_virtues)
 			return FALSE
 		return TRUE
 	return FALSE
