@@ -68,14 +68,14 @@
 		if(QDELETED(user) || QDELETED(target) || user.stat || target.stat)
 			break
 		
-		if(get_dist(user, target) > range + 1)
-			to_chat(user, span_warning("The distance is too great! The link snaps!"))
-			break
-
 		if(user.z != target.z)
 			to_chat(user, span_warning("The distance is too great! The link snaps!"))
 			break
 		
+		if(!(target in view(range + 1, user)))
+			to_chat(user, span_warning("You lost sight of the target! The link snaps!"))
+			break
+
 		tick_count++
 		
 		var/current_damage = (base_damage + (tick_count * ramp_multiplier)) + (skill_mod * 2)

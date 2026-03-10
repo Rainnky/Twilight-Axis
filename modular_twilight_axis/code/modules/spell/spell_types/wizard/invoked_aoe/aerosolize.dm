@@ -9,7 +9,6 @@
 	warnie = "spellwarning"
 	movement_interrupt = FALSE
 	no_early_release = FALSE
-	chargedloop = null
 	sound = 'sound/magic/whiteflame.ogg'
 	chargedloop = /datum/looping_sound/invokegen
 	associated_skill = /datum/skill/magic/arcane
