@@ -266,6 +266,14 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			log_admin_private("Ticket #[ticket.id]: [key_name(user)] -> [ticket.initiator_key_name]: [log_msg]")
 			// Notify other admins in chat with real identity
 			message_admins(span_adminnotice("<font color='blue'>Ticket #[ticket.id] [ticket.TicketHref("Show Ticket")] - [key_name_admin(user)] replied to [ticket.initiator_key_name]: [log_msg]</font>"))
+			var/list/data = list(
+				"type"= "areply",
+				"id"= "[ticket_id]",
+				"initiator"= user.client.ckey,
+				"admin"= "1",
+				"message"= message
+			)
+			send2discordwh(data)  
 
 			return TRUE
 		
@@ -1092,6 +1100,14 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			// Send the message
 			MessageNoRecipient(message, FALSE)
 			TimeoutVerb()
+			var/list/data = list(
+				"type"= "areply",
+				"id"= "[src.id]",
+				"initiator"= usr.client.ckey,
+				"admin"= "0",
+				"message"= message
+			)
+			send2discordwh(data)  
 			
 			return TRUE
 		

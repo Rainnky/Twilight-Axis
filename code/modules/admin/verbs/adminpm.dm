@@ -60,6 +60,7 @@
 		message_admins("[key_name_admin(src)] has cancelled their reply to [key_name_admin(C, 0, 0)]'s admin help.")
 		return
 	cmd_admin_pm(whom, msg)
+	. = list(AH, msg)
 
 //takes input from cmd_admin_pm_context, cmd_admin_pm_panel or /client/Topic and sends them a PM.
 //Fetching a message if needed. src is the sender and C is the target client
@@ -168,7 +169,7 @@
 
 			else		//recipient is an admin but sender is not
 				var/replymsg = "Reply PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span>"
-				admin_ticket_log(src, "<font color='red'>[replymsg]</font>", "<font color='red'>[replymsg]</font>")
+				. = admin_ticket_log(src, "<font color='red'>[replymsg]</font>", "<font color='red'>[replymsg]</font>")
 				to_chat(recipient, span_danger("[replymsg]"))
 				to_chat(src, span_notice("PM to-<b>Admins</b>: <span class='linkify'>[msg]</span>"))
 			
@@ -184,6 +185,7 @@
 				created_ticket = new /datum/admin_help(msg, recipient, TRUE)
 			else
 				created_ticket = recipient.current_ticket
+				. = created_ticket
 
 			to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 			to_chat(recipient, span_adminsay("Admin PM from-<b>[key_name(src, recipient, 0)]</b>: <span class='linkify'>[msg]</span>"))
