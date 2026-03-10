@@ -5,11 +5,11 @@
 // ADMIN HELP UI STATE
 //
 
-// Custom UI state for admin ticket panel that requires R_AHELP permission
+// Custom UI state for admin ticket panel that requires R_ADMIN permission
 /datum/ui_state/ahelp_state
 
 /datum/ui_state/ahelp_state/can_use_topic(src_object, mob/user)
-	if(check_rights_for(user.client, R_AHELP))
+	if(check_rights_for(user.client, R_ADMIN))
 		return UI_INTERACTIVE
 	return UI_CLOSE
 
@@ -98,7 +98,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 //opens the ticket listings for one of the 3 states
 /datum/admin_help_tickets/proc/BrowseTickets(state)
-	if(!check_rights(R_AHELP))
+	if(!check_rights(R_ADMIN))
 		to_chat(usr, "<font color='red'>Error: You do not have permission to view tickets.</font>")
 		return
 	
@@ -210,7 +210,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		return
 	
 	var/mob/user = usr
-	if(!check_rights_for(user.client, R_AHELP))
+	if(!check_rights_for(user.client, R_ADMIN))
 		return FALSE
 	
 	switch(action)
@@ -321,7 +321,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			var/datum/admin_help/ticket = TicketByID(ticket_id)
 			if(!ticket)
 				return FALSE
-			ticket.HandleIssue()
+			ticket.handle_issue()
 			return TRUE
 		
 		if("reopen")
@@ -550,9 +550,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	var/initiator_key_name
 	var/heard_by_no_admins = FALSE
 	/// The collection of interactions with this ticket. Use AddInteraction() or, preferably, admin_ticket_log()
-	var/list/ticket_interactions
-	/// List of player interactions
-	var/list/player_interactions
+	var/list/_interactions
 	/// Statclick holder for the ticket
 
 	var/obj/effect/statclick/ahelp/statclick
@@ -594,8 +592,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	TimeoutVerb()
 
 	statclick = new(null, src)
-	ticket_interactions = list()
-	player_interactions = list()
+	_interactions = list()
 
 	addtimer(CALLBACK(src, PROC_REF(add_to_ping_ss), 2 MINUTES)) // Ticket Ping | this is not responsible for the notification itself, but only for adding the ticket to the list of those to notify.
 
@@ -919,8 +916,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		dat += "<br>Closed at: [gameTimestamp("hh:mm:ss", closed_at)] (Approx [DisplayTimeText(world.time - closed_at)] ago)"
 	dat += "<br><br>"
 	dat += "<br><b>Log:</b><br><br>"
-	for (var/interaction in player_interactions)
-		dat += "[interaction]<br>"
+//	for (var/interaction in player_interactions)
+//		dat += "[interaction]<br>"
 
 	dat+= "<br><b>THIS IS AN EXPERIMENTAL FEATURE, REPORT ANY BUGS TO GITHUB!!</b><br>"
 
@@ -1223,10 +1220,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /// what can be a client, ckey, or mob
 /// player_message: If the message should be shown in the player ticket panel, fill this out
 /proc/admin_ticket_log(what, message, player_message)
-	var/client/mob_client
+	var/client/C
 	var/mob/Mob = what
 	if(istype(Mob))
-		mob_client = Mob.client
+		C = Mob.client
 	else
 		C = what
 	if(istype(C) && C.current_ticket)
@@ -1387,7 +1384,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	set category = "Admin"
 	set name = "Open Ticket Panel"
 	
-	if(!check_rights(R_AHELP))
+	if(!check_rights(R_ADMIN))
 		return
 	
 	GLOB.ahelp_tickets.ui_interact(mob)
