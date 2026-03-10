@@ -550,7 +550,6 @@
 	var/force = _GetBladeForce()
 	var/extra = max(1, round(force * 0.5))
 
-	target.adjustBruteLoss(extra)
 	target.Stun(1 SECONDS)
 	target.OffBalance(2 SECONDS)
 	target.Immobilize(2 SECONDS)
@@ -558,6 +557,9 @@
 	target.apply_status_effect(/datum/status_effect/debuff/baited)
 	target.apply_status_effect(/datum/status_effect/debuff/exposed)
 	target.apply_status_effect(/datum/status_effect/debuff/clickcd, 5 SECONDS)
+	var/obj/item/in_hand = target.get_active_held_item()
+	if(in_hand)
+		target.disarmed(in_hand)
 
 	owner.visible_message(
 		span_danger("[owner] answers with a perfect riposte!"),
