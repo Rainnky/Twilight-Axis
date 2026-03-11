@@ -200,3 +200,35 @@
     var/irc_tagged = "[sender]"
     ticket.handle_issue(irc_tagged)
 
+/datum/world_topic/reply_ticket
+	keyword = "areply"
+	require_comms_key = TRUE
+
+/datum/world_topic/reply_ticket/Run(list/input)
+    var/irc_name = input["initiator"]
+    var/datum/admin_help/ticket = GLOB.ahelp_tickets.TicketByID(text2num(input["id"]))
+    var/message = copytext_char(input["message"], 1)
+    if(!ticket || ticket.state != AHELP_ACTIVE)
+        return
+
+    ticket.AddInteraction("<font color='blue'>IRC-PM from [irc_name]: [message]</font>")
+
+    // Send to player if connected
+    if(ticket.initiator)
+        to_chat(ticket.initiator, span_adminhelp("<b>Admin PM from-<font color='red'>(IRC) [irc_name]</font></b>: <span class='linkify'>[message]</span>"))
+        SEND_SOUND(ticket.initiator, sound('sound/adminhelp.ogg'))
+        window_flash(ticket.initiator, ignorepref = TRUE)
+
+    // Log with real name for accountability (strip <br> for log readability)
+    var/log_msg = replacetext(message, "<br>", "\n")
+    log_admin_private("Ticket #[ticket.id]: (IRC) [irc_name] -> [ticket.initiator_key_name]: [log_msg]")
+    // Notify other admins in chat with real identity
+    message_admins(span_adminnotice("<font color='blue'>Ticket #[ticket.id] [ticket.TicketHref("Show Ticket")] - [irc_name] replied to [ticket.initiator_key_name]: [log_msg]</font>"))
+    var/list/data = list(
+        "type"= "areply",
+        "id"= "[ticket.id]",
+        "initiator"= irc_name,
+        "admin"= "1",
+        "message"= message
+    )
+    send2discordwh(data)  
