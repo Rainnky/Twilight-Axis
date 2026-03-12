@@ -231,4 +231,35 @@
         "admin"= "1",
         "message"= message
     )
-    send2discordwh(data)  
+    send2discordwh(data)
+
+/datum/world_topic/pqckeck
+	keyword = "pqcheck"
+	require_comms_key = TRUE
+
+/datum/world_topic/pqckeck/Run(list/input)
+    var/ckey = input["ckey"]
+    . = list()
+    .["pq"] = get_playerquality(ckey, FALSE) // Что это за ебанина, почему аргумент называется text, а везде где это используется передается вообще три переменных нахуй.......
+    .["commends"] = get_commends(ckey)
+    .["rcp"] = get_roundpoints(ckey)
+    .["played"] = get_roundsplayed(ckey)
+
+/datum/world_topic/seenotes
+	keyword = "seenotes"
+	require_comms_key = TRUE
+
+/datum/world_topic/seenotes/Run(list/input)
+	var/canonical_ckey = replacetext(replacetext(replacetext(replacetext(lowertext(input["ckey"]), " ", ""), "_", ""), ".", ""), "-", "")
+	var/folder_prefix = copytext(canonical_ckey, 1, 2)
+	var/list/listy = world.file2list("data/player_saves/[folder_prefix]/[canonical_ckey]/playerquality.txt")
+	. = list()
+	.["data"] = ""
+
+	if(!listy.len)
+		.["data"] = "No data on record. Create some."
+	else
+		for(var/i = listy.len to 1 step -1)
+			var/ya = listy[i]
+			if(ya)
+				.["data"] += copytext_char("[ya]\n", 1)
