@@ -321,23 +321,14 @@
 /datum/erp_vfx_service/proc/is_thrust_init(init_t)
 	return (init_t in list(SEX_ORGAN_MOUTH, SEX_ORGAN_VAGINA, SEX_ORGAN_PENIS, SEX_ORGAN_TAIL))
 
-/datum/erp_vfx_service/proc/find_closet_for_thrust(datum/erp_sex_link/L, mob/living/user, atom/movable/target)
-	var/atom/movable/A = L?.actor_active?.get_movable()
-	var/atom/movable/B = L?.actor_passive?.get_movable()
+/datum/erp_vfx_service/proc/find_closet_for_thrust(datum/erp_sex_link/L, mob/living/user, atom/movable/target)  
+    var/atom/movable/A = L?.actor_active?.get_movable()  
+    var/atom/movable/B = L?.actor_passive?.get_movable()  
 
-	if(istype(A?.loc, /obj/structure/closet) && A.loc == B?.loc)
-		return A.loc
+    if(A?.loc == B?.loc && istype(A.loc, /obj/structure/closet))  
+        return A.loc  
 
-	if(istype(B?.loc, /obj/structure/closet) && B.loc == A?.loc)
-		return B.loc
-
-	if(istype(user?.loc, /obj/structure/closet) && user.loc == target?.loc)
-		return user.loc
-
-	if(istype(target?.loc, /obj/structure/closet) && target.loc == user?.loc)
-		return target.loc
-
-	return null
+    return null 
 
 /datum/erp_vfx_service/proc/shake_closet(obj/structure/closet/C, force, time)
 	if(!C || QDELETED(C))
