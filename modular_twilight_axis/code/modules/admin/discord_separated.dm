@@ -1,5 +1,5 @@
 /proc/send2discordwh(var/data)
-    world.Export("http://127.0.0.1:8080", data, 0, null, "POST")
+    world.Export("http://127.0.0.1:8081", data, 0, null, "POST")
 
 /proc/roundend_notify_discord()
     var/list/data = list(
