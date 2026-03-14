@@ -265,7 +265,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			var/log_msg = replacetext(message, "<br>", "\n")
 			log_admin_private("Ticket #[ticket.id]: [key_name(user)] -> [ticket.initiator_key_name]: [log_msg]")
 			// Notify other admins in chat with real identity
-			message_admins(span_adminnotice("<font color='blue'>Ticket #[ticket.id] [ticket.TicketHref("Show Ticket")] - [key_name_admin(user)] replied to [ticket.initiator_key_name]: [log_msg]</font>"))
+			message_admins(span_adminnotice("<font color='blue'>Ticket #[ticket.id] [ticket.TicketHref("Show Ticket")] - [key_name_admin(user)] replied to [ticket.initiator_key_name]:</font> <font color='#c87941'>[log_msg]</font>"))
 			var/list/data = list(
 				"type"= "areply",
 				"id"= "[ticket_id]",
