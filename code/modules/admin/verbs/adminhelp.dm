@@ -689,8 +689,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 /datum/admin_help/proc/MessageNoRecipient(msg, play_sound = TRUE)
 	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 	var/ref_src = "[REF(src)]"
-	// Truncate the displayed name in the inline notification to keep the header readable
-	var/display_name = length_char(name) > 60 ? "[copytext_char(name, 1, 61)]..." : name
 	// Simplified message to be sent to all admins, including title and action links
 	var/admin_msg = span_adminnotice("<font color='#c87941'><b>Ticket #[id]: ([initiator_ckey]) - [TicketHref("Show Ticket", ref_src)]</b><br><span class='linkify' style='font-weight:normal;color:#c87941'>[msg]</span></font>")
 
