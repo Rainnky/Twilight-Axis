@@ -2313,6 +2313,8 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					var/list/all_themes = get_tgui_themes()
 					var/list/choices = list("None (Use Viewer's)")
 					for(var/theme_key in all_themes)
+						if(theme_key == "trey_liam")
+							continue
 						choices += all_themes[theme_key]
 					var/current_display = "None (Use Viewer's)"
 					if(examine_theme)

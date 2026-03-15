@@ -719,3 +719,45 @@
   WeNeedMorePhoron:
   - bugfix: NPC should be properly gating their dialogue to not blow up your entire
       chat when switching aggro now
+2026-03-15:
+  KatTheFox:
+  - qol: you can now heal eoran trees with your own blood using crimson arils
+  - bugfix: altruistic crimson arils checked the wrong player for blood
+  - qol: you can now water eoran trees with blessed (but not cursed) water
+  - bugfix: loadout amulets granted by devotee virtue are no longer called psycrosses
+  - bugfix: blunt objects no longer act like orison for wetting rice
+  Ketrai:
+  - rscadd: Keeper has drip now.
+  Ollanius:
+  - rscadd: '''Comet'' heraldries for the Iron and Wooden Shields.'
+  - bugfix: Billhooks, when two-handed, no longer have an errant pixel.
+  SpadesNeil:
+  - rscadd: Kodachi can now be bought in the Silverface.
+  - rscadd: Tanto can now be bought in the Silverface.
+  ToasterStrudes:
+  - bugfix: fixed lore related name in timechangetips
+  WeNeedMorePhoron:
+  - rscadd: New homebrew bottle sprites from bottling kit made by Zydras!
+  - rscadd: New TGUI themes - Psydonic, Lingyue, New Ascendant, Gilbranze. Renamed
+      Azurea to Noccite, Undivided to Oaken. Old Ascendant theme remains largely unchanged
+      except for small font and coloring changes in line with others.
+  - rscadd: Redid all existing TGUI themes to look prettier with a gradient
+  - rscadd: Improved TGUI UI design to looks far prettier
+  - rscadd: Changed Guidebook to Encyclopedia, moved to TGUI formatting
+  - rscadd: Ability to set an "Examine Theme", saved on a per character basis, that
+      makes viewer uses your desired theme when viewing your character profile
+  - rscadd: Added "Miracle" and "Spell List" compendium to the Encyclopedia that list
+      all mage spells and miracles (I think) alongside statistics.
+  - rscadd: Greyscaled default fallback headshot to match the theme they are in
+  - rscadd: Expanded Miracle description to describe per patron effects
+  - rscadd: When you can't run / jump due to wearing armor you are not trained for,
+      or get knocked down on dodge, or suffer parry penalty, message in chat will
+      indicates why.
+  - rscadd: Trey Liam theme can no longer be set as your character examine theme.
+  zydras:
+  - spellcheck: Renamed Big Man to be Big Fella (gender-neutral)
+  - balance: Big Fellas now have bodybuilder armor instead of a leather cuirass
+  - balance: Big Fellas now have the Giant virtue innately (they ARE big after all)
+  - balance: Big Fellas get loadout-fitting gloves
+  - rscdel: Removed the flint & bait bag from Big Fellas' satchels
+  - bugfix: Big Fellas actually lose -1FOR
