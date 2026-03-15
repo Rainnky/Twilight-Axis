@@ -15,7 +15,7 @@ type Props = {
   selectedRecipe: string | null;
   onCategoryChange: (value: string) => void;
   onSelectRecipe: (path: string) => void;
-  onBack: () => void;
+  onBack?: () => void;
 };
 
 export const RecipeBookSidebar = memo((props: Props) => {
@@ -49,11 +49,13 @@ export const RecipeBookSidebar = memo((props: Props) => {
 
   return (
     <Stack vertical fill>
-      <Stack.Item>
-        <Button fluid icon="arrow-left" onClick={onBack}>
-          Back to Library
-        </Button>
-      </Stack.Item>
+      {!!onBack && (
+        <Stack.Item>
+          <Button fluid icon="arrow-left" onClick={onBack}>
+            Back to Library
+          </Button>
+        </Stack.Item>
+      )}
       <Stack.Item>
         <Box bold textAlign="center" py={0.5}>
           {title}
