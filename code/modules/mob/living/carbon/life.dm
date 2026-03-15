@@ -883,8 +883,6 @@ GLOBAL_LIST_INIT(ballmer_windows_me_msg, list("Yo man, what if, we like, uh, put
 			drowning_drowniness++
 			if(drowning_drowniness >= 3) 
 				adjustOxyLoss(10)
-		else
-			drowning_drowniness = max(0, drowning_drowniness - 1)
 	else
 		drowning_drowniness = max(0, drowning_drowniness - 1)
 
