@@ -1989,6 +1989,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/clothing/cloak/twilight_desert
 	donatitem = TRUE
 
+/datum/loadout_item/donat/cloak_etrusco
+	name = "Этрусский плащ"
+	category = list("Плащи", "Донат")
+	path = /obj/item/clothing/cloak/duelcape
+	donatitem = TRUE
+
 // Маски
 
 /datum/loadout_item/donat/naledimask
@@ -2105,6 +2111,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	name = "Корона из цветов Эоры"
 	category = list("Головные уборы", "Донат")
 	path = /obj/item/flowercrown/rosa/resprite
+	donatitem = TRUE
+
+/datum/loadout_item/donat/etrusca_hat
+	name = "Этрусская шляпа"
+	category = list("Головные уборы", "Донат")
+	path = /obj/item/clothing/head/roguetown/duelhat
 	donatitem = TRUE
 
 /datum/loadout_item/tw_d_horns_donat
