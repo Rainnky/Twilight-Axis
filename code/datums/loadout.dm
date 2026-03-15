@@ -2033,16 +2033,16 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/clothing/mask/rogue/owlmask
 	donatitem = TRUE
 
-/datum/loadout_item/yoruku_oni
+/datum/loadout_item/onimask
 	name = "Oni mask"
 	category = list ("Донат", "Головные уборы")
-	path = /obj/item/clothing/mask/rogue/facemask/yoruku_oni
+	path = /obj/item/clothing/mask/rogue/yoruku_oni
 	donatitem = TRUE
 
-/datum/loadout_item/yoruku_kitsune
+/datum/loadout_item/kitsunemask
 	name = "Kitsune mask"
 	category = list ("Донат", "Головные уборы")
-	path = /obj/item/clothing/mask/rogue/facemask/yoruku_kitsune
+	path = /obj/item/clothing/mask/rogue/yoruku_kitsune
 	donatitem = TRUE
 
 // Шляпы
@@ -2200,12 +2200,6 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	name = "Подтяжки"
 	category = list("Аксессуары", "Донат")
 	path = /obj/item/storage/belt/rogue/leather/suspenders
-	donatitem = TRUE
-
-/datum/loadout_item/doublebelt
-	name = "Paired slim belts"
-	category = list("Аксессуары", "Донат")
-	path = /obj/item/storage/belt/rogue/leather/double
 	donatitem = TRUE
 
 // Обувь
