@@ -87,6 +87,7 @@
 	var/picked = FALSE
 	color = "#FFFFFF"
 	max_integrity = ARMOR_INT_HELMET_STEEL + 15
+	worn_y_dimension = 30
 
 /obj/item/clothing/head/roguetown/helmet/sallet/morion/attackby(obj/item/W, mob/living/user, params)
 	..()

@@ -303,3 +303,12 @@
 	tools = list(/obj/item/needle)
 	craftdiff = 2
 	sellprice = 15
+
+/obj/item/clothing/head/roguetown/duelhat
+	name = "etruscian duelist hat"
+	desc = "A dainty looking feathered hat that is actually quite heavy and thick, Duelists from Etrusca are known to value winning fights without dirtying the white feather on top"
+	icon = 'modular_twilight_axis/icons/roguetown/clothing/head.dmi'
+	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/head.dmi'
+	icon_state = "duelisthat"
+	item_state = "duelisthat"
+	color = null
