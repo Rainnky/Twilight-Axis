@@ -1,0 +1,5 @@
+author: "SpadesNeil"
+delete-after: True
+changes:
+  - rscadd: "Kodachi can now be bought in the Silverface."
+  - rscadd: "Tanto can now be bought in the Silverface."

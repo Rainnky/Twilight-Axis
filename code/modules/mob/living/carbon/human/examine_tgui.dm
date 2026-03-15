@@ -152,6 +152,13 @@
 	if(song_url)
 		has_song = TRUE
 
+	// Examine theme override — use the viewed character's preference
+	var/char_examine_theme
+	if(ishuman(holder))
+		char_examine_theme = holder.examine_theme
+	else if(pref)
+		char_examine_theme = pref.examine_theme
+
 	var/list/data = list(
 		// Identity
 		"character_name" = obscured ? "Unknown" : char_name,
@@ -168,6 +175,7 @@
 		"has_song" = has_song,
 		"is_vet" = is_vet,
 		"is_naked" = is_naked,
+		"examine_theme" = char_examine_theme,
 	)
 	return data
 

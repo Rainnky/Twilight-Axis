@@ -1,0 +1,11 @@
+author: "WeNeedMorePhoron"
+delete-after: True
+changes:
+  - rscadd: "New TGUI themes - Psydonic, Lingyue, New Ascendant, Gilbranze. Renamed Azurea to Noccite, Undivided to Oaken. Old Ascendant theme remains largely unchanged except for small font and coloring changes in line with others."
+  - rscadd: "Redid all existing TGUI themes to look prettier with a gradient"
+  - rscadd: "Improved TGUI UI design to looks far prettier"
+  - rscadd: "Changed Guidebook to Encyclopedia, moved to TGUI formatting"
+  - rscadd: "Ability to set an \"Examine Theme\", saved on a per character basis, that makes viewer uses your desired theme when viewing your character profile"
+  - rscadd: "Added \"Miracle\" and \"Spell List\" compendium to the Encyclopedia that list all mage spells and miracles (I think) alongside statistics."
+  - rscadd: "Greyscaled default fallback headshot to match the theme they are in"
+  - rscadd: "Expanded Miracle description to describe per patron effects"

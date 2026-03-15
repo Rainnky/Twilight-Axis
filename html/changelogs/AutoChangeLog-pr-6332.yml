@@ -1,0 +1,4 @@
+author: "WeNeedMorePhoron"
+delete-after: True
+changes:
+  - rscadd: "When you can't run / jump due to wearing armor you are not trained for, or get knocked down on dodge, or suffer parry penalty, message in chat will indicates why."
