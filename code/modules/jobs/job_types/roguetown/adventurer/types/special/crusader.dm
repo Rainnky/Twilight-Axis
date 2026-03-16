@@ -41,9 +41,6 @@
 /datum/outfit/job/roguetown/adventurer/crusader
 	name = "Crusader"
 
-/datum/outfit/job/roguetown/adventurer/crusader/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.mind?.current.faction += "[H.name]_faction"
 	belt = /obj/item/storage/belt/rogue/leather/plaquegold
 	pants = /obj/item/clothing/under/roguetown/chainlegs
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
@@ -61,6 +58,9 @@
 						/obj/item/storage/belt/rogue/pouch/coins/rich = 1,
 						/obj/item/flashlight/flare/torch = 1,
 						)
+/datum/outfit/job/roguetown/adventurer/crusader/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.mind?.current.faction += "[H.name]_faction"
 
 	for(var/I in SSrole_class_handler.sorted_class_categories[CTAG_ALLCLASS])
 		var/datum/advclass/A = I

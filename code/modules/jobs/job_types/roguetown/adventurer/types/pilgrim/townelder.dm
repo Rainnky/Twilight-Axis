@@ -40,8 +40,7 @@
 		/datum/skill/craft/ceramics = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/roguetown/elder/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/elder
 	cloak = /obj/item/clothing/cloak/tabard/stabard/guardhood/elder
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/white
 	pants = /obj/item/clothing/under/roguetown/tights
@@ -52,6 +51,9 @@
 	backl = /obj/item/storage/backpack/rogue/satchel
 	id = /obj/item/scomstone/bad
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/storage/belt/rogue/pouch/coins/rich = 1)
+
+/datum/outfit/job/roguetown/elder/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(should_wear_femme_clothes(H))
 		head = /obj/item/clothing/head/roguetown/chaperon/greyscale/elder
 		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/silkdress

@@ -34,6 +34,24 @@
 		/datum/skill/misc/riding = SKILL_LEVEL_APPRENTICE,
 	)
 
+/datum/outfit/job/roguetown/mercenary/routier
+	wrists = /obj/item/clothing/wrists/roguetown/bracers
+	belt = /obj/item/storage/belt/rogue/leather
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
+	neck = /obj/item/clothing/neck/roguetown/fencerguard
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan
+	head = /obj/item/clothing/head/roguetown/helmet/otavan
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/otavan
+	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
+	shoes = /obj/item/clothing/shoes/roguetown/boots/otavan
+	gloves = /obj/item/clothing/gloves/roguetown/otavan
+	backr = /obj/item/storage/backpack/rogue/satchel/black
+	backl = /obj/item/rogueweapon/shield/tower/metal
+	backpack_contents = list(
+		/obj/item/roguekey/mercenary = 1,
+		/obj/item/flashlight/flare/torch = 1,
+		)
+
 /datum/outfit/job/roguetown/mercenary/routier/pre_equip(mob/living/carbon/human/H)
 	..()
 
@@ -58,20 +76,4 @@
 			if("Foot Lancer")
 				H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
 				r_hand = /obj/item/rogueweapon/spear/lance
-	wrists = /obj/item/clothing/wrists/roguetown/bracers
-	belt = /obj/item/storage/belt/rogue/leather
-	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
-	neck = /obj/item/clothing/neck/roguetown/fencerguard
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan
-	head = /obj/item/clothing/head/roguetown/helmet/otavan
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/otavan
-	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
-	shoes = /obj/item/clothing/shoes/roguetown/boots/otavan
-	gloves = /obj/item/clothing/gloves/roguetown/otavan
-	backr = /obj/item/storage/backpack/rogue/satchel/black
-	backl = /obj/item/rogueweapon/shield/tower/metal
-	backpack_contents = list(
-		/obj/item/roguekey/mercenary = 1,
-		/obj/item/flashlight/flare/torch = 1,
-		)
 	H.merctype = 10

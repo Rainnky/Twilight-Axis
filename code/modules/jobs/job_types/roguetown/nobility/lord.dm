@@ -79,6 +79,7 @@ GLOBAL_LIST_EMPTY(lord_titles)
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/blueprint/mace_mushroom = 1)
 	id = /obj/item/scomstone/garrison
 
+	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes/gold
 /datum/outfit/job/roguetown/lord/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(SSroguemachine.crown == null || (QDELETED(SSroguemachine.crown)))
@@ -98,7 +99,6 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
 		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/black
 		shoes = /obj/item/clothing/shoes/roguetown/boots
-	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes/gold
 	if(H.wear_mask)
 		if(istype(H.wear_mask, /obj/item/clothing/mask/rogue/eyepatch))
 			qdel(H.wear_mask)
@@ -173,9 +173,11 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN,
 	)
 
+/datum/outfit/job/roguetown/lord/warrior
+	l_hand = /obj/item/rogueweapon/lordscepter
+
 /datum/outfit/job/roguetown/lord/warrior/pre_equip(mob/living/carbon/human/H)
 	..()
-	l_hand = /obj/item/rogueweapon/lordscepter
 
 /**
 	Merchant Lord subclass. Consider this an evolution from Sheltered Aristocrat.
@@ -214,9 +216,11 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		/datum/skill/misc/riding = SKILL_LEVEL_APPRENTICE,
 	)
 
+/datum/outfit/job/roguetown/lord/merchant
+	l_hand = /obj/item/rogueweapon/lordscepter
+
 /datum/outfit/job/roguetown/lord/merchant/pre_equip(mob/living/carbon/human/H)
 	..()
-	l_hand = /obj/item/rogueweapon/lordscepter
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/appraise/secular)
 
@@ -255,11 +259,13 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		/datum/skill/craft/alchemy = SKILL_LEVEL_APPRENTICE,
 	)
 
+/datum/outfit/job/roguetown/lord/mage
+	backr = /obj/item/storage/backpack/rogue/satchel
+	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/roguegem/amethyst = 1, /obj/item/spellbook_unfinished/pre_arcyne = 1, /obj/item/blueprint/mace_mushroom = 1)
+
 /datum/outfit/job/roguetown/lord/mage/pre_equip(mob/living/carbon/human/H)
 	..()
-	backr = /obj/item/storage/backpack/rogue/satchel
 
-	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, /obj/item/roguegem/amethyst = 1, /obj/item/spellbook_unfinished/pre_arcyne = 1, /obj/item/blueprint/mace_mushroom = 1)
 
 /**
 	Inbred Lord subclass. A joke class, evolution of the Inbred Wastrel.
@@ -290,16 +296,20 @@ GLOBAL_LIST_EMPTY(lord_titles)
 		/datum/skill/craft/sewing = SKILL_LEVEL_NOVICE,
 	)
 
+/datum/outfit/job/roguetown/lord/inbred
+	l_hand = /obj/item/rogueweapon/lordscepter
+
 /datum/outfit/job/roguetown/lord/inbred/pre_equip(mob/living/carbon/human/H)
 	..()
-	l_hand = /obj/item/rogueweapon/lordscepter
 	H.adjust_skillrank(/datum/skill/combat/crossbows, pick(0,1), TRUE)
 	H.adjust_skillrank(/datum/skill/misc/climbing, pick(0,0,1), TRUE)
 	H.adjust_skillrank(/datum/skill/misc/athletics, pick(0,1), TRUE)
 
+/datum/outfit/job/roguetown/lord/visuals
+	head = /obj/item/clothing/head/roguetown/crown/fakecrown //Prevents the crown of woe from happening again.
+
 /datum/outfit/job/roguetown/lord/visuals/pre_equip(mob/living/carbon/human/H)
 	..()
-	head = /obj/item/clothing/head/roguetown/crown/fakecrown //Prevents the crown of woe from happening again.
 
 /proc/give_lord_surname(mob/living/carbon/human/family_guy, preserve_original = FALSE)
 	if(!GLOB.lordsurname)

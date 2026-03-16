@@ -18,8 +18,7 @@
 		/datum/advclass/heartfelt/hand/advisor,
 		)
 
-/datum/outfit/job/roguetown/heartfelt/hand/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/heartfelt/hand
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 	belt = /obj/item/storage/belt/rogue/leather/black
 	shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
@@ -28,6 +27,9 @@
 	beltr = /obj/item/flashlight/flare/torch/lantern
 	id = /obj/item/scomstone
 	backl = /obj/item/storage/backpack/rogue/satchel
+
+/datum/outfit/job/roguetown/heartfelt/hand/pre_equip(mob/living/carbon/human/H)
+	..()
 
 /***************************************************************/
 // MARSHAL //
@@ -67,8 +69,7 @@
 	/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/roguetown/heartfelt/hand/marshal/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/heartfelt/hand/marshal
 	neck = /obj/item/clothing/neck/roguetown/gorget/steel
 	armor = /obj/item/clothing/suit/roguetown/armor/heartfelt/hand
 	r_hand = /obj/item/rogueweapon/sword/long/dec
@@ -84,6 +85,9 @@
 		/obj/item/natural/feather = 1,
 		/obj/item/paper/scroll = 1,
 		)
+
+/datum/outfit/job/roguetown/heartfelt/hand/marshal/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/heartfelt)
 		H.verbs |= list(/mob/living/carbon/human/mind/proc/setordersheartfelt)
@@ -139,8 +143,7 @@
 	/datum/skill/misc/riding = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/heartfelt/hand/steward/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/heartfelt/hand/steward
 	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
 	gloves = /obj/item/clothing/gloves/roguetown/leather/black
 	r_hand = /obj/item/rogueweapon/sword/sabre/dec
@@ -158,6 +161,9 @@
 		)
 	mask = /obj/item/clothing/mask/rogue/spectacles/golden
 	id = /obj/item/scomstone
+
+/datum/outfit/job/roguetown/heartfelt/hand/steward/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/heartfelt)
 
@@ -203,8 +209,7 @@
 	var/list/spells = list(/obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 
 //Advisor start. Trades combat skills for more knowledge and skills - for older hands, hands that don't do combat - people who wanna play wizened old advisors.
-/datum/outfit/job/roguetown/heartfelt/hand/advisor/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/heartfelt/hand/advisor
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
 	mask = /obj/item/clothing/mask/rogue/spectacles/golden
 	backpack_contents = list(
@@ -212,13 +217,16 @@
 		/obj/item/rogueweapon/scabbard/sheath/noble = 1,
 		/obj/item/rogueweapon/huntingknife = 1,
 		/obj/item/storage/belt/rogue/pouch/coins/rich = 1,
-		/obj/item/lockpickring/mundane = 1, 
+		/obj/item/lockpickring/mundane = 1,
 		/obj/item/reagent_containers/glass/bottle/rogue/poison = 1,
 		/obj/item/natural/feather = 1,
 		/obj/item/paper/scroll = 1,
 	) //starts with a vial of poison, like all wizened evil advisors do!
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
 	pants = /obj/item/clothing/under/roguetown/tights/black
+
+/datum/outfit/job/roguetown/heartfelt/hand/advisor/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/heartfelt)
 

@@ -24,10 +24,6 @@
 /datum/outfit/job/roguetown/mercenary/gronn
 	allowed_patrons = ALL_GRONNIC_PATRONS //Subvariant of the 'ALL_INHUMEN_PATRONS' tag, with Abyssor and Dendor as situational additions. Do not add any more to this, no matter what.
 
-/datum/outfit/job/roguetown/mercenary/gronn/pre_equip(mob/living/carbon/human/H)
-	..()
-
-	//Universal gear
 	backl = /obj/item/storage/backpack/rogue/satchel/black
 	belt = /obj/item/storage/belt/rogue/leather
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
@@ -37,6 +33,10 @@
 		/obj/item/rogueweapon/huntingknife = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
+/datum/outfit/job/roguetown/mercenary/gronn/pre_equip(mob/living/carbon/human/H)
+	..()
+
+	//Universal gear
 
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
@@ -88,7 +88,6 @@
 				H.change_stat(STATKEY_INT, -1) //Unga swordsman.
 				ADD_TRAIT(H, TRAIT_MEDIUMARMOR, TRAIT_GENERIC)
 				H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
-
 
 
 			if("Skemmdarvargur - Ravager")	//Light armor, beast claws or dual handaxes. 

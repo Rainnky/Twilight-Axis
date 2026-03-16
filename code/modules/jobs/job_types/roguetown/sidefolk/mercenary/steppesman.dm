@@ -23,10 +23,7 @@
 		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/mercenary/steppesman/pre_equip(mob/living/carbon/human/H)
-	..()
-
-	//Universal gear
+/datum/outfit/job/roguetown/mercenary/steppesman
 	belt = /obj/item/storage/belt/rogue/leather/black
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/chargah
@@ -39,6 +36,11 @@
 		/obj/item/rogueweapon/whip/nagaika,
 		/obj/item/rogueweapon/scabbard/sheath
 		)
+
+/datum/outfit/job/roguetown/mercenary/steppesman/pre_equip(mob/living/carbon/human/H)
+	..()
+
+	//Universal gear
 
 	// CLASS ARCHETYPES
 	H.adjust_blindness(-3)

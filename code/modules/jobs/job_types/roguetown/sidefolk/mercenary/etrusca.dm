@@ -32,13 +32,12 @@
 		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/mercenary/etrusca/condottiero/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/mercenary/etrusca/condottiero
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/iron
 	cloak = /obj/item/clothing/cloak/tabard/blkknight //Aura farming
 	gloves = /obj/item/clothing/gloves/roguetown/plate
 	belt = /obj/item/storage/belt/rogue/leather/battleskirt
-	head = /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan //Literally Etruscan. You don't get a choice, you're wearing this, sire. 
+	head = /obj/item/clothing/head/roguetown/helmet/bascinet/etruscan //Literally Etruscan. You don't get a choice, you're wearing this, sire.
 	armor = /obj/item/clothing/suit/roguetown/armor/brigandine //It's THE Etruscan armor, come on!
 	backl = /obj/item/storage/backpack/rogue/satchel
 	shirt = /obj/item/clothing/suit/roguetown/shirt/shadowshirt //padded is too strong I guess.
@@ -51,6 +50,9 @@
 		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 		/obj/item/rogueweapon/huntingknife/idagger/navaja = 1,
 		)
+
+/datum/outfit/job/roguetown/mercenary/etrusca/condottiero/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		var/weapons = list("Intrepid Leader - Dual Longswords", "Calculating Tactician - Crossbow + Shortsword")
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
@@ -109,8 +111,7 @@
 		/datum/skill/craft/sewing = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/mercenary/etrusca/balestrieri/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/mercenary/etrusca/balestrieri
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
 	cloak = /obj/item/clothing/cloak/thief_cloak
 	gloves = /obj/item/clothing/gloves/roguetown/angle
@@ -132,4 +133,7 @@
 		/obj/item/rogueweapon/huntingknife/idagger/navaja = 1,
 		/obj/item/lockpick = 1
 		)
+
+/datum/outfit/job/roguetown/mercenary/etrusca/balestrieri/pre_equip(mob/living/carbon/human/H)
+	..()
 	H.merctype = 3

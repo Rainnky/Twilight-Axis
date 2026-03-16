@@ -40,6 +40,11 @@
 
 /datum/outfit/job/roguetown/mercenary/forlorn/pre_equip(mob/living/carbon/human/H)
 	..()
+	H.merctype = 5
+
+/datum/outfit/job/roguetown/mercenary/forlorn
+	has_loadout = TRUE
+
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	neck = /obj/item/clothing/neck/roguetown/gorget/forlorncollar
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/volfplate
@@ -56,11 +61,6 @@
 		/obj/item/rogueweapon/scabbard/sheath,
 		/obj/item/storage/belt/rogue/pouch/coins/poor
 		)
-	H.merctype = 5
-
-/datum/outfit/job/roguetown/mercenary/forlorn
-	has_loadout = TRUE
-
 /datum/outfit/job/roguetown/mercenary/forlorn/choose_loadout(mob/living/carbon/human/H)
 	. = ..()
 	var/weapons = list("Warhammer", // The OG

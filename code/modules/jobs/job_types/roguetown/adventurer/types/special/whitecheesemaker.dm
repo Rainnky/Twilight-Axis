@@ -42,18 +42,17 @@
 /datum/outfit/job/roguetown/adventurer/whitecheese
 	name = "WHITE CHEESE"
 
-/datum/outfit/job/roguetown/adventurer/whitecheese/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_skillrank(/datum/skill/craft/carpentry, rand(4,5), TRUE)
-	H.adjust_skillrank(/datum/skill/craft/masonry, rand(1,2), TRUE)
-
-
 	belt = /obj/item/storage/belt/rogue/leather
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
 	gloves = /obj/item/clothing/gloves/roguetown/leather
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/black
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/rich
+/datum/outfit/job/roguetown/adventurer/whitecheese/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_skillrank(/datum/skill/craft/carpentry, rand(4,5), TRUE)
+	H.adjust_skillrank(/datum/skill/craft/masonry, rand(1,2), TRUE)
+
 
 	H.dna.species.soundpack_m = new /datum/voicepack/male/evil/blkknight()
 	if(H.mind)

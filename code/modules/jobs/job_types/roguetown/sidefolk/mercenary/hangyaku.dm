@@ -34,11 +34,7 @@
 	)
 	extra_context = "This subclass is race-limited from: Constructs."
 
-/datum/outfit/job/roguetown/mercenary/hangyaku/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
-	has_loadout = TRUE
-	to_chat(H, span_warning("Rebel. Outlaw. Failure. Once, you served the upper echelons of Kazengun society as more than just a 'knight'- you were a champion, a beacon of virtue, a legend in the making. Now you wander distant Psydonia, seeking a fresh start... or fresh coin, at least."))
+/datum/outfit/job/roguetown/mercenary/hangyaku
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/kabuto
 	belt = /obj/item/storage/belt/rogue/leather/cloth
 	neck = /obj/item/clothing/neck/roguetown/gorget/steel/kazengun
@@ -54,6 +50,12 @@
 		/obj/item/storage/belt/rogue/pouch/coins/poor,
 		/obj/item/rogueweapon/scabbard/sheath/kazengun
 		)
+
+/datum/outfit/job/roguetown/mercenary/hangyaku/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
+	has_loadout = TRUE
+	to_chat(H, span_warning("Rebel. Outlaw. Failure. Once, you served the upper echelons of Kazengun society as more than just a 'knight'- you were a champion, a beacon of virtue, a legend in the making. Now you wander distant Psydonia, seeking a fresh start... or fresh coin, at least."))
 	H.merctype = 9
 
 /datum/outfit/job/roguetown/mercenary/hangyaku/choose_loadout(mob/living/carbon/human/H)
@@ -128,11 +130,7 @@
 		/datum/skill/craft/crafting = SKILL_LEVEL_JOURNEYMAN
 	)
 
-/datum/outfit/job/roguetown/mercenary/chonin/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
-	has_loadout = TRUE
-	to_chat(H, span_warning("Once, you were a farmer, a miner, a seamstress, a commoner. Now the sword is your plow and war your field. You’ve hammered your scythes into spears and recast your knives into swords. Past the door, your daimyo is calling - and destiny awaits."))
+/datum/outfit/job/roguetown/mercenary/chonin
 	belt = /obj/item/storage/belt/rogue/leather
 	neck = /obj/item/clothing/neck/roguetown/gorget/steel/kazengun
 	head = /obj/item/clothing/head/roguetown/helmet/kettle/jingasa
@@ -148,6 +146,12 @@
 		/obj/item/flashlight/flare/torch/lantern,
 		/obj/item/storage/belt/rogue/pouch/coins/poor,
 		)
+
+/datum/outfit/job/roguetown/mercenary/chonin/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
+	has_loadout = TRUE
+	to_chat(H, span_warning("Once, you were a farmer, a miner, a seamstress, a commoner. Now the sword is your plow and war your field. You’ve hammered your scythes into spears and recast your knives into swords. Past the door, your daimyo is calling - and destiny awaits."))
 	H.merctype = 9
 
 /datum/outfit/job/roguetown/mercenary/chonin/choose_loadout(mob/living/carbon/human/H)

@@ -37,8 +37,7 @@
 		/datum/skill/misc/lockpicking = SKILL_LEVEL_EXPERT,
 	)
 
-/datum/outfit/job/roguetown/assassin/ranger/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/assassin/ranger
 	cloak = /obj/item/clothing/cloak/raincloak/red
 	belt = /obj/item/storage/belt/rogue/leather/black
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
@@ -59,6 +58,9 @@
 	head = /obj/item/clothing/head/roguetown/helmet/kettle
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
 	beltr = /obj/item/rogueweapon/stoneaxe/woodcut/wardenpick
+
+/datum/outfit/job/roguetown/assassin/ranger/pre_equip(mob/living/carbon/human/H)
+	..()
 	H.adjust_blindness(-3)
 	if(H.mind)
 		var/weapons = list("Yew Longbow","Crossbow")

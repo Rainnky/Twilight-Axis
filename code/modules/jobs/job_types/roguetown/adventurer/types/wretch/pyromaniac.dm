@@ -32,8 +32,8 @@
 	subclass_stashed_items = list(
         "Armor Plates" =  /obj/item/repair_kit/metal,
     )
-/datum/outfit/job/roguetown/wretch/pyromaniac/pre_equip(mob/living/carbon/human/H)
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/sheriff //wear protection :) 
+/datum/outfit/job/roguetown/wretch/pyromaniac
+	head = /obj/item/clothing/head/roguetown/helmet/heavy/sheriff //wear protection :)
 	mask = /obj/item/clothing/mask/rogue/facemask/
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/full //Protect your head!
 	pants = /obj/item/clothing/under/roguetown/brigandinelegs
@@ -54,6 +54,8 @@
 		/obj/item/flint = 1,
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	//Small health vial
 		)
+
+/datum/outfit/job/roguetown/wretch/pyromaniac/pre_equip(mob/living/carbon/human/H)
 	if(H.mind)
 		var/weapons = list("Archery", "Crossbows", "BOMBS", "LET THERE BE FLAME!!!")
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons

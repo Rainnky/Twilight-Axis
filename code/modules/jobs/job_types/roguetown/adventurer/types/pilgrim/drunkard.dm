@@ -23,8 +23,7 @@
 	)
 	maximum_possible_slots = 20 // Should not fill, just a hack to make it shows what types of towners are in round
 
-/datum/outfit/job/roguetown/adventurer/drunkard/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/adventurer/drunkard
 	pants = /obj/item/clothing/under/roguetown/tights/vagrant
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless
 	shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt/random
@@ -43,6 +42,9 @@
 						/obj/item/reagent_containers/glass/bottle/rogue/wine = 1,
 						/obj/item/flashlight/flare/torch = 1,
 						)
+
+/datum/outfit/job/roguetown/adventurer/drunkard/pre_equip(mob/living/carbon/human/H)
+	..()
 	ADD_TRAIT(H, TRAIT_CRACKHEAD, TRAIT_GENERIC)
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_LETSGOGAMBLING, H, "Savings.")

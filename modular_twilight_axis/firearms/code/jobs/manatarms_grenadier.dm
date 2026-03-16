@@ -30,12 +30,10 @@
 		/datum/skill/misc/tracking = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/manorguard/twilight_grenadier/pre_equip(mob/living/carbon/human/H)
-	..()
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord		
+/datum/outfit/job/roguetown/manorguard/twilight_grenadier
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
 	gloves = /obj/item/clothing/gloves/roguetown/chain/iron
-
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 		/obj/item/rope/chain = 1,
@@ -44,6 +42,10 @@
 		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
 		/obj/item/twilight_powderflask = 1
 		)
+
+/datum/outfit/job/roguetown/manorguard/twilight_grenadier/pre_equip(mob/living/carbon/human/H)
+	..()
+
 
 	H.adjust_blindness(-3)
 

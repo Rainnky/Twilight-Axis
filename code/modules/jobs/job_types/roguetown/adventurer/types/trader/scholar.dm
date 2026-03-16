@@ -22,9 +22,7 @@
 		/datum/skill/craft/alchemy = SKILL_LEVEL_EXPERT,
 	)
 
-/datum/outfit/job/roguetown/adventurer/scholar/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("You are a scholar traveling the world in order to write a book about your ventures. You trade in stories and tales of your travels."))
+/datum/outfit/job/roguetown/adventurer/scholar
 	head = /obj/item/clothing/head/roguetown/roguehood/black
 	mask = /obj/item/clothing/mask/rogue/spectacles/golden
 	shoes = /obj/item/clothing/shoes/roguetown/boots
@@ -36,8 +34,6 @@
 	neck = /obj/item/storage/belt/rogue/pouch/coins/mid
 	beltl = /obj/item/flashlight/flare/torch/lantern
 	beltr = /obj/item/rogueweapon/huntingknife/idagger
-	if(H.mind)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 	backpack_contents = list(
 		/obj/item/paper/scroll = 3,
 		/obj/item/book/rogue/knowledge1 = 1,
@@ -48,3 +44,9 @@
 		/obj/item/recipe_book/survival = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
+
+/datum/outfit/job/roguetown/adventurer/scholar/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("You are a scholar traveling the world in order to write a book about your ventures. You trade in stories and tales of your travels."))
+	if(H.mind)
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)

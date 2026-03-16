@@ -30,8 +30,7 @@
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/roguetown/mercenary/seonjang/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/mercenary/seonjang
 	shoes = /obj/item/clothing/shoes/roguetown/armor/rumaclan
 	belt = /obj/item/storage/belt/rogue/leather
 	beltr = /obj/item/rogueweapon/sword/sabre/mulyeog/rumacaptain
@@ -42,6 +41,9 @@
 		/obj/item/flashlight/flare/torch/lantern,
 		/obj/item/storage/belt/rogue/pouch/coins/rich,
 		)
+
+/datum/outfit/job/roguetown/mercenary/seonjang/pre_equip(mob/living/carbon/human/H)
+	..()
 	H.adjust_blindness(-3)
 
 	if(should_wear_masc_clothes(H))

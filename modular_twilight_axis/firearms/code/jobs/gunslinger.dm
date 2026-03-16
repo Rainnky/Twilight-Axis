@@ -35,6 +35,15 @@
 	)
 	extra_context = "Chooses between Lone Wolf (Sabre & Arquebus Pistol) and Otavan Dragoon (Falchion & Runelock Pistol) subclasses."
 
+/datum/outfit/job/roguetown/mercenary/twilight_gunslinger
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
+	belt = /obj/item/storage/belt/rogue/leather/twilight_holsterbelt
+	neck = /obj/item/clothing/neck/roguetown/gorget
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass
+	backr = /obj/item/rogueweapon/scabbard/sword
+	cloak = /obj/item/clothing/suit/roguetown/armor/longcoat
+
 /datum/outfit/job/roguetown/mercenary/twilight_gunslinger/pre_equip(mob/living/carbon/human/H)
 	..()
 
@@ -75,10 +84,3 @@
 			H.merctype = 10
 			H.grant_language(/datum/language/otavan)
 
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-	belt = /obj/item/storage/belt/rogue/leather/twilight_holsterbelt
-	neck = /obj/item/clothing/neck/roguetown/gorget
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass
-	backr = /obj/item/rogueweapon/scabbard/sword
-	cloak = /obj/item/clothing/suit/roguetown/armor/longcoat

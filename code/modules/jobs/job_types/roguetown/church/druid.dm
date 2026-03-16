@@ -75,9 +75,7 @@
 	allowed_patrons = list(/datum/patron/divine/dendor)
 	has_loadout = TRUE
 
-/datum/outfit/job/roguetown/druid/basic/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
+/datum/outfit/job/roguetown/druid/basic
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	beltr = /obj/item/flashlight/flare/torch/lantern
@@ -87,6 +85,10 @@
 	wrists = /obj/item/clothing/neck/roguetown/psicross/dendor
 	shirt = /obj/item/clothing/suit/roguetown/shirt/robe/dendor
 	backpack_contents = list(/obj/item/ritechalk, /obj/item/storage/keyring/acolyte)
+
+/datum/outfit/job/roguetown/druid/basic/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
 	H.ambushable = FALSE
 	H.AddComponent(/datum/component/wise_tree_alert)
 	H.AddSpell(new /obj/effect/proc_holder/spell/self/conjure_armor/vines)

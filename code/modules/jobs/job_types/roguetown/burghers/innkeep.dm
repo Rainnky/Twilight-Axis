@@ -56,21 +56,13 @@
 		/datum/skill/misc/music = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/innkeeper/basic/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
+/datum/outfit/job/roguetown/innkeeper/basic
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	backr = /obj/item/storage/backpack/rogue/satchel
 	belt = /obj/item/storage/belt/rogue/leather
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	beltr = /obj/item/storage/keyring/innkeep
-	if(should_wear_femme_clothes(H))
-		armor = /obj/item/clothing/suit/roguetown/shirt/dress
-		cloak = /obj/item/clothing/cloak/apron/waist
-	else if(should_wear_masc_clothes(H))
-		shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt
-		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/sailor
 	backpack_contents = list(
 		/obj/item/recipe_book/survival,
 		/obj/item/bottle_kit,
@@ -78,5 +70,15 @@
 		/obj/item/reagent_containers/glass/bucket/pot/kettle/tankard/silver,
 		/obj/item/mini_flagpole/innkeeper
 	)
+
+/datum/outfit/job/roguetown/innkeeper/basic/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
+	if(should_wear_femme_clothes(H))
+		armor = /obj/item/clothing/suit/roguetown/shirt/dress
+		cloak = /obj/item/clothing/cloak/apron/waist
+	else if(should_wear_masc_clothes(H))
+		shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt
+		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/sailor
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_UPPER_CLASS, H, "Savings.")

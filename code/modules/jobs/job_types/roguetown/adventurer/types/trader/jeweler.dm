@@ -26,9 +26,7 @@
 		/datum/skill/misc/climbing = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/adventurer/trader/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("You make your coin peddling exotic jewelry, gems, and shiny things."))
+/datum/outfit/job/roguetown/adventurer/trader
 	mask = /obj/item/clothing/mask/rogue/lordmask
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	pants = /obj/item/clothing/under/roguetown/tights/black
@@ -50,3 +48,7 @@
 		/obj/item/recipe_book/survival = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
+
+/datum/outfit/job/roguetown/adventurer/trader/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("You make your coin peddling exotic jewelry, gems, and shiny things."))

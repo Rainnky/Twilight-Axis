@@ -38,20 +38,11 @@
 	)
 
 
-
-/datum/outfit/job/roguetown/heartfelt/retinue/courtier/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/heartfelt/retinue/courtier
 	head = /obj/item/clothing/head/roguetown/circlet
 	neck = /obj/item/storage/belt/rogue/pouch/coins/rich
 	cloak = /obj/item/clothing/cloak/heartfelt
 	shirt = /obj/item/clothing/suit/roguetown/shirt/dress/silkydress/random
-	if(isdwarf(H))
-		armor = /obj/item/clothing/suit/roguetown/shirt/dress
-	else
-		if(prob(66))
-			armor = /obj/item/clothing/suit/roguetown/armor/armordress/alt
-		else
-			armor = /obj/item/clothing/suit/roguetown/armor/armordress
 	belt = /obj/item/storage/belt/rogue/leather/cloth/lady
 	beltl = /obj/item/flashlight/flare/torch/lantern
 	beltr = /obj/item/rogueweapon/huntingknife/idagger/silver
@@ -63,3 +54,13 @@
 	/obj/item/reagent_containers/glass/bottle/rogue/elfred = 1,
 	/obj/item/reagent_containers/glass/bottle/rogue/beer/kgunsake = 1,
 	)
+
+/datum/outfit/job/roguetown/heartfelt/retinue/courtier/pre_equip(mob/living/carbon/human/H)
+	..()
+	if(isdwarf(H))
+		armor = /obj/item/clothing/suit/roguetown/shirt/dress
+	else
+		if(prob(66))
+			armor = /obj/item/clothing/suit/roguetown/armor/armordress/alt
+		else
+			armor = /obj/item/clothing/suit/roguetown/armor/armordress

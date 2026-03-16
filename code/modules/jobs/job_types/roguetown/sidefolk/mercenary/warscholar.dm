@@ -38,6 +38,25 @@
 	var/detailcolor
 	allowed_patrons = list(/datum/patron/old_god)
 
+	r_hand = /obj/item/rogueweapon/woodstaff/naledi
+	head = /obj/item/clothing/head/roguetown/roguehood/hierophant
+	cloak = /obj/item/clothing/cloak/hierophant
+	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hierophant
+	shirt = /obj/item/clothing/suit/roguetown/shirt/robe/hierophant
+	pants = /obj/item/clothing/under/roguetown/trou/leather
+	mask = /obj/item/clothing/mask/rogue/lordmask/naledi
+	wrists = /obj/item/clothing/neck/roguetown/psicross/naledi
+	belt = /obj/item/storage/belt/rogue/leather
+	beltl = /obj/item/flashlight/flare/torch
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
+	shoes = /obj/item/clothing/shoes/roguetown/sandals
+	backr = /obj/item/storage/backpack/rogue/satchel/black
+	backpack_contents = list(
+		/obj/item/roguekey/mercenary = 1,
+		/obj/item/rogueweapon/huntingknife/idagger = 1,
+		/obj/item/spellbook_unfinished/pre_arcyne = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1
+		)
 /datum/outfit/job/roguetown/mercenary/warscholar/pre_equip(mob/living/carbon/human/H)
 	..()
 	var/list/naledicolors = sortList(list(
@@ -58,27 +77,8 @@
 	if(H.mind)
 		detailcolor = input("Choose a color.", "NALEDIAN COLORPLEX") as anything in naledicolors
 		detailcolor = naledicolors[detailcolor]
-	r_hand = /obj/item/rogueweapon/woodstaff/naledi
 
 
-	head = /obj/item/clothing/head/roguetown/roguehood/hierophant
-	cloak = /obj/item/clothing/cloak/hierophant
-	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hierophant
-	shirt = /obj/item/clothing/suit/roguetown/shirt/robe/hierophant
-	pants = /obj/item/clothing/under/roguetown/trou/leather
-	mask = /obj/item/clothing/mask/rogue/lordmask/naledi
-	wrists = /obj/item/clothing/neck/roguetown/psicross/naledi
-	belt = /obj/item/storage/belt/rogue/leather
-	beltl = /obj/item/flashlight/flare/torch
-	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
-	shoes = /obj/item/clothing/shoes/roguetown/sandals
-	backr = /obj/item/storage/backpack/rogue/satchel/black
-	backpack_contents = list(
-		/obj/item/roguekey/mercenary = 1,
-		/obj/item/rogueweapon/huntingknife/idagger = 1,
-		/obj/item/spellbook_unfinished/pre_arcyne = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1
-		)
 	H.merctype = 14
 
 /datum/advclass/mercenary/warscholar/pontifex
@@ -113,6 +113,25 @@
 	var/detailcolor
 	allowed_patrons = list(/datum/patron/old_god)
 
+	head = /obj/item/clothing/head/roguetown/roguehood/pontifex
+	gloves = /obj/item/clothing/gloves/roguetown/angle/pontifex
+	head = /obj/item/clothing/head/roguetown/roguehood/pontifex
+	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/pontifex
+	shirt = /obj/item/clothing/suit/roguetown/shirt/robe/pointfex
+	pants = /obj/item/clothing/under/roguetown/trou/leather/pontifex
+	mask = /obj/item/clothing/mask/rogue/lordmask/naledi
+	wrists = /obj/item/clothing/neck/roguetown/psicross/naledi
+	belt = /obj/item/storage/belt/rogue/leather
+	beltl = /obj/item/flashlight/flare/torch
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
+	shoes = /obj/item/clothing/shoes/roguetown/sandals
+	backr = /obj/item/storage/backpack/rogue/satchel/black
+	backpack_contents = list(
+		/obj/item/roguekey/mercenary = 1,
+		/obj/item/lockpick = 1,
+		/obj/item/rogueweapon/huntingknife = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1
+		)
 /datum/outfit/job/roguetown/mercenary/warscholar_pontifex/pre_equip(mob/living/carbon/human/H)
 	..()
 	var/list/naledicolors = sortList(list(
@@ -140,25 +159,6 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/summonrogueweapon/bladeofpsydon)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/shadowstep)
 
-	head = /obj/item/clothing/head/roguetown/roguehood/pontifex
-	gloves = /obj/item/clothing/gloves/roguetown/angle/pontifex
-	head = /obj/item/clothing/head/roguetown/roguehood/pontifex
-	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/pontifex
-	shirt = /obj/item/clothing/suit/roguetown/shirt/robe/pointfex
-	pants = /obj/item/clothing/under/roguetown/trou/leather/pontifex
-	mask = /obj/item/clothing/mask/rogue/lordmask/naledi
-	wrists = /obj/item/clothing/neck/roguetown/psicross/naledi
-	belt = /obj/item/storage/belt/rogue/leather
-	beltl = /obj/item/flashlight/flare/torch
-	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
-	shoes = /obj/item/clothing/shoes/roguetown/sandals
-	backr = /obj/item/storage/backpack/rogue/satchel/black
-	backpack_contents = list(
-		/obj/item/roguekey/mercenary = 1,
-		/obj/item/lockpick = 1,
-		/obj/item/rogueweapon/huntingknife = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1
-		)
 	H.merctype = 14
 
 /datum/advclass/mercenary/warscholar/vizier
@@ -194,6 +194,24 @@
 	var/detailcolor
 	allowed_patrons = list(/datum/patron/old_god)
 
+	r_hand = /obj/item/rogueweapon/woodstaff/naledi
+	head = /obj/item/clothing/head/roguetown/roguehood/hierophant
+	cloak = /obj/item/clothing/cloak/hierophant
+	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hierophant
+	shirt = /obj/item/clothing/suit/roguetown/shirt/robe/hierophant
+	pants = /obj/item/clothing/under/roguetown/trou/leather
+	mask = /obj/item/clothing/mask/rogue/lordmask/naledi
+	wrists = /obj/item/clothing/neck/roguetown/psicross/naledi
+	belt = /obj/item/storage/belt/rogue/leather
+	beltl = /obj/item/flashlight/flare/torch
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
+	shoes = /obj/item/clothing/shoes/roguetown/sandals
+	backr = /obj/item/storage/backpack/rogue/satchel/black
+	backpack_contents = list(
+		/obj/item/roguekey/mercenary = 1,
+		/obj/item/rogueweapon/huntingknife = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1
+		)
 /datum/outfit/job/roguetown/mercenary/warscholar_vizier/pre_equip(mob/living/carbon/human/H)
 	..()
 	var/list/naledicolors = sortList(list(
@@ -211,27 +229,8 @@
 		"BLACK" = "#242526"
 	))
 	to_chat(H, span_warning("You are a Naledi Vizier. Your research into miracles and holy incantations has lead you to esoteric magycks. Though psydonians have long struggled to channel their all-father's divinity, a combination of the saint's power may be similar enough."))
-	r_hand = /obj/item/rogueweapon/woodstaff/naledi
 
-	head = /obj/item/clothing/head/roguetown/roguehood/hierophant
-	cloak = /obj/item/clothing/cloak/hierophant
-	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hierophant
-	shirt = /obj/item/clothing/suit/roguetown/shirt/robe/hierophant
-	pants = /obj/item/clothing/under/roguetown/trou/leather
-	mask = /obj/item/clothing/mask/rogue/lordmask/naledi
-	wrists = /obj/item/clothing/neck/roguetown/psicross/naledi
-	belt = /obj/item/storage/belt/rogue/leather
-	beltl = /obj/item/flashlight/flare/torch
-	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
-	shoes = /obj/item/clothing/shoes/roguetown/sandals
-	backr = /obj/item/storage/backpack/rogue/satchel/black
 
-	backpack_contents = list(
-		/obj/item/roguekey/mercenary = 1,
-		/obj/item/rogueweapon/huntingknife = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1
-		)
-	
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)	//Starts off maxed out.
 	if(H.mind)
@@ -247,7 +246,6 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/stasis)
 	
 	H.merctype = 14
-
 
 
 /datum/outfit/job/roguetown/mercenary/warscholar/post_equip(mob/living/carbon/human/H, visualsOnly = FALSE)

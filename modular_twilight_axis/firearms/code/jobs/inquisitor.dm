@@ -1,9 +1,11 @@
-/datum/outfit/job/roguetown/inquisitor/inspector/pre_equip(mob/living/carbon/human/H)
-	. = ..()
-	H.adjust_skillrank(/datum/skill/combat/twilight_firearms, 3, TRUE)
+/datum/outfit/job/roguetown/inquisitor/inspector
 	belt = /obj/item/storage/belt/rogue/leather/twilight_holsterbelt/runelock
 	beltr = /obj/item/quiver/twilight_bullet/runicbag/runed
 	backl = null
+
+/datum/outfit/job/roguetown/inquisitor/inspector/pre_equip(mob/living/carbon/human/H)
+	. = ..()
+	H.adjust_skillrank(/datum/skill/combat/twilight_firearms, 3, TRUE)
 
 /datum/advclass/inquisitor/blackpowder
 	name = "Blackpowder Réprimer"
@@ -52,11 +54,7 @@
 	)
 	extra_context = "Choose between Vanguard with Doomsdae, dreadfull rifle and medium armor trait, and Runed Volf with Umbra, silent arquebus pistol and rune magyck"
 
-/datum/outfit/job/roguetown/inquisitor/blackpowder/pre_equip(mob/living/carbon/human/H)
-	..()
-	has_loadout = TRUE
-	H.verbs |= /mob/living/carbon/human/proc/faith_test
-	H.verbs |= /mob/living/carbon/human/proc/torture_victim
+/datum/outfit/job/roguetown/inquisitor/blackpowder
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale/inqcoat
 	neck = /obj/item/clothing/neck/roguetown/leather/blackpowder
@@ -73,6 +71,12 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/paper/inqslip/arrival/inq = 1
 		)
+
+/datum/outfit/job/roguetown/inquisitor/blackpowder/pre_equip(mob/living/carbon/human/H)
+	..()
+	has_loadout = TRUE
+	H.verbs |= /mob/living/carbon/human/proc/faith_test
+	H.verbs |= /mob/living/carbon/human/proc/torture_victim
 
 
 /datum/outfit/job/roguetown/inquisitor/blackpowder/choose_loadout(mob/living/carbon/human/H)

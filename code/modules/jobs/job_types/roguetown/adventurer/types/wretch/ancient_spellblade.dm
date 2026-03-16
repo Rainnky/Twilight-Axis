@@ -30,6 +30,17 @@
 /datum/outfit/job/roguetown/wretch/ancient_spellblade
 	var/subclass_selected
 
+	belt = /obj/item/storage/belt/rogue/leather
+	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
+	pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/paalloy
+	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
+	shoes = /obj/item/clothing/shoes/roguetown/sandals/paalloy
+	gloves = /obj/item/clothing/gloves/roguetown/chain/paalloy
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/paalloy
+	mask = /obj/item/clothing/mask/rogue/ragmask/black
+	backr = /obj/item/rogueweapon/shield/heater
+	backl = /obj/item/storage/backpack/rogue/satchel
 /datum/outfit/job/roguetown/wretch/ancient_spellblade/Topic(href, href_list)
 	. = ..()
 	if(href_list["subclass"])
@@ -53,17 +64,6 @@
 	H.cmode_music = 'sound/music/combat_cult.ogg'
 
 	// Equipment — gilbranze loadout matching lich skeleton spellblade
-	belt = /obj/item/storage/belt/rogue/leather
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
-	pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/paalloy
-	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
-	shoes = /obj/item/clothing/shoes/roguetown/sandals/paalloy
-	gloves = /obj/item/clothing/gloves/roguetown/chain/paalloy
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/paalloy
-	mask = /obj/item/clothing/mask/rogue/ragmask/black
-	backr = /obj/item/rogueweapon/shield/heater
-	backl = /obj/item/storage/backpack/rogue/satchel
 
 	// DO NOT GIVE THEM MAGE CHALK. This is a SKELETON. Don't let them 
 	// grind the gameplay loop (without putting in the efforts to acquire a chalk)

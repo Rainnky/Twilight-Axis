@@ -105,8 +105,7 @@
 /datum/outfit/job/roguetown/councillor
 	job_bitflag = BITFLAG_ROYALTY
 
-/datum/outfit/job/roguetown/councillor/herald/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/councillor/herald
 	neck = /obj/item/storage/belt/rogue/pouch/coins/mid // a mediocre pouch of coins
 	shirt = /obj/item/clothing/suit/roguetown/shirt/fancyjacket
 	pants = /obj/item/clothing/under/roguetown/trou/beltpants
@@ -117,13 +116,15 @@
 	beltl = /obj/item/roguekey/manor
 	beltr = /obj/item/rogueweapon/huntingknife/idagger/steel
 	cloak = /obj/item/clothing/cloak/half/red
+
+/datum/outfit/job/roguetown/councillor/herald/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.") // lower starting fund, but give them a saiga
 	// give them the shitty see prices trait
 	ADD_TRAIT(H, TRAIT_SEEPRICES_SHITTY, JOB_TRAIT)
 
-/datum/outfit/job/roguetown/councillor/advisor/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/councillor/advisor
 	neck = /obj/item/storage/belt/rogue/pouch/coins/mid // a mediocre pouch of coins
 	shirt = /obj/item/clothing/suit/roguetown/shirt/fancyjacket
 	pants = /obj/item/clothing/under/roguetown/trou/beltpants
@@ -134,13 +135,15 @@
 	beltl = /obj/item/roguekey/manor
 	beltr = /obj/item/rogueweapon/huntingknife/idagger/steel
 	cloak = /obj/item/clothing/cloak/half/red
+
+/datum/outfit/job/roguetown/councillor/advisor/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_UPPER_CLASS, H, "Savings.")
 	// give them the shitty see prices trait
 	ADD_TRAIT(H, TRAIT_SEEPRICES_SHITTY, JOB_TRAIT)
 
-/datum/outfit/job/roguetown/councillor/cofferer/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/councillor/cofferer
 	neck = /obj/item/storage/belt/rogue/pouch/coins/rich // a fat pouch of coins
 	shirt = /obj/item/clothing/suit/roguetown/shirt/fancyjacket
 	pants = /obj/item/clothing/under/roguetown/trou/beltpants
@@ -151,6 +154,9 @@
 	beltl = /obj/item/storage/keyring/steward
 	beltr = /obj/item/rogueweapon/huntingknife/idagger/steel
 	cloak = /obj/item/clothing/cloak/half/red
+
+/datum/outfit/job/roguetown/councillor/cofferer/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.") // wealth beyond measure
 	// give them the good see prices trait

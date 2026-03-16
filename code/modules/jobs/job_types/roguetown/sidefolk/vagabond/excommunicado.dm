@@ -17,6 +17,9 @@
 	)
 	extra_context = "Contains randomized skills and stats."
 
+/datum/outfit/job/roguetown/vagabond/excommunicated
+	r_hand = /obj/item/rogueweapon/woodstaff
+
 /datum/outfit/job/roguetown/vagabond/excommunicated/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.mind?.current.faction += "[H.name]_faction"
@@ -34,7 +37,6 @@
 		cloak = /obj/item/clothing/cloak/half/brown
 		gloves = /obj/item/clothing/gloves/roguetown/fingerless
 	
-	r_hand = /obj/item/rogueweapon/woodstaff
 
 	if (H.mind)
 		var/datum/devotion/C = new /datum/devotion(H, H.patron)

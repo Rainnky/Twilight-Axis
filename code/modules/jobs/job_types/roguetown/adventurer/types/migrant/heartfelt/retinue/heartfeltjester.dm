@@ -14,14 +14,16 @@
 
 // HIGH COURT - /ONE SLOT/ Roles that were previously in the Court, but moved here.
 
-/datum/outfit/job/roguetown/heartfelt/retinue/jester/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/heartfelt/retinue/jester
 	shoes = /obj/item/clothing/shoes/roguetown/jester
 	pants = /obj/item/clothing/under/roguetown/tights
 	armor = /obj/item/clothing/suit/roguetown/shirt/jester
 	belt = /obj/item/storage/belt/rogue/leather
 	head = /obj/item/clothing/head/roguetown/jester
 	neck = /obj/item/clothing/neck/roguetown/coif
+
+/datum/outfit/job/roguetown/heartfelt/retinue/jester/pre_equip(mob/living/carbon/human/H)
+	..()
 	H.adjust_skillrank(/datum/skill/combat/knives, rand(SKILL_LEVEL_APPRENTICE , SKILL_LEVEL_MASTER), TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, rand(SKILL_LEVEL_NOVICE, SKILL_LEVEL_LEGENDARY), TRUE) 
 	H.adjust_skillrank(/datum/skill/misc/sneaking, rand(SKILL_LEVEL_APPRENTICE, SKILL_LEVEL_EXPERT), TRUE)

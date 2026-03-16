@@ -65,8 +65,7 @@
 		/datum/skill/misc/lockpicking = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/bathworker/attendant/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/bathworker/attendant
 	head = /obj/item/clothing/head/roguetown/cap
 	neck = /obj/item/clothing/neck/roguetown/collar
 	beltl = /obj/item/roguekey/bathworker
@@ -77,6 +76,9 @@
 		/obj/item/soap/bath = 1,
 		/obj/item/mini_flagpole/bathhouse,
 	)
+
+/datum/outfit/job/roguetown/bathworker/attendant/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(should_wear_femme_clothes(H))
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy/random
@@ -124,14 +126,7 @@
 		/datum/language/thievescant,
 	)
 
-/datum/outfit/job/bathworkerghtmaiden/harlot/pre_equip(mob/living/carbon/human/H)
-	..()
-	var/pinroll = rand(1, 20)
-	switch(pinroll)
-		if(1 to 19)
-			head = /obj/item/lockpick/goldpin
-		if(20)
-			head = /obj/item/lockpick/goldpin/silver
+/datum/outfit/job/bathworkerghtmaiden/harlot
 	neck = /obj/item/clothing/neck/roguetown/collar/leather
 	beltl = /obj/item/roguekey/bathworker
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
@@ -141,6 +136,15 @@
 		/obj/item/soap/bath = 1,
 		/obj/item/mini_flagpole/bathhouse,
 	)
+
+/datum/outfit/job/bathworkerghtmaiden/harlot/pre_equip(mob/living/carbon/human/H)
+	..()
+	var/pinroll = rand(1, 20)
+	switch(pinroll)
+		if(1 to 19)
+			head = /obj/item/lockpick/goldpin
+		if(20)
+			head = /obj/item/lockpick/goldpin/silver
 	if(should_wear_femme_clothes(H))
 		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/gen/sexy/random
 		armor = /obj/item/clothing/suit/roguetown/armor/corset
@@ -180,6 +184,17 @@
 		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
 	)
 
+/datum/outfit/job/roguetown/bathworker/courtesan
+	beltl = /obj/item/roguekey/bathworker
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
+	backl = /obj/item/storage/backpack/rogue/satchel
+	backpack_contents = list(
+		/obj/item/reagent_containers/powder/moondust = 2,
+		/obj/item/reagent_containers/glass/bottle/rogue/wine = 1,
+		/obj/item/toy/cards/deck = 1,
+		/obj/item/mini_flagpole/bathhouse,
+	)
+
 /datum/outfit/job/roguetown/bathworker/courtesan/pre_equip(mob/living/carbon/human/H)
 	..()
 	var/pinroll = rand(1, 20)
@@ -200,15 +215,6 @@
 			id = /obj/item/clothing/ring/silver
 		if(96 to 100)
 			id = /obj/item/clothing/ring/diamond
-	beltl = /obj/item/roguekey/bathworker
-	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
-	backl = /obj/item/storage/backpack/rogue/satchel
-	backpack_contents = list(
-		/obj/item/reagent_containers/powder/moondust = 2,
-		/obj/item/reagent_containers/glass/bottle/rogue/wine = 1,
-		/obj/item/toy/cards/deck = 1,
-		/obj/item/mini_flagpole/bathhouse,
-	)
 	if(should_wear_femme_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/silkydress/random
 		shirt = /obj/item/clothing/suit/roguetown/armor/corset

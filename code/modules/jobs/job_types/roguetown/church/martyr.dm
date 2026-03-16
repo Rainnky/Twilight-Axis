@@ -527,9 +527,7 @@
 /datum/outfit/job/roguetown/martyr
 	job_bitflag = BITFLAG_HOLY_WARRIOR
 
-/datum/outfit/job/roguetown/martyr/basic/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
+/datum/outfit/job/roguetown/martyr/basic
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/holysee
 	belt = /obj/item/storage/belt/rogue/leather/plaquegold
 	beltr = /obj/item/storage/keyring/church
@@ -549,6 +547,10 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/mini_flagpole/church,
 		)
+
+/datum/outfit/job/roguetown/martyr/basic/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	H.AddComponent(/datum/component/wise_tree_alert)
 	if(H.mind)

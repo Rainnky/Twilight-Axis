@@ -19,6 +19,9 @@
 	)
 	extra_context = "Contains randomized skills and stats."
 
+/datum/outfit/job/roguetown/vagabond/mage
+	r_hand = /obj/item/rogueweapon/woodstaff
+
 /datum/outfit/job/roguetown/vagabond/mage/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(should_wear_femme_clothes(H))
@@ -35,7 +38,6 @@
 		cloak = /obj/item/clothing/cloak/half/brown
 		gloves = /obj/item/clothing/gloves/roguetown/fingerless
 
-	r_hand = /obj/item/rogueweapon/woodstaff
 
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_DESTITUTE, H, "Savings.")

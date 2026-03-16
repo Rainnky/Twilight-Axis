@@ -37,8 +37,7 @@
 		/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/roguetown/bandit/brigand/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/bandit/brigand
 	belt = /obj/item/storage/belt/rogue/leather
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
@@ -54,6 +53,9 @@
 	head = /obj/item/clothing/head/roguetown/helmet/kettle
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/iron
 	id = /obj/item/mattcoin
+
+/datum/outfit/job/roguetown/bandit/brigand/pre_equip(mob/living/carbon/human/H)
+	..()
 	H.adjust_blindness(-3)
 	var/weapons = list("Battleaxe & Cudgel","Flail & Shield")
 	if(H.mind)

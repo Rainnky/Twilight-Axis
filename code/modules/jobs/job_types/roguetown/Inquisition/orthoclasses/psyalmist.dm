@@ -30,25 +30,10 @@
 	)
 	
 /datum/outfit/job/roguetown/psyaltrist/pre_equip(mob/living/carbon/human/H)
-	head = /obj/item/clothing/head/roguetown/helmet/leather/chapeau
-	neck = /obj/item/clothing/neck/roguetown/leather
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded/psyaltrist
-	backl = /obj/item/storage/backpack/rogue/satchel/otavan
-	cloak = /obj/item/clothing/cloak/psyaltrist
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
-	gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves
-	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
-	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
-	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
-	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon
-	beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
-	id = /obj/item/clothing/ring/signet/silver
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_2)	//Capped to T2 miracles.
 	var/datum/inspiration/I = new /datum/inspiration(H)
 	I.grant_inspiration(H, bard_tier = BARD_T3)
-	backpack_contents = list(/obj/item/roguekey/inquisitionmanor = 1,
-	/obj/item/paper/inqslip/arrival/ortho = 1, /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger, /obj/item/rogueweapon/scabbard/sheath)
 
 
 	H.cmode_music = 'sound/music/cmode/adventurer/combat_outlander3.ogg'
@@ -91,3 +76,19 @@
 		change_origin(H, /datum/virtue/origin/otava, "Holy order")
 /datum/outfit/job/roguetown/psyaltrist
 	job_bitflag = BITFLAG_HOLY_WARRIOR
+
+	head = /obj/item/clothing/head/roguetown/helmet/leather/chapeau
+	neck = /obj/item/clothing/neck/roguetown/leather
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded/psyaltrist
+	backl = /obj/item/storage/backpack/rogue/satchel/otavan
+	cloak = /obj/item/clothing/cloak/psyaltrist
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
+	gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves
+	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
+	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
+	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
+	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
+	id = /obj/item/clothing/ring/signet/silver
+	backpack_contents = list(/obj/item/roguekey/inquisitionmanor = 1,
+	/obj/item/paper/inqslip/arrival/ortho = 1, /obj/item/rogueweapon/huntingknife/idagger/silver/psydagger, /obj/item/rogueweapon/scabbard/sheath)

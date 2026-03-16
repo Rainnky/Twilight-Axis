@@ -27,9 +27,11 @@
 		/datum/skill/labor/farming = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/roguetown/adventurer/nudist/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/adventurer/nudist
 	shoes = /obj/item/clothing/shoes/roguetown/sandals
 	belt = /obj/item/storage/belt/rogue/leather/rope
 	beltl = /obj/item/rogueweapon/huntingknife/stoneknife
 	neck = /obj/item/clothing/neck/roguetown/psicross/dendor
+
+/datum/outfit/job/roguetown/adventurer/nudist/pre_equip(mob/living/carbon/human/H)
+	..()

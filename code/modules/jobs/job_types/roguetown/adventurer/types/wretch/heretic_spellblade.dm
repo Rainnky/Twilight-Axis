@@ -42,16 +42,6 @@
 /datum/outfit/job/roguetown/wretch/heretic_spellblade
 	var/subclass_selected
 
-/datum/outfit/job/roguetown/wretch/heretic_spellblade/Topic(href, href_list)
-	. = ..()
-	if(href_list["subclass"])
-		subclass_selected = href_list["subclass"]
-	else if(href_list["close"])
-		if(!subclass_selected)
-			subclass_selected = "blade"
-
-/datum/outfit/job/roguetown/wretch/heretic_spellblade/pre_equip(mob/living/carbon/human/H)
-	..()
 	head = /obj/item/clothing/head/roguetown/roguehood
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
 	pants = /obj/item/clothing/under/roguetown/trou/leather
@@ -63,9 +53,20 @@
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/iron
 	backpack_contents = list(/obj/item/flashlight/flare/torch = 1,
-		/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	
+		/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,
 		/obj/item/chalk = 1
 	)
+	backr = /obj/item/rogueweapon/shield/heater
+/datum/outfit/job/roguetown/wretch/heretic_spellblade/Topic(href, href_list)
+	. = ..()
+	if(href_list["subclass"])
+		subclass_selected = href_list["subclass"]
+	else if(href_list["close"])
+		if(!subclass_selected)
+			subclass_selected = "blade"
+
+/datum/outfit/job/roguetown/wretch/heretic_spellblade/pre_equip(mob/living/carbon/human/H)
+	..()
 
 	to_chat(H, span_warning("You start with Bind Weapon. Remember to Bind your weapon so you can use your abilities and build up Arcyne Momentum."))
 
@@ -146,7 +147,6 @@
 			if(helmchoice != "None")
 				head = helmets[helmchoice]
 
-	backr = /obj/item/rogueweapon/shield/heater
 
 	switch(subclass_selected)
 		if("blade")

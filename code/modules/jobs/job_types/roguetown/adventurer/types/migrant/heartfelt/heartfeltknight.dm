@@ -86,9 +86,7 @@
 	/datum/skill/misc/riding = SKILL_LEVEL_EXPERT,
 	)
 
-/datum/outfit/job/heartfelt/knight/pre_equip(mob/living/carbon/human/H)
-	..()
-
+/datum/outfit/job/heartfelt/knight
 	gloves = /obj/item/clothing/gloves/roguetown/chain/iron
 	pants = /obj/item/clothing/under/roguetown/chainlegs/iron
 	cloak = /obj/item/clothing/cloak/tabard
@@ -109,6 +107,10 @@
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpotnew = 1,
 		/obj/item/natural/bundle/cloth/bandage/full = 1,
 	)
+
+/datum/outfit/job/heartfelt/knight/pre_equip(mob/living/carbon/human/H)
+	..()
+
 	H.adjust_blindness(-3)
 	var/weapons = list("Dec Sword + Shield","Zweihander","Great Mace","Battle Axe","Greataxe","Estoc","Eagle Beak", "Partizan", "Lance + Shield")
 	var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons

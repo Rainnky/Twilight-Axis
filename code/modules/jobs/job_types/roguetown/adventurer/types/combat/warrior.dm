@@ -27,6 +27,20 @@
 		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
 	)
 
+/datum/outfit/job/roguetown/adventurer/sfighter
+	belt = /obj/item/storage/belt/rogue/leather
+	backl = /obj/item/storage/backpack/rogue/satchel
+	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
+	shoes = /obj/item/clothing/shoes/roguetown/boots
+	cloak = /obj/item/clothing/cloak/raincloak/furcloak/brown
+	backpack_contents = list(
+		/obj/item/flashlight/flare/torch = 1,
+		/obj/item/rogueweapon/huntingknife = 1,
+		/obj/item/recipe_book/survival = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1
+		)
+
 /datum/outfit/job/roguetown/adventurer/sfighter/pre_equip(mob/living/carbon/human/H)
 	..()
 	to_chat(H, span_warning("You are a seasoned weapon specialist, clad in maille, with years of experience in warfare and battle under your belt."))
@@ -109,18 +123,6 @@
 				pants = /obj/item/clothing/under/roguetown/trou/leather/pontifex/raneshen
 				head = /obj/item/clothing/head/roguetown/roguehood/shalal/hijab
 				gloves = /obj/item/clothing/gloves/roguetown/angle
-	belt = /obj/item/storage/belt/rogue/leather
-	backl = /obj/item/storage/backpack/rogue/satchel
-	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-	shoes = /obj/item/clothing/shoes/roguetown/boots
-	cloak = /obj/item/clothing/cloak/raincloak/furcloak/brown
-	backpack_contents = list(
-		/obj/item/flashlight/flare/torch = 1,
-		/obj/item/rogueweapon/huntingknife = 1,
-		/obj/item/recipe_book/survival = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1
-		)
 
 /datum/advclass/sfighter/duelist
 	name = "Duelist"
@@ -145,6 +147,21 @@
 		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/combat/shields = SKILL_LEVEL_APPRENTICE,
 	)
+
+/datum/outfit/job/roguetown/adventurer/duelist
+	head = /obj/item/clothing/head/roguetown/duelhat
+	neck = /obj/item/clothing/neck/roguetown/gorget
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
+	pants = /obj/item/clothing/under/roguetown/trou/leather
+	shoes = /obj/item/clothing/shoes/roguetown/boots
+	backl = /obj/item/storage/backpack/rogue/satchel
+	belt = /obj/item/storage/belt/rogue/leather
+	backpack_contents = list(
+		/obj/item/flashlight/flare/torch = 1,
+		/obj/item/recipe_book/survival = 1,
+		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1
+		)
 
 /datum/outfit/job/roguetown/adventurer/duelist/pre_equip(mob/living/carbon/human/H)
 	..()
@@ -203,19 +220,6 @@
 				shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/white
 				gloves = /obj/item/clothing/gloves/roguetown/leather
 
-	head = /obj/item/clothing/head/roguetown/duelhat
-	neck = /obj/item/clothing/neck/roguetown/gorget
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-	pants = /obj/item/clothing/under/roguetown/trou/leather
-	shoes = /obj/item/clothing/shoes/roguetown/boots
-	backl = /obj/item/storage/backpack/rogue/satchel
-	belt = /obj/item/storage/belt/rogue/leather
-	backpack_contents = list(
-		/obj/item/flashlight/flare/torch = 1,
-		/obj/item/recipe_book/survival = 1,
-		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1
-		)
 
 /datum/advclass/sfighter/barbarian
 	name = "Barbarian"
@@ -242,6 +246,20 @@
 	)
 	extra_context = "This subclass has three disciplines to choose from: one provides Expert skills in fistfighting and the 'Expert Pugilist' trait, the other provides unique equipment and a one-point exchange of Speed for Perception,\
 					 and the final one grants you a greatsword and a special form of armor while taking away three points of intelligence."
+
+/datum/outfit/job/roguetown/adventurer/barbarian
+	belt = /obj/item/storage/belt/rogue/leather/battleskirt/barbarian
+	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/bronzeskirt
+	shoes = /obj/item/clothing/shoes/roguetown/boots/furlinedboots
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
+	backl = /obj/item/storage/backpack/rogue/satchel
+	backpack_contents = list(
+		/obj/item/flashlight/flare/torch = 1,
+		/obj/item/recipe_book/survival = 1,
+		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/rogueweapon/huntingknife/bronze = 1,
+		)
 
 /datum/outfit/job/roguetown/adventurer/barbarian/pre_equip(mob/living/carbon/human/H, visualsOnly)
 	..()
@@ -305,22 +323,10 @@
 			r_hand = /obj/item/rogueweapon/greatsword/iron
 			backr = /obj/item/rogueweapon/scabbard/gwstrap
 			H.change_stat(STATKEY_INT, -3) ///This is probably waaay too much and makes this subclass completely unviable, but admins are concerned the armor might be OP.
-	belt = /obj/item/storage/belt/rogue/leather/battleskirt/barbarian
-	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/bronzeskirt
-	shoes = /obj/item/clothing/shoes/roguetown/boots/furlinedboots
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	if(should_wear_masc_clothes(H))
 		H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 	if(should_wear_femme_clothes(H))
 		H.dna.species.soundpack_f = new /datum/voicepack/female/warrior()
-	backl = /obj/item/storage/backpack/rogue/satchel
-	backpack_contents = list(
-		/obj/item/flashlight/flare/torch = 1,
-		/obj/item/recipe_book/survival = 1,
-		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1,
-		/obj/item/rogueweapon/huntingknife/bronze = 1,
-		)
    
 /datum/advclass/sfighter/ironclad
 	name = "Ironclad"
@@ -346,6 +352,20 @@
 		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
 	)
+
+/datum/outfit/job/roguetown/adventurer/ironclad
+	gloves = /obj/item/clothing/gloves/roguetown/chain/iron
+	neck = /obj/item/clothing/neck/roguetown/bevor/iron
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/iron
+	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/iron
+	belt = /obj/item/storage/belt/rogue/leather/battleskirt/black
+	backl = /obj/item/storage/backpack/rogue/satchel
+	beltl = /obj/item/flashlight/flare/torch/lantern
+	backpack_contents = list(
+		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
+		/obj/item/recipe_book/survival = 1,
+		/obj/item/repair_kit/metal/bad = 1,
+		)
 
 /datum/outfit/job/roguetown/adventurer/ironclad/pre_equip(mob/living/carbon/human/H, visualsOnly)
 	..()
@@ -384,18 +404,6 @@
 			)
 		var/legschoice = input(H, "Choose your Pants.", "TAKE UP PANTS") as anything in legs
 		pants = legs[legschoice]
-	gloves = /obj/item/clothing/gloves/roguetown/chain/iron
-	neck = /obj/item/clothing/neck/roguetown/bevor/iron
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/iron
-	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/iron
-	belt = /obj/item/storage/belt/rogue/leather/battleskirt/black
-	backl = /obj/item/storage/backpack/rogue/satchel
-	beltl = /obj/item/flashlight/flare/torch/lantern
-	backpack_contents = list(
-		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
-		/obj/item/recipe_book/survival = 1,
-		/obj/item/repair_kit/metal/bad = 1,
-		)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 	H.set_blindness(0)
 	if(H.mind)
@@ -464,6 +472,21 @@
 		/datum/skill/craft/alchemy = SKILL_LEVEL_APPRENTICE,
 		)
 	extra_context = "This subclass can choose a silver weapon to spawn with, and has three disciplines to pick from: each one provides a different level of armor training, a unique trait, and a minor one-point boon to certain stats. 'Old' characters are more proficient in this subclass."
+
+/datum/outfit/job/roguetown/adventurer/mhunter
+	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
+	pants = /obj/item/clothing/under/roguetown/tights/puritan
+	cloak = /obj/item/clothing/cloak/cape/puritan
+	neck = /obj/item/clothing/neck/roguetown/chaincoif
+	gloves = /obj/item/clothing/gloves/roguetown/angle
+	backl = /obj/item/storage/backpack/rogue/satchel
+	backpack_contents = list(
+		/obj/item/flashlight/flare/torch/metal = 1,
+		/obj/item/recipe_book/survival = 1,
+		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/book/rogue/trophy_rules = 1 //TA edit - added trophy_hunter component
+		)
 
 /datum/outfit/job/roguetown/adventurer/mhunter/pre_equip(mob/living/carbon/human/H, visualsOnly)
 	..()
@@ -607,19 +630,6 @@
 					if("Barbute Greathelm")
 						head = /obj/item/clothing/head/roguetown/helmet/heavy/barbute/great
 
-	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
-	pants = /obj/item/clothing/under/roguetown/tights/puritan
-	cloak = /obj/item/clothing/cloak/cape/puritan
-	neck = /obj/item/clothing/neck/roguetown/chaincoif
-	gloves = /obj/item/clothing/gloves/roguetown/angle
-	backl = /obj/item/storage/backpack/rogue/satchel
-	backpack_contents = list(
-		/obj/item/flashlight/flare/torch/metal = 1,
-		/obj/item/recipe_book/survival = 1,
-		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1,
-		/obj/item/book/rogue/trophy_rules = 1 //TA edit - added trophy_hunter component
-		)
 
 	H.set_blindness(0)
 	switch(H.patron?.type)

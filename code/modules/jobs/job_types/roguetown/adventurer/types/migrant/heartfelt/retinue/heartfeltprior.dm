@@ -38,9 +38,7 @@
 	)
 
 
-
-/datum/outfit/job/roguetown/heartfelt/prior/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/heartfelt/prior
 	neck = /obj/item/clothing/neck/roguetown/psicross/astrata
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/priest
 	pants = /obj/item/clothing/under/roguetown/tights/black
@@ -55,6 +53,9 @@
 		/obj/item/needle/pestra = 1,
 		/obj/item/ritechalk = 1,
 	)
+
+/datum/outfit/job/roguetown/heartfelt/prior/pre_equip(mob/living/carbon/human/H)
+	..()
 
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank(/datum/skill/magic/holy, 1, TRUE)

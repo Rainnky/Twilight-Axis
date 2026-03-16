@@ -18,22 +18,24 @@
 	plevel_req = 0
 	display_order = JDO_MERCENARY
 
-/datum/outfit/job/roguetown/tester/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/tester
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	belt = /obj/item/storage/belt/rogue/leather
 	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/lord
-	if(prob(50))
-		armor = /obj/item/clothing/suit/roguetown/armor/gambeson
 	neck = /obj/item/roguekey/mercenary
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 	beltr = /obj/item/rogueweapon/sword/sabre
-	if(prob(50))
-		beltr = /obj/item/rogueweapon/sword
 	shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt/merc
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	neck = /obj/item/clothing/neck/roguetown/gorget
+
+/datum/outfit/job/roguetown/tester/pre_equip(mob/living/carbon/human/H)
+	..()
+	if(prob(50))
+		armor = /obj/item/clothing/suit/roguetown/armor/gambeson
+	if(prob(50))
+		beltr = /obj/item/rogueweapon/sword
 	if(should_wear_femme_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/tights/black
 		beltr = /obj/item/rogueweapon/sword/sabre

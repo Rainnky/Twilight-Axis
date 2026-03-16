@@ -37,9 +37,6 @@
 /datum/outfit/job/roguetown/psydoniantemplar
 	job_bitflag = BITFLAG_HOLY_WARRIOR
 
-/datum/outfit/job/roguetown/psydoniantemplar/pre_equip(mob/living/carbon/human/H)
-	..()
-	has_loadout = TRUE
 	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
 	cloak = /obj/item/clothing/cloak/tabard/psydontabard
 	backr = /obj/item/rogueweapon/shield/tower/metal
@@ -54,6 +51,9 @@
 	id = /obj/item/clothing/ring/signet/silver
 	backpack_contents = list(/obj/item/roguekey/inquisitionmanor = 1,
 	/obj/item/paper/inqslip/arrival/ortho = 1)
+/datum/outfit/job/roguetown/psydoniantemplar/pre_equip(mob/living/carbon/human/H)
+	..()
+	has_loadout = TRUE
 
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)

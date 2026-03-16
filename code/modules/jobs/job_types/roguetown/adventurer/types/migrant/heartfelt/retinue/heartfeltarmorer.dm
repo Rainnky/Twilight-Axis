@@ -39,8 +39,7 @@
 		/datum/skill/misc/athletics = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/roguetown/heartfelt/retinue/armorer/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/heartfelt/retinue/armorer
 	belt = /obj/item/storage/belt/rogue/leather
 	beltr = /obj/item/rogueweapon/hammer/iron
 	beltl = /obj/item/rogueweapon/tongs
@@ -60,6 +59,9 @@
 						/obj/item/flashlight/flare/torch/lantern = 1,
 						/obj/item/rogueweapon/scabbard/sheath = 1,
 						)
+
+/datum/outfit/job/roguetown/heartfelt/retinue/armorer/pre_equip(mob/living/carbon/human/H)
+	..()
 
 	if(H.pronouns == HE_HIM)
 		shoes = /obj/item/clothing/shoes/roguetown/boots/leather

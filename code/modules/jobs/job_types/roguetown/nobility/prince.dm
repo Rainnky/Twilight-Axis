@@ -95,8 +95,7 @@
 		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/heir/daring/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/heir/daring
 	head = /obj/item/clothing/head/roguetown/circlet
 	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/otavan
 	pants = /obj/item/clothing/under/roguetown/tights
@@ -108,6 +107,9 @@
 	beltr = /obj/item/storage/keyring/heir
 	neck = /obj/item/storage/belt/rogue/pouch/coins/rich
 	backr = /obj/item/storage/backpack/rogue/satchel
+
+/datum/outfit/job/roguetown/heir/daring/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 
@@ -149,14 +151,7 @@
 		/datum/skill/combat/knives = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/heir/bookworm/pre_equip(mob/living/carbon/human/H)
-	..()
-	if(should_wear_masc_clothes(H))
-		pants = /obj/item/clothing/under/roguetown/tights/random
-		armor = /obj/item/clothing/suit/roguetown/armor/longcoat
-		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/royal/prince
-	if(should_wear_femme_clothes(H))
-		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/royal/princess
+/datum/outfit/job/roguetown/heir/bookworm
 	head = /obj/item/clothing/head/roguetown/circlet
 	belt = /obj/item/storage/belt/rogue/leather/cloth/lady
 	beltr = /obj/item/storage/keyring/heir
@@ -166,15 +161,23 @@
 	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes/gold
 	mask = /obj/item/clothing/mask/rogue/spectacles
 	neck = /obj/item/storage/belt/rogue/pouch/coins/rich
-	if(H.mind)
-		SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/heir_spell_bundle)
 	backpack_contents = list(
 		/obj/item/handmirror = 1
 	)
+
+/datum/outfit/job/roguetown/heir/bookworm/pre_equip(mob/living/carbon/human/H)
+	..()
+	if(should_wear_masc_clothes(H))
+		pants = /obj/item/clothing/under/roguetown/tights/random
+		armor = /obj/item/clothing/suit/roguetown/armor/longcoat
+		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/royal/prince
+	if(should_wear_femme_clothes(H))
+		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/royal/princess
+	if(H.mind)
+		SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
+		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/heir_spell_bundle)
 		
 
- 
 /datum/advclass/heir/aristocrat
 	name = "Sheltered Aristocrat"
 	tutorial = "Life has been kind to you; you've an entire keep at your disposal, servants to wait on you, and a whole retinue of guards to guard you. You've nothing to prove; just live the good life and you'll be a lord someday, too. A lack of ambition translates into a lacking skillset beyond schooling, though, and your breaks from boredom consist of being a damsel or court gossip."
@@ -204,13 +207,19 @@
 	)
 	noble_income = 80
 
-/datum/outfit/job/roguetown/heir/aristocrat/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/heir/aristocrat
 	head = /obj/item/clothing/head/roguetown/circlet
 	belt = /obj/item/storage/belt/rogue/leather
 	beltl = /obj/item/storage/keyring/heir
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
 	backr = /obj/item/storage/backpack/rogue/satchel
+	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes/gold
+	backpack_contents = list(
+		/obj/item/storage/belt/rogue/pouch/coins/rich = 1
+	)
+
+/datum/outfit/job/roguetown/heir/aristocrat/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(should_wear_masc_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/tights
 		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/royal/prince
@@ -222,10 +231,6 @@
 		armor = /obj/item/clothing/suit/roguetown/armor/silkcoat
 		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/royal/princess
 		shoes = /obj/item/clothing/shoes/roguetown/shortboots
-	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes/gold
-	backpack_contents = list(
-		/obj/item/storage/belt/rogue/pouch/coins/rich = 1
-	)
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 
@@ -252,12 +257,15 @@
 		/datum/skill/craft/sewing = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/heir/inbred/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/heir/inbred
 	head = /obj/item/clothing/head/roguetown/circlet
 	belt = /obj/item/storage/belt/rogue/leather
 	beltl = /obj/item/storage/keyring/heir
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
+	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes/gold
+
+/datum/outfit/job/roguetown/heir/inbred/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(should_wear_masc_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/tights
 		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/royal/prince
@@ -269,7 +277,6 @@
 		armor = /obj/item/clothing/suit/roguetown/armor/silkcoat
 		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/royal/princess
 		shoes = /obj/item/clothing/shoes/roguetown/shortboots
-	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes/gold
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 
@@ -304,8 +311,7 @@
 	)
 	adv_stat_ceiling = list(STAT_STRENGTH = 8, STAT_CONSTITUTION = 8, STAT_SPEED = 15)	//don't get caught
 
-/datum/outfit/job/roguetown/heir/scamp/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/heir/scamp
 	head = /obj/item/clothing/head/roguetown/circlet
 	mask = /obj/item/clothing/head/roguetown/roguehood/black
 	neck = /obj/item/storage/keyring/heir
@@ -318,14 +324,16 @@
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced/short
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/sailor/nightman
 	cloak = /obj/item/clothing/cloak/half/shadowcloak
-
 	backpack_contents = list(
 		/obj/item/storage/belt/rogue/pouch/coins/rich = 1,
 		/obj/item/lockpickring/mundane = 1,
 	)
+
+/datum/outfit/job/roguetown/heir/scamp/pre_equip(mob/living/carbon/human/H)
+	..()
+
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
-
 
 
 /mob/living/carbon/human/proc/declarechampion()

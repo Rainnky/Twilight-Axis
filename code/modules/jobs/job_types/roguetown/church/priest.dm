@@ -81,9 +81,7 @@ GLOBAL_LIST_EMPTY(heretical_players)
 	has_loadout = TRUE
 	allowed_patrons = ALL_DIVINE_PATRONS	//We lock this cus head of church, acktully
 
-/datum/outfit/job/roguetown/priest/basic/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
+/datum/outfit/job/roguetown/priest/basic
 	head = /obj/item/clothing/head/roguetown/priestmask
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/priest
 	pants = /obj/item/clothing/under/roguetown/tights/black
@@ -102,6 +100,10 @@ GLOBAL_LIST_EMPTY(heretical_players)
 		/obj/item/clothing/neck/roguetown/psicross/undivided = 1,
 		/obj/item/mini_flagpole/church,
 	)
+
+/datum/outfit/job/roguetown/priest/basic/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
 	H.AddComponent(/datum/component/wise_tree_alert)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron) // This creates the cleric holder used for devotion spells
 	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_MAJOR, start_maxed = TRUE)	//Starts off maxed out.

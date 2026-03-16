@@ -51,8 +51,7 @@
 		/datum/skill/craft/sewing = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/roguetown/suitor/envoy/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/suitor/envoy
 	belt = /obj/item/storage/belt/rogue/leather
 	neck = /obj/item/roguekey/manor
 	head = /obj/item/clothing/head/roguetown/nyle/consortcrown
@@ -64,6 +63,9 @@
 	shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
 	id = /obj/item/clothing/ring/signet
 	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes/gold
+
+/datum/outfit/job/roguetown/suitor/envoy/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(should_wear_femme_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gown/wintergown
 		backl = /obj/item/rogue/instrument/harp
@@ -103,8 +105,7 @@
 		/datum/skill/craft/alchemy = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/roguetown/suitor/schemer/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/suitor/schemer
 	head = /obj/item/clothing/head/roguetown/nyle/consortcrown
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
@@ -122,6 +123,9 @@
 		/obj/item/reagent_containers/glass/bottle/rogue/poison = 1,
 		/obj/item/lockpick = 1,
 		)
+
+/datum/outfit/job/roguetown/suitor/schemer/pre_equip(mob/living/carbon/human/H)
+	..()
 	/*if(H.mind)
 		var/datum/antagonist/new_antag = new /datum/antagonist/suitor()
 		H.mind.add_antag_datum(new_antag)*/
@@ -153,8 +157,7 @@
 		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/roguetown/suitor/gallant/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/suitor/gallant
 	head = /obj/item/clothing/head/roguetown/nyle/consortcrown
 	mask = /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/gallant
 	pants = /obj/item/clothing/under/roguetown/tights/black
@@ -170,6 +173,9 @@
 	backr = /obj/item/storage/backpack/rogue/satchel
 	id = /obj/item/clothing/ring/signet
 	backpack_contents = list(/obj/item/storage/belt/rogue/pouch/coins/mid = 1, /obj/item/flashlight/flare/torch/lantern = 1)
+
+/datum/outfit/job/roguetown/suitor/gallant/pre_equip(mob/living/carbon/human/H)
+	..()
 	/*if(H.mind)
 		var/datum/antagonist/new_antag = new /datum/antagonist/suitor()
 		H.mind.add_antag_datum(new_antag)*/

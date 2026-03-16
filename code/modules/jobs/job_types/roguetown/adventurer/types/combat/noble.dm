@@ -27,9 +27,7 @@
 		/datum/skill/misc/music = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/adventurer/noble/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("You are a traveling noble visiting foreign lands. With wealth, come the poor, ready to pilfer you of your hard earned (inherited) coin, so tread lightly unless you want to meet a grizzly end."))
+/datum/outfit/job/roguetown/adventurer/noble
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	belt = /obj/item/storage/belt/rogue/leather/black
 	beltr = /obj/item/flashlight/flare/torch/lantern
@@ -38,6 +36,11 @@
 	id = /obj/item/clothing/ring/silver
 	beltl = /obj/item/rogueweapon/sword/sabre/dec
 	l_hand = /obj/item/rogueweapon/scabbard/sword/noble
+	backpack_contents = list(/obj/item/recipe_book/survival = 1) // Someone gonna argue it is sovlful to not have this but whatever
+
+/datum/outfit/job/roguetown/adventurer/noble/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("You are a traveling noble visiting foreign lands. With wealth, come the poor, ready to pilfer you of your hard earned (inherited) coin, so tread lightly unless you want to meet a grizzly end."))
 	if(should_wear_masc_clothes(H))
 		cloak = /obj/item/clothing/cloak/half/red
 		shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/red
@@ -45,7 +48,6 @@
 	if(should_wear_femme_clothes(H))
 		shirt = /obj/item/clothing/suit/roguetown/shirt/dress/gen/purple
 		cloak = /obj/item/clothing/cloak/raincloak/purple
-	backpack_contents = list(/obj/item/recipe_book/survival = 1) // Someone gonna argue it is sovlful to not have this but whatever
 	var/turf/TU = get_turf(H)
 	if(TU)
 		new /mob/living/simple_animal/hostile/retaliate/rogue/saiga/tame/saddled(TU)
@@ -81,6 +83,22 @@
 		/datum/virtue/utility/riding
 	)
 
+/datum/outfit/job/roguetown/adventurer/knighte
+	gloves = /obj/item/clothing/gloves/roguetown/chain
+	pants = /obj/item/clothing/under/roguetown/chainlegs
+	cloak = /obj/item/clothing/cloak/tabard/stabard
+	neck = /obj/item/clothing/neck/roguetown/bevor
+	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
+	wrists = /obj/item/clothing/wrists/roguetown/bracers
+	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
+	belt = /obj/item/storage/belt/rogue/leather/steel/tasset
+	backl = /obj/item/storage/backpack/rogue/satchel
+	beltl = /obj/item/flashlight/flare/torch/lantern
+	backpack_contents = list(
+		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
+		/obj/item/recipe_book/survival = 1,
+		)
+
 /datum/outfit/job/roguetown/adventurer/knighte/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.mind)
@@ -115,20 +133,6 @@
 		var/armorchoice = input(H, "Choose your armor.", "TAKE UP ARMOR") as anything in armors
 		armor = armors[armorchoice]
 
-	gloves = /obj/item/clothing/gloves/roguetown/chain
-	pants = /obj/item/clothing/under/roguetown/chainlegs
-	cloak = /obj/item/clothing/cloak/tabard/stabard
-	neck = /obj/item/clothing/neck/roguetown/bevor
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
-	wrists = /obj/item/clothing/wrists/roguetown/bracers
-	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
-	belt = /obj/item/storage/belt/rogue/leather/steel/tasset
-	backl = /obj/item/storage/backpack/rogue/satchel
-	beltl = /obj/item/flashlight/flare/torch/lantern
-	backpack_contents = list(
-		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
-		/obj/item/recipe_book/survival = 1,
-		)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	H.set_blindness(0)
 	if(H.mind)
@@ -193,9 +197,7 @@
 	)
 	extra_context = "Chooses between Light Armor (Dodge Expert) and Medium Armor."
 
-/datum/outfit/job/roguetown/adventurer/squire/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("You are a squire who has traveled far in search of a master to train you and a lord to knight you."))
+/datum/outfit/job/roguetown/adventurer/squire
 	head = /obj/item/clothing/head/roguetown/roguehood
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	cloak = /obj/item/clothing/cloak/tabard/stabard
@@ -205,13 +207,17 @@
 	backr = /obj/item/storage/backpack/rogue/satchel
 	beltl = /obj/item/flashlight/flare/torch/lantern
 	backpack_contents = list(
-		/obj/item/storage/belt/rogue/pouch/coins/poor = 1, 
-		/obj/item/rogueweapon/hammer/iron = 1, 
-		/obj/item/rogueweapon/tongs = 1, 
+		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
+		/obj/item/rogueweapon/hammer/iron = 1,
+		/obj/item/rogueweapon/tongs = 1,
 		/obj/item/recipe_book/survival = 1,
 		/obj/item/repair_kit/metal = 1,
 		/obj/item/repair_kit = 1,
 	)
+
+/datum/outfit/job/roguetown/adventurer/squire/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("You are a squire who has traveled far in search of a master to train you and a lord to knight you."))
 	if(H.mind)
 		var/armors = list("Light Armor","Medium Armor")
 		var/armor_choice = input(H, "Choose your armor.", "TAKE UP ARMS") as anything in armors

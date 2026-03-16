@@ -35,8 +35,7 @@
 	)
 	maximum_possible_slots = 20 // Should not fill, just a hack to make it shows what types of towners are in round
 
-/datum/outfit/job/roguetown/adventurer/hunter/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/adventurer/hunter
 	head = /obj/item/clothing/head/roguetown/archercap
 	mask = /obj/item/clothing/head/roguetown/roguehood/red
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
@@ -56,6 +55,9 @@
 				/obj/item/recipe_book/leatherworking = 1,
 				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
+
+/datum/outfit/job/roguetown/adventurer/hunter/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_LOWER_CLASS, H, "Savings.")
 	if(H.mind)
@@ -105,13 +107,11 @@
 		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/adventurer/hunter_spear/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("You are a hunter who specializes in spears, excelling in strength and endurance."))
+/datum/outfit/job/roguetown/adventurer/hunter_spear
 	head = /obj/item/clothing/head/roguetown/armingcap
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	cloak = /obj/item/clothing/cloak/raincloak/furcloak/brown
-	mask = /obj/item/clothing/head/roguetown/roguehood/red	
+	mask = /obj/item/clothing/head/roguetown/roguehood/red
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/light
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/hide
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
@@ -131,6 +131,10 @@
 				/obj/item/recipe_book/leatherworking = 1,
 				/obj/item/rogueweapon/scabbard/sheath = 1
 				)
+
+/datum/outfit/job/roguetown/adventurer/hunter_spear/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("You are a hunter who specializes in spears, excelling in strength and endurance."))
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_LOWER_CLASS, H, "Savings.")
 	if(H.mind)

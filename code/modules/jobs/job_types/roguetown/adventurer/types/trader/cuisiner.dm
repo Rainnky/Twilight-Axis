@@ -26,10 +26,7 @@
 		/datum/skill/misc/climbing = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/adventurer/cuisiner/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("Whether a disciple of a culinary school, a storied royal chef, or a mercenary cook for hire, your trade is plied at the counter, \
-	the cutting board, and the hearth."))
+/datum/outfit/job/roguetown/adventurer/cuisiner
 	head = /obj/item/clothing/head/roguetown/chef
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
@@ -51,4 +48,9 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/recipe_book/survival = 1,
 		)
+
+/datum/outfit/job/roguetown/adventurer/cuisiner/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("Whether a disciple of a culinary school, a storied royal chef, or a mercenary cook for hire, your trade is plied at the counter, \
+	the cutting board, and the hearth."))
 		// no ration wrappers by design

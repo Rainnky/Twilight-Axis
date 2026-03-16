@@ -58,10 +58,12 @@
 		/datum/skill/misc/reading = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/guildsman/blacksmith/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/guildsman/blacksmith
 	head = /obj/item/clothing/head/roguetown/hatfur
 	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves/blacksmith
+
+/datum/outfit/job/roguetown/guildsman/blacksmith/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(prob(50))
 		head = /obj/item/clothing/head/roguetown/hatblu
 	if(should_wear_femme_clothes(H))
@@ -137,8 +139,7 @@
 		/datum/skill/craft/ceramics = SKILL_LEVEL_JOURNEYMAN,	//Just for basic pottery/glass stuff.
 	)
 
-/datum/outfit/job/roguetown/guildsman/artificer/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/guildsman/artificer
 	head = /obj/item/clothing/head/roguetown/articap
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/jacket/artijacket
 	cloak = /obj/item/clothing/cloak/apron/waist/brown
@@ -162,6 +163,9 @@
 						/obj/item/contraption/linker = 1,
 						/obj/item/mini_flagpole/artificer = 1,
 						)
+
+/datum/outfit/job/roguetown/guildsman/artificer/pre_equip(mob/living/carbon/human/H)
+	..()
 	// Not a real mage, no free spell point. Take Arcyne Potential if you want it.
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
@@ -203,8 +207,7 @@
 		/datum/skill/craft/ceramics = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/guildsman/architect/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/guildsman/architect
 	head = /obj/item/clothing/head/roguetown/hatblu
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest
 	cloak = /obj/item/clothing/cloak/apron/waist/bar
@@ -233,6 +236,9 @@
 						/obj/item/mini_flagpole/blacksmith = 1,
 						/obj/item/mini_flagpole/artificer = 1,
 						)
+
+/datum/outfit/job/roguetown/guildsman/architect/pre_equip(mob/living/carbon/human/H)
+	..()
 	ADD_TRAIT(H, TRAIT_MASTER_CARPENTER, TRAIT_GENERIC)
 	ADD_TRAIT(H, TRAIT_MASTER_MASON, TRAIT_GENERIC)
 	if(H.mind)

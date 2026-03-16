@@ -36,8 +36,7 @@
 	maximum_possible_slots = 20 // Should not fill, just a hack to make it shows what types of towners are in round
 
 
-/datum/outfit/job/roguetown/adventurer/miner/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/adventurer/miner
 	head = /obj/item/clothing/head/roguetown/cap
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	belt = /obj/item/storage/belt/rogue/leather
@@ -56,6 +55,9 @@
 						/obj/item/rogueweapon/huntingknife = 1,
 						/obj/item/storage/hip/orestore/bronze = 1
 						)
+
+/datum/outfit/job/roguetown/adventurer/miner/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(should_wear_masc_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen
 		shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/brown

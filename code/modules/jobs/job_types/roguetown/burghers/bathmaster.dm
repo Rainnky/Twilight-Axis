@@ -59,9 +59,7 @@
 		/datum/skill/craft/crafting = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/bathmaster/basic/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
+/datum/outfit/job/roguetown/bathmaster/basic
 	head = /obj/item/lockpick/goldpin/silver
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	belt = /obj/item/storage/belt/rogue/leather/black
@@ -70,7 +68,6 @@
 	neck = /obj/item/storage/belt/rogue/pouch/merchant/coins
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	beltl = /obj/item/rogueweapon/whip
-
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
 		/obj/item/reagent_containers/food/snacks/grown/rogue/swampweeddry = 2,
@@ -78,6 +75,11 @@
 		/obj/item/reagent_containers/powder/spice = 1,
 		/obj/item/mini_flagpole/bathhouse,
 		)
+
+/datum/outfit/job/roguetown/bathmaster/basic/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
+
 
 	if(should_wear_masc_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/sailor/nightman

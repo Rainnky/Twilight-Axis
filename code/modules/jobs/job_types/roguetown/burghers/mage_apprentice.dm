@@ -66,7 +66,7 @@
 		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/wapprentice/associate/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/wapprentice/associate
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 	pants = /obj/item/clothing/under/roguetown/tights/random
 	belt = /obj/item/storage/belt/rogue/leather
@@ -84,6 +84,8 @@
 		/obj/item/recipe_book/magic = 1,
 		/obj/item/chalk = 1,
 		)
+
+/datum/outfit/job/roguetown/wapprentice/associate/pre_equip(mob/living/carbon/human/H)
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
@@ -123,7 +125,7 @@
 		/datum/skill/labor/fishing = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/wapprentice/alchemist/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/wapprentice/alchemist
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 	pants = /obj/item/clothing/under/roguetown/tights/random
 	belt = /obj/item/storage/belt/rogue/leather
@@ -141,6 +143,8 @@
 		/obj/item/chalk = 1,
 		/obj/item/spellbook_unfinished/pre_arcyne = 1
 		)
+
+/datum/outfit/job/roguetown/wapprentice/alchemist/pre_equip(mob/living/carbon/human/H)
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
@@ -172,7 +176,7 @@
 		/datum/skill/combat/staves = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/wapprentice/apprentice/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/wapprentice/apprentice
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 	pants = /obj/item/clothing/under/roguetown/tights/random
 	belt = /obj/item/storage/belt/rogue/leather
@@ -188,6 +192,8 @@
 		/obj/item/spellbook_unfinished/pre_arcyne = 1,
 		/obj/item/chalk = 1,
 		)
+
+/datum/outfit/job/roguetown/wapprentice/apprentice/pre_equip(mob/living/carbon/human/H)
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
 			H.cmode_music = 'sound/music/combat_heretic.ogg'
@@ -249,15 +255,6 @@
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	var/subclass_selected
 
-/datum/outfit/job/roguetown/wapprentice/spellblade/Topic(href, href_list)
-	. = ..()
-	if(href_list["subclass"])
-		subclass_selected = href_list["subclass"]
-	else if(href_list["close"])
-		if(!subclass_selected)
-			subclass_selected = "blade"
-
-/datum/outfit/job/roguetown/wapprentice/spellblade/pre_equip(mob/living/carbon/human/H)
 	head = /obj/item/clothing/head/roguetown/bucklehat
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	pants = /obj/item/clothing/under/roguetown/trou/leather
@@ -276,6 +273,15 @@
 		/obj/item/recipe_book/magic = 1,
 		/obj/item/storage/keyring/apprentice = 1,
 		/obj/item/chalk = 1,)
+/datum/outfit/job/roguetown/wapprentice/spellblade/Topic(href, href_list)
+	. = ..()
+	if(href_list["subclass"])
+		subclass_selected = href_list["subclass"]
+	else if(href_list["close"])
+		if(!subclass_selected)
+			subclass_selected = "blade"
+
+/datum/outfit/job/roguetown/wapprentice/spellblade/pre_equip(mob/living/carbon/human/H)
 
 	to_chat(H, span_warning("You start with Bind Weapon. Remember to Bind your weapon so you can use your abilities and build up Arcyne Momentum."))
 

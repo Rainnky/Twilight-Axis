@@ -56,6 +56,32 @@
 	)
 	maximum_possible_slots = 20 // Should not fill, just a hack to make it shows what types of towners are in round
 
+/datum/outfit/job/roguetown/homesteader
+	belt = /obj/item/storage/belt/rogue/leather
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
+	beltl = /obj/item/flashlight/flare/torch/lantern
+	backl = /obj/item/storage/backpack/rogue/backpack
+	backpack_contents = list(
+						/obj/item/flint = 1,
+						/obj/item/flashlight/flare/torch = 1,
+						/obj/item/rogueweapon/handsaw = 1,
+						/obj/item/dye_brush = 1,
+						/obj/item/recipe_book/builder = 1,
+						/obj/item/recipe_book/survival = 1,
+						/obj/item/reagent_containers/powder/salt = 3,
+						/obj/item/reagent_containers/food/snacks/rogue/cheddar = 2,
+						/obj/item/natural/cloth = 2,
+						/obj/item/book/rogue/yeoldecookingmanual = 1,
+						/obj/item/natural/worms = 2,
+						/obj/item/rogueweapon/shovel/small = 1,
+						/obj/item/hair_dye_cream = 3,
+						/obj/item/rogueweapon/chisel = 1,
+						/obj/item/natural/clay = 3,
+						/obj/item/natural/clay/glassbatch = 1,
+						/obj/item/rogueore/coal = 1,
+						/obj/item/roguegear = 1,
+	)
+
 /datum/outfit/job/roguetown/homesteader/pre_equip(mob/living/carbon/human/H)
 	..()
 	head = pick(/obj/item/clothing/head/roguetown/hatfur,
@@ -85,30 +111,6 @@
 	shoes = pick(/obj/item/clothing/shoes/roguetown/boots/leather,
 	/obj/item/clothing/shoes/roguetown/shortboots)
 
-	belt = /obj/item/storage/belt/rogue/leather
-	beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
-	beltl = /obj/item/flashlight/flare/torch/lantern
-	backl = /obj/item/storage/backpack/rogue/backpack
-	backpack_contents = list(
-						/obj/item/flint = 1,
-						/obj/item/flashlight/flare/torch = 1,
-						/obj/item/rogueweapon/handsaw = 1,
-						/obj/item/dye_brush = 1,
-						/obj/item/recipe_book/builder = 1,
-						/obj/item/recipe_book/survival = 1,
-						/obj/item/reagent_containers/powder/salt = 3,
-						/obj/item/reagent_containers/food/snacks/rogue/cheddar = 2,
-						/obj/item/natural/cloth = 2,
-						/obj/item/book/rogue/yeoldecookingmanual = 1,
-						/obj/item/natural/worms = 2,
-						/obj/item/rogueweapon/shovel/small = 1,
-						/obj/item/hair_dye_cream = 3,
-						/obj/item/rogueweapon/chisel = 1,
-						/obj/item/natural/clay = 3,
-						/obj/item/natural/clay/glassbatch = 1,
-						/obj/item/rogueore/coal = 1,
-						/obj/item/roguegear = 1,
-	)
 	if(H.mind)
 		H.mind.special_items["Hammer"] = /obj/item/rogueweapon/hammer/steel
 		H.mind.special_items["Sheathe"] = /obj/item/rogueweapon/scabbard/sheath

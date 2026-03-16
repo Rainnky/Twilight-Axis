@@ -41,11 +41,7 @@
 		/datum/skill/misc/swimming = SKILL_LEVEL_EXPERT//Skirmisher equal
 	)
 
-/datum/outfit/job/roguetown/bandit/knave/pre_equip(mob/living/carbon/human/H)
-	..()
-	if (!(istype(H.patron, /datum/patron/inhumen/matthios)))	//This is the only class that forces Matthios. Needed for miracles + limited slot.
-		to_chat(H, span_warning("Matthios embraces me.. I must uphold his creed. I am his light in the darkness."))
-		H.set_patron(/datum/patron/inhumen/matthios)
+/datum/outfit/job/roguetown/bandit/knave
 	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/steel
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/random
@@ -54,6 +50,12 @@
 	neck = /obj/item/clothing/neck/roguetown/coif
 	armor = /obj/item/clothing/suit/roguetown/armor/leather
 	id = /obj/item/mattcoin
+
+/datum/outfit/job/roguetown/bandit/knave/pre_equip(mob/living/carbon/human/H)
+	..()
+	if (!(istype(H.patron, /datum/patron/inhumen/matthios)))	//This is the only class that forces Matthios. Needed for miracles + limited slot.
+		to_chat(H, span_warning("Matthios embraces me.. I must uphold his creed. I am his light in the darkness."))
+		H.set_patron(/datum/patron/inhumen/matthios)
 	H.adjust_blindness(-3)
 	var/subtype = list("Rogue", "Poacher")
 	if(H.mind)

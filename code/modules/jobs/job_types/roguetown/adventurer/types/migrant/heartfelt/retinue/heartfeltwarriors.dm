@@ -37,9 +37,7 @@
 	/datum/skill/misc/tracking = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/roguetown/heartfelt/retinue/houseguard/pre_equip(mob/living/carbon/human/H)
-	..()
-
+/datum/outfit/job/roguetown/heartfelt/retinue/houseguard
 	cloak = /obj/item/clothing/cloak/raincloak/furcloak/black // Fur cloak, instead using the brigandine for 'identification'
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/iron
 	gloves = /obj/item/clothing/gloves/roguetown/angle
@@ -52,6 +50,16 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/brigandine
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 	neck = /obj/item/clothing/neck/roguetown/gorget/
+	backpack_contents = list(
+		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
+		/obj/item/rope/chain = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/storage/belt/rogue/pouch/coins/mid = 1,
+	)
+
+/datum/outfit/job/roguetown/heartfelt/retinue/houseguard/pre_equip(mob/living/carbon/human/H)
+	..()
+
 
 	H.adjust_blindness(-3)
 	var/weapons = list("Warhammer & Shield","Axe & Shield","Halberd","Greataxe")
@@ -73,12 +81,6 @@
 		else
 			r_hand = /obj/item/rogueweapon/halberd
 			backl = /obj/item/rogueweapon/scabbard/gwstrap
-	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
-		/obj/item/rope/chain = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1,
-		/obj/item/storage/belt/rogue/pouch/coins/mid = 1,
-	)
 	H.verbs |= /mob/proc/haltyell
 
 	var/helmet = list("Etruscan Bascinet","Volf Plate Helmet","Visored Sallet","Slitted Kettle","Simple Helmet","Kettle Helmet","Sallet Helmet","Winged Helmet",)
@@ -138,9 +140,7 @@
 		/datum/skill/misc/tracking = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/heartfelt/retinue/housearb/pre_equip(mob/living/carbon/human/H)
-	..()
-
+/datum/outfit/job/roguetown/heartfelt/retinue/housearb
 	cloak = /obj/item/clothing/cloak/raincloak/furcloak/black // Fur cloak, instead of tabard due to using the brigandine for 'identification'
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/iron
 	gloves = /obj/item/clothing/gloves/roguetown/angle
@@ -153,6 +153,17 @@
 	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 	neck = /obj/item/clothing/neck/roguetown/gorget/
+	backpack_contents = list(
+		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
+		/obj/item/rope/chain = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/storage/belt/rogue/pouch/coins/mid = 1,
+		/obj/item/reagent_containers/glass/bottle/alchemical/healthpotnew = 1,
+	)
+
+/datum/outfit/job/roguetown/heartfelt/retinue/housearb/pre_equip(mob/living/carbon/human/H)
+	..()
+
 
 	H.adjust_blindness(-3)
 	var/weapons = list("Crossbow","Bow","Sling")
@@ -175,13 +186,6 @@
 			beltr = /obj/item/quiver/bolt/standard
 			backl = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
 
-	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
-		/obj/item/rope/chain = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1,
-		/obj/item/storage/belt/rogue/pouch/coins/mid = 1,
-		/obj/item/reagent_containers/glass/bottle/alchemical/healthpotnew = 1,
-	)
 	H.verbs |= /mob/proc/haltyell
 
 	var/helmet = list("Etruscan Bascinet","Volf Plate Helmet","Visored Sallet","Slitted Kettle","Simple Helmet","Kettle Helmet","Sallet Helmet","Winged Helmet",)
@@ -248,9 +252,7 @@
 		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/roguetown/heartfelt/retinue/squire/pre_equip(mob/living/carbon/human/H)
-	..()
-
+/datum/outfit/job/roguetown/heartfelt/retinue/squire
 	armor = /obj/item/clothing/suit/roguetown/armor/brigandine
 	gloves = /obj/item/clothing/gloves/roguetown/angle
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
@@ -263,13 +265,17 @@
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
 	backr = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife/idagger = 1,  
+		/obj/item/rogueweapon/huntingknife/idagger = 1,
 		/obj/item/storage/belt/rogue/pouch/coins/mid = 1,
 		/obj/item/rogueweapon/hammer/iron = 1,
 		/obj/item/polishing_cream = 1,
 		/obj/item/armor_brush = 1,
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpotnew = 1,
-	) 
+	)
+
+/datum/outfit/job/roguetown/heartfelt/retinue/squire/pre_equip(mob/living/carbon/human/H)
+	..()
+
 
 	var/weapons = list("Sword & Shield","Mace & Shield","Spear","Crossbow", "Bow")
 	var/weapon_choice = input("Choose your weapon.", "TAKE UP ARMS") as anything in weapons

@@ -38,8 +38,6 @@
 /datum/outfit/job/roguetown/marshal
 	job_bitflag = BITFLAG_ROYALTY | BITFLAG_GARRISON	//Same as Captain, you get decent combat stats so might as well be garrison.
 
-/datum/outfit/job/roguetown/marshal/pre_equip(mob/living/carbon/human/H)
-	..()
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
@@ -53,6 +51,8 @@
 		/obj/item/signal_horn = 1,
 		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
 		)
+/datum/outfit/job/roguetown/marshal/pre_equip(mob/living/carbon/human/H)
+	..()
 	H.verbs |= /mob/proc/haltyell
 	H.verbs |= list(/mob/living/carbon/human/proc/request_outlaw, /mob/living/carbon/human/proc/request_law, /mob/living/carbon/human/proc/request_law_removal, /mob/living/carbon/human/proc/request_purge)
 	if(H.mind)
@@ -87,7 +87,7 @@
 		/datum/skill/misc/riding = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/marshal/classic/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/marshal/classic
 	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/retinue
 	cloak = /obj/item/clothing/cloak/tabard/stabard/surcoat/bailiff
 	backr = /obj/item/rogueweapon/mace/cudgel/justice
@@ -95,6 +95,8 @@
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
 	beltl = /obj/item/storage/keyring/marshal
 	head = /obj/item/clothing/head/roguetown/chaperon/noble/bailiff
+
+/datum/outfit/job/roguetown/marshal/classic/pre_equip(mob/living/carbon/human/H)
 
 /datum/advclass/marshal/kcommander
 	name = "Knight Commander"
@@ -125,13 +127,15 @@
 		/datum/skill/misc/riding = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/marshal/kcommander/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/marshal/kcommander
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale/marshal
 	backr = /obj/item/rogueweapon/sword/long/oathkeeper
 	belt = /obj/item/storage/belt/rogue/leather
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/rich
 	beltl = /obj/item/storage/keyring/marshal
 	l_hand = /obj/item/rogueweapon/scabbard/sword/noble
+
+/datum/outfit/job/roguetown/marshal/kcommander/pre_equip(mob/living/carbon/human/H)
 
 /mob/living/carbon/human/proc/request_law()
 	set name = "Request Law"

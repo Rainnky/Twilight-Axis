@@ -29,6 +29,22 @@
 		/datum/skill/combat/shields = SKILL_LEVEL_EXPERT,
 	)
 
+/datum/outfit/job/roguetown/wretch/ancient_deathknight
+	beltl = /obj/item/rogueweapon/scabbard/sword
+	belt = /obj/item/storage/belt/rogue/leather/black
+	pants = /obj/item/clothing/under/roguetown/platelegs/paalloy
+	shoes = /obj/item/clothing/shoes/roguetown/boots/paalloy
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/light
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/paalloy
+	gloves = /obj/item/clothing/gloves/roguetown/plate/paalloy
+	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/paalloy
+	backr = /obj/item/storage/backpack/rogue/satchel
+	backpack_contents = list(
+		/obj/item/rogueweapon/huntingknife/idagger/steel/corroded = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+	)
+
 /datum/outfit/job/roguetown/wretch/ancient_deathknight/pre_equip(mob/living/carbon/human/H)
 	..()
 
@@ -44,16 +60,6 @@
 	H.cmode_music = 'sound/music/combat_cult.ogg'
 
 	// Equipment — gilbranze loadout matching lich skeleton death knight
-	beltl = /obj/item/rogueweapon/scabbard/sword
-	belt = /obj/item/storage/belt/rogue/leather/black
-	pants = /obj/item/clothing/under/roguetown/platelegs/paalloy
-	shoes = /obj/item/clothing/shoes/roguetown/boots/paalloy
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/light
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/paalloy
-	gloves = /obj/item/clothing/gloves/roguetown/plate/paalloy
-	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/paalloy
-	backr = /obj/item/storage/backpack/rogue/satchel
 
 	H.adjust_blindness(-3)
 
@@ -80,10 +86,6 @@
 			r_hand = /obj/item/rogueweapon/halberd
 			H.adjust_skillrank_up_to(/datum/skill/combat/polearms, 4, TRUE)
 
-	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife/idagger/steel/corroded = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1,
-	)
 
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mending)

@@ -64,9 +64,7 @@
 	name = "Physician"
 	jobtype = /datum/job/roguetown/physician
 
-/datum/outfit/job/roguetown/physician/basic/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
+/datum/outfit/job/roguetown/physician/basic
 	mask = /obj/item/clothing/mask/rogue/courtphysician
 	neck = /obj/item/storage/belt/rogue/pouch/coins/mid //coin to hire mercenaries or adventurers with
 	wrists = /obj/item/storage/keyring/physician
@@ -83,6 +81,10 @@
 		/obj/item/reagent_containers/glass/bottle/waterskin = 1,
 		/obj/item/recipe_book/alchemy = 1,
 		/obj/item/mini_flagpole/apothecary = 1,)
+
+/datum/outfit/job/roguetown/physician/basic/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
 	if(should_wear_femme_clothes(H))
 		head = /obj/item/clothing/head/roguetown/courtphysician/female
 		armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/jacket/courtphysician/female

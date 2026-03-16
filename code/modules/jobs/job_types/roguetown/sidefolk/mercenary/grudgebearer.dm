@@ -299,4 +299,3 @@
 	shred_amt = 20	//Limbs lose 2 grades per layer shred, but also repair 4.
 	layer_repair = 2
 
-

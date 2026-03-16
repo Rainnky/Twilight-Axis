@@ -34,18 +34,6 @@
 /datum/outfit/job/roguetown/templar/noc_spellblade
 	var/subclass_selected
 
-/datum/outfit/job/roguetown/templar/noc_spellblade/Topic(href, href_list)
-	. = ..()
-	if(href_list["subclass"])
-		subclass_selected = href_list["subclass"]
-	else if(href_list["close"])
-		if(!subclass_selected)
-			subclass_selected = "blade"
-
-/datum/outfit/job/roguetown/templar/noc_spellblade/pre_equip(mob/living/carbon/human/H)
-	..()
-
-	// Equipment — medium armor templar with Noc theming
 	wrists = /obj/item/clothing/neck/roguetown/psicross/noc
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/nochelm
 	cloak = /obj/item/clothing/cloak/tabard/devotee/noc
@@ -64,6 +52,18 @@
 		/obj/item/ritechalk = 1,
 		/obj/item/storage/keyring/acolyte = 1,
 	)
+/datum/outfit/job/roguetown/templar/noc_spellblade/Topic(href, href_list)
+	. = ..()
+	if(href_list["subclass"])
+		subclass_selected = href_list["subclass"]
+	else if(href_list["close"])
+		if(!subclass_selected)
+			subclass_selected = "blade"
+
+/datum/outfit/job/roguetown/templar/noc_spellblade/pre_equip(mob/living/carbon/human/H)
+	..()
+
+	// Equipment — medium armor templar with Noc theming
 
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 

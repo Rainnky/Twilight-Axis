@@ -34,9 +34,7 @@
 	)
 // HIGH COURT - /ONE SLOT/ Roles that were previously in the Court, but moved here.
 
-/datum/outfit/job/roguetown/heartfelt/retinue/physician/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
+/datum/outfit/job/roguetown/heartfelt/retinue/physician
 	neck = /obj/item/clothing/neck/roguetown/psicross/pestra
 	belt = /obj/item/storage/belt/rogue/leather/black
 	beltl = /obj/item/storage/belt/rogue/surgery_bag/full/physician
@@ -53,6 +51,10 @@
 		/obj/item/recipe_book/alchemy = 1,
 		/obj/item/bedroll = 1,
 	)
+
+/datum/outfit/job/roguetown/heartfelt/retinue/physician/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
 	if(H.pronouns == SHE_HER)
 		head = /obj/item/clothing/head/roguetown/courtphysician/female
 		armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/jacket/courtphysician/female

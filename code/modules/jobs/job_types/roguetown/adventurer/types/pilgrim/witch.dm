@@ -25,8 +25,7 @@
 	)
 	maximum_possible_slots = 20 // Should not fill, just a hack to make it shows what types of towners are in round
 
-/datum/outfit/job/roguetown/adventurer/witch/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/adventurer/witch
 	head = /obj/item/clothing/head/roguetown/witchhat
 	mask = /obj/item/clothing/head/roguetown/roguehood/black
 	armor = /obj/item/clothing/suit/roguetown/shirt/robe/phys
@@ -46,6 +45,9 @@
 						/obj/item/recipe_book/magic = 1,
 						/obj/item/chalk = 1
 						)
+
+/datum/outfit/job/roguetown/adventurer/witch/pre_equip(mob/living/carbon/human/H)
+	..()
 	var/classes = list("Old Magick", "Godsblood", "Mystagogue")
 	var/classchoice = input("How do your powers manifest?", "THE OLD WAYS") as anything in classes
 

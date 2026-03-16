@@ -39,7 +39,7 @@
         "Sewing Kit" =  /obj/item/repair_kit,
     )
 
-/datum/outfit/job/roguetown/wretch/poacher/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/wretch/poacher
 	head = /obj/item/clothing/head/roguetown/roguehood/darkgreen
 	mask = /obj/item/clothing/mask/rogue/wildguard
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
@@ -62,6 +62,8 @@
 		/obj/item/rope/chain = 1,
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	//Small health vial
 		)
+
+/datum/outfit/job/roguetown/wretch/poacher/pre_equip(mob/living/carbon/human/H)
 	if(H.mind)
 		var/weapons = list("Dagger","Axe", "Cudgel", "My Bow Is Enough")
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons

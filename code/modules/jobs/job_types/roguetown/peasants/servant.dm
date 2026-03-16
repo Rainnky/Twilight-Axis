@@ -56,8 +56,7 @@
 		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/servant/servant/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/servant/servant
 	pants = /obj/item/clothing/under/roguetown/trou
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
@@ -67,6 +66,9 @@
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 	armor = /obj/item/clothing/suit/roguetown/armor/workervest
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless
+
+/datum/outfit/job/roguetown/servant/servant/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_WORKING_CLASS, H, "Savings.")
 
@@ -94,8 +96,7 @@
 		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/servant/maid/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/servant/maid
 	head = /obj/item/clothing/head/roguetown/maidband
 	armor = /obj/item/clothing/suit/roguetown/shirt/dress/maidfancy
 	cloak = /obj/item/clothing/cloak/apron/waist/fancymaid
@@ -104,6 +105,9 @@
 	backl = /obj/item/storage/backpack/rogue/satchel
 	beltr = /obj/item/roguekey/manor
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
+
+/datum/outfit/job/roguetown/servant/maid/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_WORKING_CLASS, H, "Savings.")
 
@@ -131,8 +135,7 @@
 		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/servant/butler/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/servant/butler
 	pants = /obj/item/clothing/under/roguetown/tights/shorts
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/formal
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
@@ -141,5 +144,8 @@
 	beltr = /obj/item/roguekey/manor
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/black
+
+/datum/outfit/job/roguetown/servant/butler/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_WORKING_CLASS, H, "Savings.")

@@ -39,8 +39,7 @@
 
 // HIGH COURT - /ONE SLOT/ Roles that were previously in the Court, but moved here.
 
-/datum/outfit/job/roguetown/heartfelt/retinue/servant/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/heartfelt/retinue/servant
 	pants = /obj/item/clothing/under/roguetown/trou
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/guard
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
@@ -61,4 +60,7 @@
 	/obj/item/flint = 1,
 	/obj/item/rogueweapon/scabbard/sheath = 1,
 	)
+
+/datum/outfit/job/roguetown/heartfelt/retinue/servant/pre_equip(mob/living/carbon/human/H)
+	..()
 

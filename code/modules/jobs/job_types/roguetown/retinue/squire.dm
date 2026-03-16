@@ -82,9 +82,7 @@
 		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/roguetown/squire/lancer/pre_equip(mob/living/carbon/human/H)
-	. = ..()
-	H.verbs |= /mob/proc/haltyell_exhausting
+/datum/outfit/job/roguetown/squire/lancer
 	r_hand = /obj/item/rogueweapon/spear/trainer
 	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
 	gloves = /obj/item/clothing/gloves/roguetown/leather
@@ -99,6 +97,10 @@
 		/obj/item/repair_kit/metal,
 		/obj/item/repair_kit,
 	)
+
+/datum/outfit/job/roguetown/squire/lancer/pre_equip(mob/living/carbon/human/H)
+	. = ..()
+	H.verbs |= /mob/proc/haltyell_exhausting
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_WORKING_CLASS, H, "Savings.")
 
@@ -131,9 +133,7 @@
 		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/squire/footman/pre_equip(mob/living/carbon/human/H)
-	. = ..()
-	H.verbs |= /mob/proc/haltyell_exhausting
+/datum/outfit/job/roguetown/squire/footman
 	armor = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
 	gloves = /obj/item/clothing/gloves/roguetown/leather
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
@@ -146,6 +146,10 @@
 		/obj/item/repair_kit/metal,
 		/obj/item/repair_kit,
 	)
+
+/datum/outfit/job/roguetown/squire/footman/pre_equip(mob/living/carbon/human/H)
+	. = ..()
+	H.verbs |= /mob/proc/haltyell_exhausting
 	H.adjust_blindness(-3)
 	if(H.mind)
 		var/weapons = list("Training Sword","Club",)
@@ -189,9 +193,7 @@
 		/datum/skill/misc/riding = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/squire/skirmisher/pre_equip(mob/living/carbon/human/H)
-	. = ..()
-	H.verbs |= /mob/proc/haltyell_exhausting
+/datum/outfit/job/roguetown/squire/skirmisher
 	beltr = /obj/item/quiver/sling/iron
 	beltl = /obj/item/gun/ballistic/revolver/grenadelauncher/sling
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy
@@ -208,5 +210,9 @@
 		/obj/item/repair_kit/metal,
 		/obj/item/repair_kit,
 		)
+
+/datum/outfit/job/roguetown/squire/skirmisher/pre_equip(mob/living/carbon/human/H)
+	. = ..()
+	H.verbs |= /mob/proc/haltyell_exhausting
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_WORKING_CLASS, H, "Savings.")

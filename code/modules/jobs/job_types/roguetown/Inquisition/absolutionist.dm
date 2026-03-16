@@ -78,10 +78,7 @@
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/convert_psydon)
 
-/datum/outfit/job/roguetown/absolver/basic/pre_equip(mob/living/carbon/human/H)
-	..()
-	job_bitflag = BITFLAG_HOLY_WARRIOR
-	H.adjust_blindness(-3)
+/datum/outfit/job/roguetown/absolver/basic
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/psythorns
 	gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves
 	beltr = /obj/item/flashlight/flare/torch/lantern/psycenser
@@ -106,6 +103,11 @@
 		/obj/item/natural/worms/leech/cheele = 1,
 		/obj/item/storage/keyring/inquisitor = 1,
 		)
+
+/datum/outfit/job/roguetown/absolver/basic/pre_equip(mob/living/carbon/human/H)
+	..()
+	job_bitflag = BITFLAG_HOLY_WARRIOR
+	H.adjust_blindness(-3)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T4, passive_gain = CLERIC_REGEN_ABSOLVER, start_maxed = TRUE) // PSYDONIAN MIRACLE-WORKER. LUX-MERGING FREEK.
 	if(!isdarkelf(H)) //TA EDIT

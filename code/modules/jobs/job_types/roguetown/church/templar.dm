@@ -66,8 +66,7 @@
 	)
 	extra_context = "This subclass can choose from multiple disciplines. The further your chosen discipline strays from unarmed combat, however, the greater your skills in fistfighting and wrestling will atrophy. Taking a Quarterstaff provides a minor bonus to Perception, but removes the 'Dodge Expert' trait."
 
-/datum/outfit/job/roguetown/templar/monk/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/templar/monk
 	neck = /obj/item/clothing/neck/roguetown/psicross/undivided
 	cloak = /obj/item/clothing/cloak/tabard/crusader/tief
 	id = /obj/item/clothing/ring/silver
@@ -76,6 +75,18 @@
 	backpack_contents = list(
 		/obj/item/ritechalk = 1,
 		)
+	head = /obj/item/clothing/head/roguetown/headband/monk
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/cloth/monk
+	shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/black
+	armor = /obj/item/clothing/suit/roguetown/shirt/robe/monk/holy
+	pants = /obj/item/clothing/under/roguetown/tights/black
+	belt = /obj/item/storage/belt/rogue/leather/rope
+	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
+	beltr = /obj/item/storage/keyring/acolyte
+	shoes = /obj/item/clothing/shoes/roguetown/sandals
+
+/datum/outfit/job/roguetown/templar/monk/pre_equip(mob/living/carbon/human/H)
+	..()
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg'
 	switch(H.patron?.type)
 		if(/datum/patron/divine/undivided)
@@ -122,15 +133,6 @@
 		if(/datum/patron/divine/malum)
 			neck = /obj/item/clothing/neck/roguetown/psicross/malum
 			cloak = /obj/item/clothing/cloak/templar/malumite
-	head = /obj/item/clothing/head/roguetown/headband/monk
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/cloth/monk
-	shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/black
-	armor = /obj/item/clothing/suit/roguetown/shirt/robe/monk/holy
-	pants = /obj/item/clothing/under/roguetown/tights/black
-	belt = /obj/item/storage/belt/rogue/leather/rope
-	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
-	beltr = /obj/item/storage/keyring/acolyte
-	shoes = /obj/item/clothing/shoes/roguetown/sandals
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_2)	//Capped to T2 miracles.
@@ -258,8 +260,7 @@
 	)
 	extra_context = "This subclass gains Expert skill in their weapon of choice. Taking a ranged option will provide Expert skills in Crossbows and Journeyman skills in Swordsmanship, at the cost of starting with reduced armor and atrophying in all other weapon skills."
 
-/datum/outfit/job/roguetown/templar/crusader/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/templar/crusader
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket
 	wrists = /obj/item/clothing/neck/roguetown/psicross/astrata
 	cloak = /obj/item/clothing/cloak/tabard/crusader/tief
@@ -272,6 +273,16 @@
 		/obj/item/storage/belt/rogue/pouch/coins/mid = 1,
 		/obj/item/storage/keyring/acolyte = 1
 		)
+	gloves = /obj/item/clothing/gloves/roguetown/chain
+	neck = /obj/item/clothing/neck/roguetown/chaincoif
+	pants = /obj/item/clothing/under/roguetown/chainlegs
+	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
+	belt = /obj/item/storage/belt/rogue/leather/black
+	beltl = /obj/item/rogueweapon/scabbard/sword
+	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
+
+/datum/outfit/job/roguetown/templar/crusader/pre_equip(mob/living/carbon/human/H)
+	..()
 	H.cmode_music = 'sound/music/cmode/church/combat_reckoning.ogg' // this is probably awful implementation. too bad!
 	switch(H.patron?.type)
 		if(/datum/patron/divine/undivided)
@@ -334,13 +345,6 @@
 		if(/datum/patron/old_god)
 			wrists = /obj/item/clothing/neck/roguetown/psicross
 			cloak = /obj/item/clothing/cloak/tabard/crusader/psydon
-	gloves = /obj/item/clothing/gloves/roguetown/chain
-	neck = /obj/item/clothing/neck/roguetown/chaincoif
-	pants = /obj/item/clothing/under/roguetown/chainlegs
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk
-	belt = /obj/item/storage/belt/rogue/leather/black
-	beltl = /obj/item/rogueweapon/scabbard/sword
-	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
 	H.dna.species.soundpack_m = new /datum/voicepack/male/knight()
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_2)	//Capped to T2 miracles.

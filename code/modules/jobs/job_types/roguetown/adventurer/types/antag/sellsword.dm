@@ -33,11 +33,7 @@
 		/datum/skill/misc/climbing = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/roguetown/bandit/sellsword/pre_equip(mob/living/carbon/human/H)
-	..()
-	if (!(istype(H.patron, /datum/patron/inhumen/matthios)))	//This is the only class that forces Matthios. Needed for miracles + limited slot.
-		to_chat(H, span_warning("Matthios embraces me.. I must uphold his creed. I am his light in the darkness."))
-		H.set_patron(/datum/patron/inhumen/matthios)
+/datum/outfit/job/roguetown/bandit/sellsword
 	head = /obj/item/clothing/head/roguetown/helmet/sallet/visored/iron
 	neck = /obj/item/clothing/neck/roguetown/bevor/iron
 	cloak = /obj/item/clothing/cloak/tabard/stabard/dungeon
@@ -52,8 +48,14 @@
 					/obj/item/natural/cloth = 1,
 					/obj/item/flashlight/flare/torch = 1,
 					)
-
 	id = /obj/item/mattcoin
+
+/datum/outfit/job/roguetown/bandit/sellsword/pre_equip(mob/living/carbon/human/H)
+	..()
+	if (!(istype(H.patron, /datum/patron/inhumen/matthios)))	//This is the only class that forces Matthios. Needed for miracles + limited slot.
+		to_chat(H, span_warning("Matthios embraces me.. I must uphold his creed. I am his light in the darkness."))
+		H.set_patron(/datum/patron/inhumen/matthios)
+
 	H.adjust_blindness(-3)
 	var/weapons = list("Kriegmesser & Buckler","Falchion & Kite Shield","Sword & Crossbow")
 	if(H.mind)

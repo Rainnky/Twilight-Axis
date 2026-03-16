@@ -40,9 +40,7 @@
 	subclass_stashed_items = list(
         "Sewing Kit" =  /obj/item/repair_kit,
     )
-/datum/outfit/job/roguetown/wretch/munitioneer/pre_equip(mob/living/carbon/human/H)
-	to_chat(H, span_warning("You are a passable warrior- though weak- but your true strength lies in your ability to bend the resources of Azuria to your will."))
-	has_loadout = TRUE
+/datum/outfit/job/roguetown/wretch/munitioneer
 	head = /obj/item/clothing/head/roguetown/roguehood/warden/munitioneer
 	mask = /obj/item/clothing/mask/rogue/facemask/steel/paalloy
 	neck = /obj/item/clothing/neck/roguetown/gorget
@@ -64,6 +62,10 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/riddleofsteel = 1
 		)
+
+/datum/outfit/job/roguetown/wretch/munitioneer/pre_equip(mob/living/carbon/human/H)
+	to_chat(H, span_warning("You are a passable warrior- though weak- but your true strength lies in your ability to bend the resources of Azuria to your will."))
+	has_loadout = TRUE
 
 /datum/outfit/job/roguetown/wretch/munitioneer/choose_loadout(mob/living/carbon/human/H)
 	. = ..()

@@ -37,9 +37,6 @@
 /datum/outfit/job/roguetown/mercenary/gronnheavy
 	allowed_patrons = ALL_GRONNIC_PATRONS //Subvariant of the 'ALL_INHUMEN_PATRONS' tag, with Abyssor and Dendor as situational additions. Do not add any more to this, no matter what.
 
-/datum/outfit/job/roguetown/mercenary/gronnheavy/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.dna.species.soundpack_m = new /datum/voicepack/male/evil() //It's fucking cool okay
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/iron/gronn
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/bucket/gronn
 	gloves = /obj/item/clothing/gloves/roguetown/plate/iron/gronn
@@ -54,6 +51,14 @@
 	belt = /obj/item/storage/belt/rogue/leather
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 	beltr = /obj/item/flashlight/flare/torch/lantern
+	backpack_contents = list(
+		/obj/item/roguekey/mercenary = 1,
+		/obj/item/rogueweapon/huntingknife = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1
+		)
+/datum/outfit/job/roguetown/mercenary/gronnheavy/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.dna.species.soundpack_m = new /datum/voicepack/male/evil() //It's fucking cool okay
 
 	switch(H.patron?.type)
 		if(/datum/patron/inhumen/zizo)
@@ -71,9 +76,4 @@
 		else
 			id = /obj/item/clothing/neck/roguetown/psicross/inhumen/gronn/special //Failsafe. Gives a specially-fluffed version of Zizo's talisman, which can be reinterpreted as needed.
 
-	backpack_contents = list(
-		/obj/item/roguekey/mercenary = 1,
-		/obj/item/rogueweapon/huntingknife = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1
-		)
 	H.merctype = 1

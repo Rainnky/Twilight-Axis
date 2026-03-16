@@ -31,8 +31,7 @@
 		/datum/skill/craft/alchemy = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/adventurer/doctor/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/adventurer/doctor
 	mask = /obj/item/clothing/mask/rogue/spectacles
 	head = /obj/item/clothing/head/roguetown/nightman
 	neck = /obj/item/storage/belt/rogue/pouch/coins/mid /// they are a fine dressed doctor. no one else gonna pay em. psycross removed since it was a hold over for secular
@@ -55,6 +54,9 @@
 						/obj/item/folding_alchcauldron_stored = 1,
 						/obj/item/recipe_book/alchemy = 1
 						)
+
+/datum/outfit/job/roguetown/adventurer/doctor/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 	if(H.mind)

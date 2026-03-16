@@ -87,7 +87,7 @@
 		/datum/skill/misc/tracking = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/hand/blademaster/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/hand/blademaster
 	r_hand = /obj/item/rogueweapon/sword/long/hand
 	beltr = /obj/item/rogueweapon/scabbard/sword/royal
 	head = /obj/item/clothing/head/roguetown/chaperon/noble/hand
@@ -99,6 +99,8 @@
 		/obj/item/storage/keyring/lord = 1,
 		/obj/item/roguekey/skeleton = 1
 	)
+
+/datum/outfit/job/roguetown/hand/blademaster/pre_equip(mob/living/carbon/human/H)
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 
@@ -140,8 +142,6 @@
 /datum/outfit/job/roguetown/hand/spymaster
 	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hand/spymaster
 
-//Spymaster start. More similar to the rogue adventurer - loses heavy armor and sword skills for more sneaky stuff.
-/datum/outfit/job/roguetown/hand/spymaster/pre_equip(mob/living/carbon/human/H)
 	r_hand = /obj/item/rogueweapon/sword/rapier/foldsword
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife/idagger/dtace = 1,
@@ -151,6 +151,8 @@
 		/obj/item/roguekey/skeleton = 1,
 		/obj/item/lockpickring/mundane = 1,
 	)
+//Spymaster start. More similar to the rogue adventurer - loses heavy armor and sword skills for more sneaky stuff.
+/datum/outfit/job/roguetown/hand/spymaster/pre_equip(mob/living/carbon/human/H)
 	if(H.dna.species.type in NON_DWARVEN_RACE_TYPES)
 		cloak = /obj/item/clothing/cloak/half/shadowcloak
 		gloves = /obj/item/clothing/gloves/roguetown/fingerless/shadowgloves
@@ -205,8 +207,6 @@
 	head = /obj/item/clothing/head/roguetown/chaperon/noble/hand
 	pants = /obj/item/clothing/under/roguetown/tights/black
 
-//Advisor start. Trades combat skills for more knowledge and skills - for older hands, hands that don't do combat - people who wanna play wizened old advisors.
-/datum/outfit/job/roguetown/hand/advisor/pre_equip(mob/living/carbon/human/H)
 	backpack_contents = list(
 		/obj/item/rogueweapon/scabbard/sheath/noble = 1,
 		/obj/item/storage/keyring/lord = 1,
@@ -214,6 +214,8 @@
 		/obj/item/lockpickring/mundane = 1,
 		/obj/item/reagent_containers/glass/bottle/rogue/poison = 1,//starts with a vial of poison, like all wizened evil advisors do!
 	)
+//Advisor start. Trades combat skills for more knowledge and skills - for older hands, hands that don't do combat - people who wanna play wizened old advisors.
+/datum/outfit/job/roguetown/hand/advisor/pre_equip(mob/living/carbon/human/H)
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
 

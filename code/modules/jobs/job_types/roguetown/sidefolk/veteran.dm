@@ -87,7 +87,6 @@
 /datum/outfit/job/roguetown/vet/battlemaster
 	has_loadout = TRUE
 
-/datum/outfit/job/roguetown/vet/battlemaster/pre_equip(mob/living/carbon/human/H)
 	neck = /obj/item/clothing/neck/roguetown/bevor
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
@@ -102,6 +101,7 @@
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
+/datum/outfit/job/roguetown/vet/battlemaster/pre_equip(mob/living/carbon/human/H)
 	H.verbs |= /mob/proc/haltyell
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_RICH, H, "Retirement.")
@@ -197,7 +197,7 @@
 
 // No hero, just a normal guy who happened to survive war.
 
-/datum/outfit/job/roguetown/vet/footman/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/vet/footman
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass // Meant to be better than man-at-arms, but worse than knight. No heavy armor!! This is a cuirass, not half-plate.
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
@@ -220,6 +220,8 @@
 		/obj/item/rope/chain = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
+
+/datum/outfit/job/roguetown/vet/footman/pre_equip(mob/living/carbon/human/H)
 	H.verbs |= /mob/proc/haltyell
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_RICH, H, "Retirement.")
@@ -306,7 +308,7 @@
 
 // You get a SAIGA. Saigas are pretty good, you lose out on your legendary weapon skills and you suck more on foot though.
 
-/datum/outfit/job/roguetown/vet/calvaryman/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/vet/calvaryman
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/	// Former knights should have knightly armour.
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
@@ -324,6 +326,8 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/roguekey/veteran = 1
 		)
+
+/datum/outfit/job/roguetown/vet/calvaryman/pre_equip(mob/living/carbon/human/H)
 	H.verbs |= /mob/proc/haltyell
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_RICH, H, "Retirement.")
@@ -428,7 +432,6 @@
 /datum/outfit/job/roguetown/vet/merc
 	has_loadout = TRUE
 
-/datum/outfit/job/roguetown/vet/merc/pre_equip(mob/living/carbon/human/H)
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/grenzelhoft // You do NOT get the BLACKSTEEL CUIRASS because yours BROKE & I hate you. Go on a personal quest to replace it or something.
@@ -439,7 +442,7 @@
 	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes/steel
 	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves
 	beltl = /obj/item/rogueweapon/sword/short
-	beltr = /obj/item/roguekey/veteran //So they can get into their house. 
+	beltr = /obj/item/roguekey/veteran //So they can get into their house.
 	backr = /obj/item/storage/backpack/rogue/satchel/black
 	belt = /obj/item/storage/belt/rogue/leather/black
 	cloak = /obj/item/clothing/cloak/half/vet
@@ -447,6 +450,7 @@
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
+/datum/outfit/job/roguetown/vet/merc/pre_equip(mob/living/carbon/human/H)
 	H.verbs |= /mob/proc/haltyell
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_RICH, H, "Retirement.")
@@ -545,7 +549,7 @@
 // Originally was meant to be a horse archer. I decided that was a bad idea.
 // Former Bogmaster maybe? I feel like that'd be cooler than just an archer guy.
 
-/datum/outfit/job/roguetown/vet/scout/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/vet/scout
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/hide
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
@@ -565,6 +569,8 @@
 		/obj/item/roguekey/veteran = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
+
+/datum/outfit/job/roguetown/vet/scout/pre_equip(mob/living/carbon/human/H)
 	H.verbs |= /mob/proc/haltyell
 	H.cmode_music = 'sound/music/cmode/antag/combat_deadlyshadows.ogg' // so apparently this works for veteran, but not for advents. i dont know why.
 	if(H.mind)
@@ -652,7 +658,7 @@
 
 // The sneaker. Not really typical, but hey, wildcard. Wanna-be Spymaster. I guess that just makes them a normal spy, or, once one.
 
-/datum/outfit/job/roguetown/vet/spy/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/vet/spy
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/white
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/puritan
@@ -673,6 +679,8 @@
 		/obj/item/reagent_containers/glass/bottle/rogue/poison = 1,
 		/obj/item/lockpickring/mundane,
 		)
+
+/datum/outfit/job/roguetown/vet/spy/pre_equip(mob/living/carbon/human/H)
 	H.verbs |= /mob/proc/haltyell
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_RICH, H, "Retirement.")

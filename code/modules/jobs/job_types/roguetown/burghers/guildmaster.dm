@@ -71,10 +71,12 @@
 /datum/outfit/job/roguetown/guildmaster
 	has_loadout = TRUE
 
-/datum/outfit/job/roguetown/guildmaster/basic/pre_equip(mob/living/carbon/human/H)
-	H.adjust_blindness(-3)
+/datum/outfit/job/roguetown/guildmaster/basic
 	head = /obj/item/clothing/head/roguetown/chaperon/noble/guildmaster
 	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves/blacksmith
+
+/datum/outfit/job/roguetown/guildmaster/basic/pre_equip(mob/living/carbon/human/H)
+	H.adjust_blindness(-3)
 	if(H.mind)
 		// Skillset is a combo of Artificer + Blacksmith with Labor Skills.
 		// And Tailor / Leathercrafting

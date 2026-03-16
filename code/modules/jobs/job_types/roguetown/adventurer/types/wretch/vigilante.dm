@@ -26,8 +26,8 @@
         "Sewing Kit" =  /obj/item/repair_kit,
     )
 
-/datum/outfit/job/roguetown/wretch/vigilante/pre_equip(mob/living/carbon/human/H)
-	neck = /obj/item/clothing/neck/roguetown/chaincoif/ //So your skull isn't caved in if you decide to wear a cool hat. 
+/datum/outfit/job/roguetown/wretch/vigilante
+	neck = /obj/item/clothing/neck/roguetown/chaincoif/ //So your skull isn't caved in if you decide to wear a cool hat.
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 	backr = /obj/item/storage/backpack/rogue/satchel
@@ -41,6 +41,8 @@
 		/obj/item/rope/chain = 1,
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	//Small health vial
 		)
+
+/datum/outfit/job/roguetown/wretch/vigilante/pre_equip(mob/living/carbon/human/H)
 	if(H.mind)
 		var/classes = list("The Watchman", "The Gadgeteer", "I AM JUSTICE INCARNATE!!!")
 		var/classchoice = input(H, "Choose your archetypes", "Available archetypes") as anything in classes

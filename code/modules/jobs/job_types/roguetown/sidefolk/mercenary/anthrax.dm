@@ -44,16 +44,15 @@
 	subclass_languages = list(/datum/language/undercommon)
 	extra_context = "This subclass is race-limited to: Dark Elves Only. Chooses either free Saddleborn virtue with access to Drider Spider mount, or +1 to Athlethics level."
 
-/datum/outfit/job/roguetown/mercenary/anthrax/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/mercenary/anthrax
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
 	belt = /obj/item/storage/belt/rogue/leather/black
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/shadowpants
 	backl = /obj/item/storage/backpack/rogue/satchel/black
 	head = /obj/item/clothing/neck/roguetown/chaincoif/full/black
 	backpack_contents = list(
-		/obj/item/roguekey/mercenary = 1, 
-		/obj/item/storage/belt/rogue/pouch/coins/poor = 1, 
+		/obj/item/roguekey/mercenary = 1,
+		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 		/obj/item/rogueweapon/huntingknife/idagger/steel/corroded/dirk = 1,
 		/obj/item/reagent_containers/glass/bottle/rogue/strongpoison = 1,
 		/obj/item/rogueweapon/scabbard/sheath)
@@ -64,8 +63,11 @@
 	mask = /obj/item/clothing/mask/rogue/facemask/shadowfacemask
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/chainmantle
 	backr = /obj/item/rogueweapon/shield/tower/spidershield
-	beltr = /obj/item/rogueweapon/whip/spiderwhip	
+	beltr = /obj/item/rogueweapon/whip/spiderwhip
 	beltl = /obj/item/rope/chain
+
+/datum/outfit/job/roguetown/mercenary/anthrax/pre_equip(mob/living/carbon/human/H)
+	..()
 
 	H.faction += "spider_lowers"
 
@@ -113,8 +115,7 @@
 		/datum/skill/craft/traps = SKILL_LEVEL_EXPERT,
 	)
 
-/datum/outfit/job/roguetown/mercenary/anthrax/assasin/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/mercenary/anthrax/assasin
 	shirt = /obj/item/clothing/suit/roguetown/shirt/shadowshirt/elflock
 	armor = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/shadowrobe
 	cloak = /obj/item/clothing/cloak/half/shadowcloak
@@ -124,6 +125,9 @@
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/chainmantle
 	beltl = /obj/item/rogueweapon/scabbard/sword
 	r_hand = /obj/item/rogueweapon/sword/sabre/stalker
+
+/datum/outfit/job/roguetown/mercenary/anthrax/assasin/pre_equip(mob/living/carbon/human/H)
+	..()
 
 	H.faction += "spider_lowers"
 

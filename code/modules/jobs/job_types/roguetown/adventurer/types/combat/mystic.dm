@@ -27,9 +27,7 @@
 		/datum/skill/combat/staves = SKILL_LEVEL_JOURNEYMAN, // average weapon skill for an adventurer role
 	)
 
-/datum/outfit/job/roguetown/adventurer/mystic/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("I have spent my youth deepening my faith, only to be lured by the way of the magi, to the great regret of my family"))
+/datum/outfit/job/roguetown/adventurer/mystic
 	head = /obj/item/clothing/head/roguetown/roguehood/mage
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	pants = /obj/item/clothing/under/roguetown/trou/leather
@@ -41,13 +39,17 @@
 	backl = /obj/item/storage/backpack/rogue/satchel
 	r_hand = /obj/item/rogueweapon/woodstaff/quarterstaff/iron
 	l_hand = /obj/item/rogueweapon/scabbard/gwstrap
-	H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
 	backpack_contents = list(
 		/obj/item/flashlight/flare/torch = 1,
 		/obj/item/recipe_book/survival = 1,
 		/obj/item/spellbook_unfinished/pre_arcyne = 1,
 		/obj/item/roguegem/amethyst = 1,
 		)
+
+/datum/outfit/job/roguetown/adventurer/mystic/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("I have spent my youth deepening my faith, only to be lured by the way of the magi, to the great regret of my family"))
+	H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T1, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_1)
 	if(H.mind)
@@ -123,9 +125,7 @@
 		/datum/skill/misc/swimming = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/adventurer/resilient/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("I have spent my youth deepening my faith, but soon followed closely on the side of a generous enchantor who taught me a few tricks to preserve and save lyves"))
+/datum/outfit/job/roguetown/adventurer/resilient
 	head = /obj/item/clothing/head/roguetown/roguehood/mage
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	pants = /obj/item/clothing/under/roguetown/trou/leather
@@ -136,7 +136,6 @@
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 	backl = /obj/item/storage/backpack/rogue/backpack
 	backr = /obj/item/rogueweapon/woodstaff
-	H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
 	backpack_contents = list(
 		/obj/item/flashlight/flare/torch = 1,
 		/obj/item/recipe_book/survival = 1,
@@ -146,6 +145,11 @@
 		/obj/item/recipe_book/alchemy = 1,
 		/obj/item/roguegem/amethyst = 1, // for their starting staff or a gem-bound spellbook if they take the time to craft one, increase how fast they cast stoneskin/fortitude
 		)
+
+/datum/outfit/job/roguetown/adventurer/resilient/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("I have spent my youth deepening my faith, but soon followed closely on the side of a generous enchantor who taught me a few tricks to preserve and save lyves"))
+	H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/stoneskin)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/fortitude)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
@@ -237,9 +241,7 @@
 		/datum/skill/combat/shields = SKILL_LEVEL_APPRENTICE, // TA EDIT, prev. novice
 	)
 
-/datum/outfit/job/roguetown/adventurer/holyblade/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("I have spent my youth deepening my faith and one day a spellblade was under my care at the church, ever since their recovery they accepted me as their pupil and taught the way of the blade and arcyne"))
+/datum/outfit/job/roguetown/adventurer/holyblade
 	head = /obj/item/clothing/head/roguetown/roguehood/mage
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	pants = /obj/item/clothing/under/roguetown/trou/leather
@@ -250,12 +252,16 @@
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 	backl = /obj/item/storage/backpack/rogue/satchel
 	neck = /obj/item/clothing/neck/roguetown/coif/padded
-
-	H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
 	backpack_contents = list(
 		/obj/item/flashlight/flare/torch = 1,
 		/obj/item/recipe_book/survival = 1,
 		)
+
+/datum/outfit/job/roguetown/adventurer/holyblade/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("I have spent my youth deepening my faith and one day a spellblade was under my care at the church, ever since their recovery they accepted me as their pupil and taught the way of the blade and arcyne"))
+
+	H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/enchant_weapon)
 	H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/arcynestrike)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
@@ -355,9 +361,7 @@
 		/datum/skill/combat/staves = SKILL_LEVEL_JOURNEYMAN, // what the bookworm gonna do? smash your head with their stick, they are better casting a spell
 	)
 
-/datum/outfit/job/roguetown/adventurer/theurgist/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("I have spent my youth deepening my faith among Noctite acolytes and where shown the wonders of the Arcynes, one day i decided to begins my studies of the arcyne art"))
+/datum/outfit/job/roguetown/adventurer/theurgist
 	head = /obj/item/clothing/head/roguetown/roguehood/mage
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	pants = /obj/item/clothing/under/roguetown/trou/leather
@@ -369,13 +373,17 @@
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backr = /obj/item/rogueweapon/woodstaff
-	H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
 	backpack_contents = list(
 		/obj/item/flashlight/flare/torch = 1,
 		/obj/item/recipe_book/survival = 1,
 		/obj/item/roguegem/amethyst = 1,
 		/obj/item/spellbook_unfinished/pre_arcyne = 1,
 		)
+
+/datum/outfit/job/roguetown/adventurer/theurgist/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("I have spent my youth deepening my faith among Noctite acolytes and where shown the wonders of the Arcynes, one day i decided to begins my studies of the arcyne art"))
+	H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
 
 	var/options = list("Arcyne bolt and Repulse", "Arcyne bolt and Blink", "Frost bolt and Repulse", "Frost bolt and Blink", "Spitfire and Repulse", "Spitfire and Blink", "Lightning bolt and Repulse", "Lightning bolt and Blink")
 	var/option_choice = input("Shape your offense", "Rain Destruction!") as anything in options
@@ -404,7 +412,6 @@
 		if("Lightning bolt and Blink")
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/lightningbolt)
 			H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/blink)
-
 
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)

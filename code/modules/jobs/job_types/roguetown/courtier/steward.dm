@@ -59,6 +59,20 @@
 /datum/outfit/job/roguetown/steward
 	job_bitflag = BITFLAG_ROYALTY
 
+/datum/outfit/job/roguetown/steward/basic
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/jacket/artijacket/handjacket
+	head = /obj/item/clothing/head/roguetown/stewardtophat
+	shoes = /obj/item/clothing/shoes/roguetown/shortboots
+	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes/gold
+	belt = /obj/item/storage/belt/rogue/leather/plaquegold/steward
+	beltr = /obj/item/storage/keyring/steward
+	beltl = /obj/item/storage/belt/rogue/pouch/merchant/coins
+	backr = /obj/item/storage/backpack/rogue/satchel
+	id = /obj/item/scomstone
+	backpack_contents = list(
+		/obj/item/mini_flagpole/steward = 1,
+	)
+
 /datum/outfit/job/roguetown/steward/basic/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_blindness(-3)
@@ -69,15 +83,6 @@
 		shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/steward
 		pants = /obj/item/clothing/under/roguetown/tights/black
 		shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/jacket/artijacket/handjacket
-	head = /obj/item/clothing/head/roguetown/stewardtophat
-	shoes = /obj/item/clothing/shoes/roguetown/shortboots
-	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes/gold
-	belt = /obj/item/storage/belt/rogue/leather/plaquegold/steward
-	beltr = /obj/item/storage/keyring/steward
-	beltl = /obj/item/storage/belt/rogue/pouch/merchant/coins
-	backr = /obj/item/storage/backpack/rogue/satchel
-	id = /obj/item/scomstone
 	H.mind.special_items["Steward Tights"] = /obj/item/clothing/under/roguetown/tights/black
 	H.mind.special_items["Steward Tailcoat"] = /obj/item/clothing/suit/roguetown/armor/gambeson/steward
 	H.mind.special_items["Steward Silkdress"] = /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/steward
@@ -87,9 +92,6 @@
 	H.verbs |= /mob/living/carbon/human/proc/adjust_taxes
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_RICH, H, "Savings.")
-	backpack_contents = list(
-		/obj/item/mini_flagpole/steward = 1,
-	)
 
 GLOBAL_VAR_INIT(steward_tax_cooldown, -50000) // Antispam
 /mob/living/carbon/human/proc/adjust_taxes()

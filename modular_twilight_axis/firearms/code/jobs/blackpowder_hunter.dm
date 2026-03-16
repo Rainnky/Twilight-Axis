@@ -28,8 +28,7 @@
 		/datum/skill/craft/traps = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/adventurer/twilight_hunter/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/adventurer/twilight_hunter
 	beltl = /obj/item/rogueweapon/scabbard/sheath
 	beltr = /obj/item/quiver/twilight_bullet/lead
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
@@ -37,11 +36,14 @@
 	mask = /obj/item/clothing/head/roguetown/armingcap/padded
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife = 1,
-		/obj/item/recipe_book/survival = 1, 
+		/obj/item/recipe_book/survival = 1,
 		/obj/item/flashlight/flare/torch/lantern = 1,
 		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 		/obj/item/twilight_powderflask = 1,
 	)
+
+/datum/outfit/job/roguetown/adventurer/twilight_hunter/pre_equip(mob/living/carbon/human/H)
+	..()
 	var/classes = list("Nobleblood", "Peasant")
 	var/class_choice = input("Choose your archetypes", "Available archetypes") as anything in classes
 

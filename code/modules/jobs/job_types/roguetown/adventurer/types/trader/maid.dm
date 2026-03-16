@@ -25,6 +25,16 @@
 		/datum/skill/combat/wrestling = SKILL_LEVEL_APPRENTICE
 	)
 
+/datum/outfit/job/roguetown/adventurer/servant
+	backl = /obj/item/storage/backpack/rogue/satchel
+	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
+	beltr = /obj/item/flashlight/flare/torch/lantern
+	backpack_contents = list(
+		/obj/item/rogueweapon/huntingknife = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/recipe_book/survival = 1
+		)
+
 /datum/outfit/job/roguetown/adventurer/servant/pre_equip(mob/living/carbon/human/H)
 	..()
 	to_chat(H, span_warning("A surviving servant of a destroyed dynasty, an exile, or a spy, one way or another, your skills will help you serve. The rest is to find your master."))
@@ -46,11 +56,3 @@
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/black
 			belt = /obj/item/storage/belt/rogue/leather/suspenders
 
-	backl = /obj/item/storage/backpack/rogue/satchel
-	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
-	beltr = /obj/item/flashlight/flare/torch/lantern
-	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1,
-		/obj/item/recipe_book/survival = 1
-		)

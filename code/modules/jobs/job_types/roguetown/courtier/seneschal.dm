@@ -57,8 +57,7 @@
 /datum/outfit/job/roguetown/seneschal
 	has_loadout = TRUE
 
-/datum/outfit/job/roguetown/seneschal/seneschal/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/seneschal/seneschal
 	pants = /obj/item/clothing/under/roguetown/tights/formalfancy
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/formal
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
@@ -69,6 +68,9 @@
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	id = /obj/item/scomstone/bad
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/tailcoat
+
+/datum/outfit/job/roguetown/seneschal/seneschal/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_UPPER_MIDDLE_CLASS, H, "Savings.")
 
@@ -96,8 +98,7 @@
 		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/seneschal/headmaid/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/seneschal/headmaid
 	head = /obj/item/clothing/head/roguetown/maidband
 	armor = /obj/item/clothing/suit/roguetown/shirt/dress/maidservant
 	cloak = /obj/item/clothing/cloak/apron/waist/fancymaid
@@ -108,6 +109,9 @@
 	beltr = /obj/item/storage/keyring/seneschal
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	id = /obj/item/scomstone/bad
+
+/datum/outfit/job/roguetown/seneschal/headmaid/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_UPPER_MIDDLE_CLASS, H, "Savings.")
 
@@ -135,8 +139,7 @@
 		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/seneschal/chiefbutler/pre_equip(mob/living/carbon/human/H)
-	..() // They need a monocle.
+/datum/outfit/job/roguetown/seneschal/chiefbutler
 	pants = /obj/item/clothing/under/roguetown/tights/black
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
@@ -147,5 +150,8 @@
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/black
 	id = /obj/item/scomstone/bad
+
+/datum/outfit/job/roguetown/seneschal/chiefbutler/pre_equip(mob/living/carbon/human/H)
+	..() // They need a monocle.
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_UPPER_MIDDLE_CLASS, H, "Savings.")

@@ -68,13 +68,7 @@
 		/datum/skill/magic/arcane = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/loudmouth/basic/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
-	if(should_wear_femme_clothes(H))
-		pants = /obj/item/legwears/black
-	else
-		pants = /obj/item/clothing/under/roguetown/tights/black
+/datum/outfit/job/roguetown/loudmouth/basic
 	shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/black
 	armor = /obj/item/clothing/suit/roguetown/shirt/dress/silkdress/loudmouth
 	head = /obj/item/clothing/head/roguetown/veiled/loudmouth
@@ -87,6 +81,14 @@
 	backpack_contents = list(
 		/obj/item/recipe_book/alchemy
 	)
+
+/datum/outfit/job/roguetown/loudmouth/basic/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
+	if(should_wear_femme_clothes(H))
+		pants = /obj/item/legwears/black
+	else
+		pants = /obj/item/clothing/under/roguetown/tights/black
 	if (H && H.mind)
 		H.mind.adjust_spellpoints(6)
 	if(H.mind)

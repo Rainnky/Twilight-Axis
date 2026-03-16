@@ -44,8 +44,6 @@
 /datum/outfit/job/roguetown/blackpowder_legionnaire
 	job_bitflag = BITFLAG_HOLY_WARRIOR
 
-/datum/outfit/job/roguetown/blackpowder_legionnaire/pre_equip(mob/living/carbon/human/H, visualsOnly)
-	..()
 	backl = /obj/item/storage/backpack/rogue/satchel/otavan
 	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/inq
@@ -53,6 +51,8 @@
 	gloves = /obj/item/clothing/gloves/roguetown/chain/psydon
 	mask = /obj/item/clothing/mask/rogue/facemask/steel/confessor
 	id = /obj/item/clothing/ring/signet/silver
+/datum/outfit/job/roguetown/blackpowder_legionnaire/pre_equip(mob/living/carbon/human/H, visualsOnly)
+	..()
 
 	var/classes = list("Legionnaire", "Otavan Volf")
 	var/classchoice = input(H, "Choose your archetypes", "Available archetypes") as anything in classes

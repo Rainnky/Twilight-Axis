@@ -32,8 +32,7 @@
 		/datum/skill/labor/farming = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/adventurer/levy/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/adventurer/levy
 	head = /obj/item/clothing/head/roguetown/helmet/kettle/iron
 	neck = /obj/item/clothing/neck/roguetown/coif
 	mask = /obj/item/clothing/head/roguetown/armingcap
@@ -55,6 +54,9 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/rogueweapon/huntingknife = 1,
 		)
+
+/datum/outfit/job/roguetown/adventurer/levy/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		var/weapons = list("MINE PITCHFORK","MINE THRESHER", "THE FAMILY SWORD", "MINE SHOVEL")
 		var/weapon_choice = input(H, "Choose your improvised weapon.", "WHAT DID YOU TAKE FROM YOUR HOME?") as anything in weapons

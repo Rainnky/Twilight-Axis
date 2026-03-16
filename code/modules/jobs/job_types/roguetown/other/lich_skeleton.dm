@@ -27,6 +27,17 @@ LICH SKELETONS
 
 	category_tags = list(CTAG_LSKELETON)
 
+/datum/outfit/job/roguetown/greater_skeleton/lich/legionnaire
+	head = /obj/item/clothing/head/roguetown/helmet/heavy/paalloy
+	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
+	pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/paalloy
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
+	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
+	shoes = /obj/item/clothing/shoes/roguetown/sandals/paalloy
+	gloves = /obj/item/clothing/gloves/roguetown/chain/paalloy
+	backr = /obj/item/rogueweapon/shield/wood
+	beltl = /obj/item/quiver/javelin/paalloy
+
 /datum/outfit/job/roguetown/greater_skeleton/lich/legionnaire/pre_equip(mob/living/carbon/human/H)
 	..()
 
@@ -54,16 +65,7 @@ LICH SKELETONS
 	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/sewing, 2, TRUE)
 
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/paalloy
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
-	pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/paalloy
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
-	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
-	shoes = /obj/item/clothing/shoes/roguetown/sandals/paalloy
-	gloves = /obj/item/clothing/gloves/roguetown/chain/paalloy
 
-	backr = /obj/item/rogueweapon/shield/wood
-	beltl = /obj/item/quiver/javelin/paalloy
 	H.adjust_blindness(-3)
 	var/weapons = list("Gladius","Khopesh","Shortsword","Axe","Flail")
 	var/weapon_choice = input(H, "Choose your WEAPON.", "RAGE AGAINST THE LYVING.") as anything in weapons
@@ -105,6 +107,20 @@ LICH SKELETONS
 
 	category_tags = list(CTAG_LSKELETON)
 
+/datum/outfit/job/roguetown/greater_skeleton/lich/ballistiares
+	head = /obj/item/clothing/head/roguetown/helmet/kettle/paalloy
+	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
+	pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/paalloy
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
+	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
+	shoes = /obj/item/clothing/shoes/roguetown/sandals/paalloy
+	beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/padagger
+	gloves = /obj/item/clothing/gloves/roguetown/angle
+	backl = /obj/item/storage/backpack/rogue/satchel
+	backpack_contents = list(
+		/obj/item/ammo_casing/caseless/rogue/heavy_bolt = 1
+	)
+
 /datum/outfit/job/roguetown/greater_skeleton/lich/ballistiares/pre_equip(mob/living/carbon/human/H)
 	..()
 
@@ -132,18 +148,6 @@ LICH SKELETONS
 	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/sewing, 2, TRUE)
 
-	head = /obj/item/clothing/head/roguetown/helmet/kettle/paalloy
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
-	pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/paalloy
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
-	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
-	shoes = /obj/item/clothing/shoes/roguetown/sandals/paalloy
-	beltr = /obj/item/rogueweapon/huntingknife/idagger/steel/padagger
-	gloves = /obj/item/clothing/gloves/roguetown/angle
-	backl = /obj/item/storage/backpack/rogue/satchel
-	backpack_contents = list(
-		/obj/item/ammo_casing/caseless/rogue/heavy_bolt = 1
-	)
 	H.adjust_blindness(-3)
 	var/weapons = list("Bow & 20 Arrows", "Longbow & 20 Arrows", "Crossbow & 16 Bolts", "Sling")
 	var/weapon_choice = input(H, "Choose your MISSILE.", "CONDEMN THE LYVING FROM AFAR.") as anything in weapons
@@ -188,6 +192,14 @@ LICH SKELETONS
 
 	category_tags = list(CTAG_LSKELETON)
 
+/datum/outfit/job/roguetown/greater_skeleton/lich/bulwark
+	head = /obj/item/clothing/head/roguetown/helmet/heavy/guard/paalloy
+	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/paalloy
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/paalloy
+	neck = /obj/item/clothing/neck/roguetown/gorget/paalloy
+	shoes = /obj/item/clothing/shoes/roguetown/boots/paalloy
+	gloves = /obj/item/clothing/gloves/roguetown/chain/paalloy
+
 /datum/outfit/job/roguetown/greater_skeleton/lich/bulwark/pre_equip(mob/living/carbon/human/H)
 	..()
 
@@ -215,12 +227,6 @@ LICH SKELETONS
 	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/sewing, 2, TRUE)
 
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/guard/paalloy
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/hauberk/paalloy
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/paalloy
-	neck = /obj/item/clothing/neck/roguetown/gorget/paalloy
-	shoes = /obj/item/clothing/shoes/roguetown/boots/paalloy
-	gloves = /obj/item/clothing/gloves/roguetown/chain/paalloy
 
 	H.adjust_blindness(-3)
 	var/weapons = list("Greatsword", "Bardiche", "Grand Mace", "Mace + Shield","Spear", "Warhammer + Shield")
@@ -279,6 +285,17 @@ LICH SKELETONS
 
 	category_tags = list(CTAG_LSKELETON)
 
+/datum/outfit/job/roguetown/greater_skeleton/lich/sapper
+	head = /obj/item/clothing/head/roguetown/helmet/kettle/minershelm
+	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
+	gloves = /obj/item/clothing/gloves/roguetown/angle
+	neck = /obj/item/clothing/neck/roguetown/coif
+	shoes = /obj/item/clothing/shoes/roguetown/sandals/paalloy
+	backl = /obj/item/storage/backpack/rogue/satchel
+	beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel/paaxe
+	beltl = /obj/item/rogueweapon/pick/paalloy
+
 /datum/outfit/job/roguetown/greater_skeleton/lich/sapper/pre_equip(mob/living/carbon/human/H)
 	..()
 
@@ -310,16 +327,6 @@ LICH SKELETONS
 	H.adjust_skillrank(/datum/skill/labor/mining, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/labor/lumberjacking, 3, TRUE)
 
-	head = /obj/item/clothing/head/roguetown/helmet/kettle/minershelm
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
-	gloves = /obj/item/clothing/gloves/roguetown/angle
-	neck = /obj/item/clothing/neck/roguetown/coif
-	shoes = /obj/item/clothing/shoes/roguetown/sandals/paalloy
-	backl = /obj/item/storage/backpack/rogue/satchel
-
-	beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel/paaxe
-	beltl = /obj/item/rogueweapon/pick/paalloy
 
 	H.adjust_blindness(-3)
 	var/tabards = list("Black Cloak + Greathood", "Black Jupon", "Black Tabard")
@@ -350,6 +357,17 @@ LICH SKELETONS
 	maximum_possible_slots = 3 //Limited, but powerful.
 	category_tags = list(CTAG_LSKELETON)
 
+/datum/outfit/job/roguetown/greater_skeleton/lich/rareballistiares
+	head = /obj/item/clothing/head/roguetown/helmet/kettle/paalloy
+	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
+	pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/paalloy
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
+	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
+	shoes = /obj/item/clothing/shoes/roguetown/sandals/paalloy
+	gloves = /obj/item/clothing/gloves/roguetown/chain/paalloy
+	l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/heavy
+	beltl = /obj/item/quiver/bolt/heavy/paalloy
+
 /datum/outfit/job/roguetown/greater_skeleton/lich/rareballistiares/pre_equip(mob/living/carbon/human/H)
 	..()
 
@@ -375,16 +393,6 @@ LICH SKELETONS
 	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/sewing, 2, TRUE)
 
-	head = /obj/item/clothing/head/roguetown/helmet/kettle/paalloy
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
-	pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/paalloy
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
-	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
-	shoes = /obj/item/clothing/shoes/roguetown/sandals/paalloy
-	gloves = /obj/item/clothing/gloves/roguetown/chain/paalloy
-
-	l_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/heavy
-	beltl = /obj/item/quiver/bolt/heavy/paalloy
 
 	H.adjust_blindness(-3)
 	var/weapons = list("Gladius", "Dagger")
@@ -416,6 +424,15 @@ LICH SKELETONS
 	maximum_possible_slots = 2 //Limited, but powerful. Could serve as either champions or commanders for the Lich's army.
 	category_tags = list(CTAG_LSKELETON)
 
+/datum/outfit/job/roguetown/greater_skeleton/lich/bulwarkrare
+	head = /obj/item/clothing/head/roguetown/helmet/heavy/knight/paalloy
+	armor = /obj/item/clothing/suit/roguetown/armor/plate/paalloy
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/light
+	pants = /obj/item/clothing/under/roguetown/platelegs/paalloy
+	gloves = /obj/item/clothing/gloves/roguetown/plate/paalloy
+	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
+	shoes = /obj/item/clothing/shoes/roguetown/boots/paalloy
+
 /datum/outfit/job/roguetown/greater_skeleton/lich/bulwarkrare/pre_equip(mob/living/carbon/human/H)
 	..()
 
@@ -443,13 +460,6 @@ LICH SKELETONS
 	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/sewing, 2, TRUE)
 
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/knight/paalloy
-	armor = /obj/item/clothing/suit/roguetown/armor/plate/paalloy
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/light
-	pants = /obj/item/clothing/under/roguetown/platelegs/paalloy
-	gloves = /obj/item/clothing/gloves/roguetown/plate/paalloy
-	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
-	shoes = /obj/item/clothing/shoes/roguetown/boots/paalloy
 
 	H.adjust_blindness(-3)
 	var/weapons = list("Flamberge", "Flail + Greatshield")
@@ -487,6 +497,14 @@ LICH SKELETONS
 /datum/outfit/job/roguetown/greater_skeleton/lich/spellblade
 	var/subclass_selected
 
+	head = /obj/item/clothing/head/roguetown/helmet/heavy/paalloy
+	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
+	pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/paalloy
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
+	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
+	shoes = /obj/item/clothing/shoes/roguetown/sandals/paalloy
+	gloves = /obj/item/clothing/gloves/roguetown/chain/paalloy
+	backr = /obj/item/rogueweapon/shield/wood
 /datum/outfit/job/roguetown/greater_skeleton/lich/spellblade/Topic(href, href_list)
 	. = ..()
 	if(href_list["subclass"])
@@ -519,15 +537,6 @@ LICH SKELETONS
 	H.adjust_skillrank(/datum/skill/craft/masonry, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/crafting, 2, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/sewing, 2, TRUE)
-
-	head = /obj/item/clothing/head/roguetown/helmet/heavy/paalloy
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/paalloy
-	pants = /obj/item/clothing/under/roguetown/chainlegs/kilt/paalloy
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
-	neck = /obj/item/clothing/neck/roguetown/chaincoif/paalloy
-	shoes = /obj/item/clothing/shoes/roguetown/sandals/paalloy
-	gloves = /obj/item/clothing/gloves/roguetown/chain/paalloy
-	backr = /obj/item/rogueweapon/shield/wood
 
 
 	to_chat(H, span_warning("You start with Bind Weapon. Remember to Bind your weapon so you can use your abilities and build up Arcyne Momentum."))

@@ -14,6 +14,14 @@
 		STATKEY_SPD = 2
 	)
 
+/datum/outfit/job/roguetown/adventurer/torso
+	pants = /obj/item/clothing/under/roguetown/tights/black
+	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/random
+	belt = /obj/item/storage/belt/rogue/leather
+	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
+	backl = /obj/item/storage/backpack/rogue/satchel
+	beltl = /obj/item/rogueweapon/huntingknife
+
 /datum/outfit/job/roguetown/adventurer/torso/pre_equip(mob/living/carbon/human/H)
 	..()
 	H.adjust_skillrank(/datum/skill/combat/swords, rand(0,4), TRUE)
@@ -34,12 +42,6 @@
 	H.adjust_skillrank(/datum/skill/misc/medicine, rand(0,4), TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, rand(0,4), TRUE)
 	H.adjust_skillrank(/datum/skill/misc/riding, rand(0,4), TRUE)
-	pants = /obj/item/clothing/under/roguetown/tights/black
-	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/random
-	belt = /obj/item/storage/belt/rogue/leather
-	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
-	backl = /obj/item/storage/backpack/rogue/satchel
-	beltl = /obj/item/rogueweapon/huntingknife
 
 	var/static/list/safe_bodyzones = list(
 		BODY_ZONE_HEAD,

@@ -75,8 +75,7 @@
 		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE, // This should let them fry meat on fires.
 	)
 
-/datum/outfit/job/roguetown/warden/ranger/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/warden/ranger
 	neck = /obj/item/clothing/neck/roguetown/coif
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
@@ -91,6 +90,9 @@
 		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
 		/obj/item/signal_horn = 1
 		)
+
+/datum/outfit/job/roguetown/warden/ranger/pre_equip(mob/living/carbon/human/H)
+	..()
 	H.verbs |= /mob/proc/haltyell
 	H.set_blindness(0)
 
@@ -154,8 +156,7 @@
 		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE, // This should let them fry meat on fires.
 	)
 
-/datum/outfit/job/roguetown/warden/forester/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/warden/forester
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/iron
 	gloves = /obj/item/clothing/gloves/roguetown/chain/iron
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
@@ -170,6 +171,9 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/signal_horn = 1
 		)
+
+/datum/outfit/job/roguetown/warden/forester/pre_equip(mob/living/carbon/human/H)
+	..()
 	H.verbs |= /mob/proc/haltyell
 	H.set_blindness(0)
 

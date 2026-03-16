@@ -35,6 +35,14 @@
 /datum/outfit/job/roguetown/disciple
 	job_bitflag = BITFLAG_HOLY_WARRIOR
 
+	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
+	armor = /obj/item/clothing/suit/roguetown/armor/regenerating/skin/disciple
+	backpack_contents = list(/obj/item/roguekey/inquisitionmanor = 1,
+	/obj/item/paper/inqslip/arrival/ortho = 1,
+	/obj/item/roguegem/amethyst/naledi = 1) //Kept here for now, until we figure out how to make it better fit in overfilled hands.
+	belt = /obj/item/storage/belt/rogue/leather/rope/dark
+	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
+	cloak = /obj/item/clothing/cloak/tabard/psydontabard/alt
 /obj/item/storage/belt/rogue/leather/rope/dark
 	color = "#505050"
 
@@ -103,15 +111,6 @@
 				change_origin(H, /datum/virtue/origin/naledi, "Holy order")//These are Naledi we make them actually Naledi
 				H.grant_language(/datum/language/celestial)
 
-	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
-	armor = /obj/item/clothing/suit/roguetown/armor/regenerating/skin/disciple
-
-	backpack_contents = list(/obj/item/roguekey/inquisitionmanor = 1,
-	/obj/item/paper/inqslip/arrival/ortho = 1,
-	/obj/item/roguegem/amethyst/naledi = 1) //Kept here for now, until we figure out how to make it better fit in overfilled hands.
-	belt = /obj/item/storage/belt/rogue/leather/rope/dark
-	beltl = /obj/item/storage/belt/rogue/pouch/coins/mid
-	cloak = /obj/item/clothing/cloak/tabard/psydontabard/alt
 
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_1)	//Capped to T2 miracles.

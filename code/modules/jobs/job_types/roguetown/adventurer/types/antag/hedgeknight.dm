@@ -32,8 +32,7 @@
 		/datum/skill/labor/butchering = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/bandit/hedgeknight/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/bandit/hedgeknight
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/knight
 	gloves = /obj/item/clothing/gloves/roguetown/chain
 	pants = /obj/item/clothing/under/roguetown/chainlegs
@@ -51,6 +50,9 @@
 					/obj/item/flashlight/flare/torch = 1,
 					/obj/item/rogueweapon/scabbard/sheath = 1
 					)
+
+/datum/outfit/job/roguetown/bandit/hedgeknight/pre_equip(mob/living/carbon/human/H)
+	..()
 
 	H.adjust_blindness(-3)
 	var/weapons = list("Flameberge", "Polemace", "Poleaxe", "Polehammer")

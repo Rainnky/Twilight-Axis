@@ -27,9 +27,7 @@
 		/datum/skill/misc/swimming = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/adventurer/mage/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("You are a learned mage and a scholar, having spent your life studying the arcane and its ways."))
+/datum/outfit/job/roguetown/adventurer/mage
 	head = /obj/item/clothing/head/roguetown/roguehood/mage
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	pants = /obj/item/clothing/under/roguetown/trou/leather
@@ -41,6 +39,10 @@
 	beltl = /obj/item/rogueweapon/huntingknife
 	backl = /obj/item/storage/backpack/rogue/satchel
 	backr = /obj/item/rogueweapon/woodstaff
+
+/datum/outfit/job/roguetown/adventurer/mage/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("You are a learned mage and a scholar, having spent your life studying the arcane and its ways."))
 	H.dna.species.soundpack_m = new /datum/voicepack/male/wizard()
 	if(H.mind)
 		var/spec = list("Sorcerer", "Alchemist") // Much smaller selection with only three swords. You will probably want to upgrade.
@@ -103,16 +105,6 @@
 /datum/outfit/job/roguetown/adventurer/spellblade
 	var/subclass_selected
 
-/datum/outfit/job/roguetown/adventurer/spellblade/Topic(href, href_list)
-	. = ..()
-	if(href_list["subclass"])
-		subclass_selected = href_list["subclass"]
-	else if(href_list["close"])
-		if(!subclass_selected)
-			subclass_selected = "blade"
-
-/datum/outfit/job/roguetown/adventurer/spellblade/pre_equip(mob/living/carbon/human/H)
-	..()
 	head = /obj/item/clothing/head/roguetown/bucklehat
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	pants = /obj/item/clothing/under/roguetown/trou/leather
@@ -124,6 +116,18 @@
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/recipe_book/survival = 1, /obj/item/chalk = 1)
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
+	backr = /obj/item/rogueweapon/shield/wood
+/datum/outfit/job/roguetown/adventurer/spellblade/Topic(href, href_list)
+	. = ..()
+	if(href_list["subclass"])
+		subclass_selected = href_list["subclass"]
+	else if(href_list["close"])
+		if(!subclass_selected)
+			subclass_selected = "blade"
+
+/datum/outfit/job/roguetown/adventurer/spellblade/pre_equip(mob/living/carbon/human/H)
+	..()
 
 	to_chat(H, span_warning("You start with Bind Weapon. Remember to Bind your weapon so you can use your abilities and build up Arcyne Momentum."))
 
@@ -168,8 +172,6 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mending)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/enchant_weapon)
 
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
-	backr = /obj/item/rogueweapon/shield/wood
 	
 	switch(subclass_selected)
 		if("blade")
@@ -246,9 +248,7 @@
 		/datum/skill/magic/arcane = SKILL_LEVEL_APPRENTICE,
 		/datum/skill/misc/swimming = SKILL_LEVEL_NOVICE,
 	)
-/datum/outfit/job/roguetown/adventurer/spellsinger/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("You belong to a school of bards renowned for their study of both the arcane and the arts."))
+/datum/outfit/job/roguetown/adventurer/spellsinger
 	head = /obj/item/clothing/head/roguetown/spellcasterhat
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	pants = /obj/item/clothing/under/roguetown/trou/leather
@@ -263,6 +263,10 @@
 	beltr = /obj/item/rogueweapon/scabbard/sword
 	r_hand = /obj/item/rogueweapon/sword/sabre
 	backpack_contents = list(/obj/item/flashlight/flare/torch = 1, /obj/item/recipe_book/survival = 1, /obj/item/chalk = 1)
+
+/datum/outfit/job/roguetown/adventurer/spellsinger/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("You belong to a school of bards renowned for their study of both the arcane and the arts."))
 	var/datum/inspiration/I = new /datum/inspiration(H)
 	I.grant_inspiration(H, bard_tier = BARD_T2)
 	if(H.mind)

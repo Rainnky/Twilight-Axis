@@ -42,8 +42,7 @@
 	subclass_languages = list(/datum/language/undercommon)
 	extra_context = "This subclass is race-limited to: Dwarves, Dark Elves, Kobolds, Goblins & Verminvolk."
 
-/datum/outfit/job/roguetown/mercenary/underdweller/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/mercenary/underdweller
 	head = /obj/item/clothing/head/roguetown/helmet/kettle/minershelm
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass
@@ -64,6 +63,9 @@
 		/obj/item/bomb = 2,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
+
+/datum/outfit/job/roguetown/mercenary/underdweller/pre_equip(mob/living/carbon/human/H)
+	..()
 	H.merctype = 12
 
 

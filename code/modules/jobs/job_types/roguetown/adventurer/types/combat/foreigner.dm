@@ -24,9 +24,7 @@
 		/datum/skill/craft/sewing = SKILL_LEVEL_APPRENTICE, 
 	)
 
-/datum/outfit/job/roguetown/adventurer/foreigner/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("A warrior hailing from the distant land of Kazengun, far across the eastern sea."))
+/datum/outfit/job/roguetown/adventurer/foreigner
 	head = /obj/item/clothing/head/roguetown/mentorhat
 	gloves = /obj/item/clothing/gloves/roguetown/eastgloves1
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/eastpants1
@@ -39,6 +37,10 @@
 		/obj/item/recipe_book/survival = 1,
 		/obj/item/flashlight/flare/torch/lantern,
 		)
+
+/datum/outfit/job/roguetown/adventurer/foreigner/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("A warrior hailing from the distant land of Kazengun, far across the eastern sea."))
 	H.set_blindness(0)
 	if(H.mind)
 		var/weapons = list("Naginata","Quarterstaff","Hwando")
@@ -86,10 +88,7 @@
 		/datum/skill/misc/sneaking = SKILL_LEVEL_EXPERT,
 	)
 
-/datum/outfit/job/roguetown/adventurer/yoruku/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("The Yoruku are Kazengun agents trained in assassination, sabotage, and irregular combat. You are armed with daggers or a short sword, perfect \
-	for combat in the tight confines of castles and back alleys."))
+/datum/outfit/job/roguetown/adventurer/yoruku
 	head = /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/yoruku
 	backr = /obj/item/storage/backpack/rogue/satchel
 	backpack_contents = list(
@@ -104,6 +103,11 @@
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/eastshirt1
 	cloak = /obj/item/clothing/cloak/thief_cloak/yoruku
 	shoes = /obj/item/clothing/shoes/roguetown/boots
+
+/datum/outfit/job/roguetown/adventurer/yoruku/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("The Yoruku are Kazengun agents trained in assassination, sabotage, and irregular combat. You are armed with daggers or a short sword, perfect \
+	for combat in the tight confines of castles and back alleys."))
 	H.set_blindness(0)
 	if(H.mind)
 		var/weapons = list("Tanto","Kodachi")
@@ -152,11 +156,7 @@
 		/datum/skill/combat/whipsflails = SKILL_LEVEL_EXPERT,
 	)
 
-/datum/outfit/job/roguetown/adventurer/repentant/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("An exile from the Holy See of Otava, accused of heresy and cast out of your homeland as penance. \
-	Some consider yours a fate worse than death; the metal alloy mask seared onto your face serving as a permanent reminder of your sins. \
-	You are a living example of what becomes of those who stand in defiance of the Otavan inquisition."))
+/datum/outfit/job/roguetown/adventurer/repentant
 	mask = /obj/item/clothing/mask/rogue/facemask/steel/paalloy/mad_touched
 	wrists = /obj/item/clothing/neck/roguetown/psicross
 	shirt = /obj/item/clothing/cloak/tabard/psydontabard
@@ -168,8 +168,14 @@
 	head = /obj/item/clothing/head/roguetown/roguehood/psydon
 	beltr = /obj/item/storage/belt/rogue/pouch/coins/poor
 	beltl = /obj/item/rogueweapon/whip
-	backpack_contents = list(/obj/item/recipe_book/survival = 1, 
+	backpack_contents = list(/obj/item/recipe_book/survival = 1,
 						/obj/item/rogueweapon/huntingknife = 1)
+
+/datum/outfit/job/roguetown/adventurer/repentant/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("An exile from the Holy See of Otava, accused of heresy and cast out of your homeland as penance. \
+	Some consider yours a fate worse than death; the metal alloy mask seared onto your face serving as a permanent reminder of your sins. \
+	You are a living example of what becomes of those who stand in defiance of the Otavan inquisition."))
 
 /datum/advclass/foreigner/refugee
 	name = "Naledi Refugee"
@@ -195,10 +201,7 @@
 		/datum/skill/combat/polearms = SKILL_LEVEL_EXPERT,
 	)
 
-/datum/outfit/job/roguetown/adventurer/refugee/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("An asylum-seeker from the war-torn deserts of Naledi, \
-	driven north as your homeland continues to be ravaged by an endless conflict against the Djinn."))
+/datum/outfit/job/roguetown/adventurer/refugee
 	mask = /obj/item/clothing/mask/rogue/lordmask/tarnished
 	r_hand = /obj/item/rogueweapon/spear/assegai
 	backl = /obj/item/rogueweapon/scabbard/gwstrap
@@ -211,8 +214,13 @@
 	beltl = /obj/item/storage/belt/rogue/pouch/coins/poor
 	head = /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/black
 	beltr = /obj/item/flashlight/flare/torch/lantern
-	backpack_contents = list(/obj/item/recipe_book/survival = 1, 
+	backpack_contents = list(/obj/item/recipe_book/survival = 1,
 						/obj/item/rogueweapon/huntingknife = 1)
+
+/datum/outfit/job/roguetown/adventurer/refugee/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("An asylum-seeker from the war-torn deserts of Naledi, \
+	driven north as your homeland continues to be ravaged by an endless conflict against the Djinn."))
 
 /datum/advclass/foreigner/slaver
 	name = "Ranesheni Slaver"
@@ -240,10 +248,7 @@
 		/datum/skill/combat/shields = SKILL_LEVEL_JOURNEYMAN,
 	) // Spawns with a variety of jman skills and fairly good medium armor.
 
-/datum/outfit/job/roguetown/adventurer/slaver/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("In parts of Psydonia, the practice of slavery is still a common sight. \
-	You hail from the Ranesheni Empire, where the market of flesh is ancient and unbroken, and your coin is earned in the trade of living souls."))
+/datum/outfit/job/roguetown/adventurer/slaver
 	mask = /obj/item/clothing/mask/rogue/facemask/steel
 	head = /obj/item/clothing/head/roguetown/roguehood/shalal/purple
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather/heavy
@@ -259,10 +264,15 @@
 	backl = /obj/item/storage/backpack/rogue/satchel
 	beltl = /obj/item/flashlight/flare/torch/lantern
 	beltr = /obj/item/rogueweapon/sword/long/shotel
-	backpack_contents = list(/obj/item/rope/chain = 2, 
-							/obj/item/storage/belt/rogue/pouch/coins/poor = 1, 
-							/obj/item/recipe_book/survival = 1, 
+	backpack_contents = list(/obj/item/rope/chain = 2,
+							/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
+							/obj/item/recipe_book/survival = 1,
 							/obj/item/rogueweapon/huntingknife = 1)
+
+/datum/outfit/job/roguetown/adventurer/slaver/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("In parts of Psydonia, the practice of slavery is still a common sight. \
+	You hail from the Ranesheni Empire, where the market of flesh is ancient and unbroken, and your coin is earned in the trade of living souls."))
 
 
 /datum/advclass/foreigner/shepherd
@@ -297,8 +307,7 @@
 		/datum/skill/craft/sewing = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/roguetown/adventurer/freishepherd/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/adventurer/freishepherd
 	mask = /obj/item/clothing/head/roguetown/armingcap
 	head = /obj/item/clothing/head/roguetown/chaperon/greyscale/shepherd
 	neck = /obj/item/clothing/neck/roguetown/psicross/reform
@@ -313,6 +322,9 @@
 	backpack_contents = list(
 						/obj/item/flashlight/flare/torch = 1,
 						)
+
+/datum/outfit/job/roguetown/adventurer/freishepherd/pre_equip(mob/living/carbon/human/H)
+	..()
 
 /datum/advclass/foreigner/fencerguy
 	name = "Foreign Fencer"
@@ -339,6 +351,23 @@
 		/datum/skill/misc/medicine = SKILL_LEVEL_APPRENTICE
 	)
 
+/datum/outfit/job/roguetown/adventurer/fencerguy
+	armor = /obj/item/clothing/suit/roguetown/armor/leather
+	shirt = /obj/item/clothing/suit/roguetown/shirt/freifechter
+	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves
+	neck = /obj/item/clothing/neck/roguetown/fencerguard/generic
+	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
+	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
+	shoes = /obj/item/clothing/shoes/roguetown/grenzelhoft
+	backl = /obj/item/storage/backpack/rogue/satchel
+	belt = /obj/item/storage/belt/rogue/leather
+	backpack_contents = list(
+		/obj/item/flashlight/flare/torch = 1,
+		/obj/item/recipe_book/survival = 1,
+		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
+		/obj/item/natural/bundle/cloth/bandage/full = 1,
+		)
+
 /datum/outfit/job/roguetown/adventurer/fencerguy/pre_equip(mob/living/carbon/human/H)
 	..()
 	to_chat(H, span_warning("You're an itinerant weapons expert that was trained in a Grenzelhoftian fencing school, carrying with you your weapon, your skillset, and your pride."))
@@ -363,21 +392,6 @@
 				l_hand = /obj/item/rogueweapon/sword/sabre
 				r_hand = /obj/item/rogueweapon/huntingknife/idagger
 				beltr = /obj/item/rogueweapon/scabbard/sword
-	armor = /obj/item/clothing/suit/roguetown/armor/leather
-	shirt = /obj/item/clothing/suit/roguetown/shirt/freifechter
-	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves
-	neck = /obj/item/clothing/neck/roguetown/fencerguard/generic
-	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
-	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
-	shoes = /obj/item/clothing/shoes/roguetown/grenzelhoft
-	backl = /obj/item/storage/backpack/rogue/satchel
-	belt = /obj/item/storage/belt/rogue/leather
-	backpack_contents = list(
-		/obj/item/flashlight/flare/torch = 1,
-		/obj/item/recipe_book/survival = 1,
-		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
-		/obj/item/natural/bundle/cloth/bandage/full = 1,
-		)
 
 /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/hierophant/civilian
 	name = "shawl"
@@ -421,6 +435,17 @@
 	)
 
 	extra_context = "This subclass can pick from a wide array of bronze weapons, armor, and origins to specialize in. Bronze armor - while easily pierced - is exceptionally durable and resistant against critical hits. A total of four Disciplines are available, each providing a different trait and armoring-tier."
+
+/datum/outfit/job/roguetown/adventurer/bronzeclad
+	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/bronze
+	backl = /obj/item/storage/backpack/rogue/satchel
+	backpack_contents = list(
+		/obj/item/flashlight/flare/torch = 1,
+		/obj/item/recipe_book/survival = 1,
+		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
+		/obj/item/rogueweapon/huntingknife/bronze = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1
+		)
 
 /datum/outfit/job/roguetown/adventurer/bronzeclad/pre_equip(mob/living/carbon/human/H, visualsOnly)
 	..()
@@ -594,15 +619,6 @@
 				pants = /obj/item/clothing/under/roguetown/loincloth/brown
 				cloak = /obj/item/clothing/cloak/cape/red 
 				belt = /obj/item/storage/belt/rogue/leather/battleskirt/breechcloth/red
-	shoes = /obj/item/clothing/shoes/roguetown/boots/armor/bronze
-	backl = /obj/item/storage/backpack/rogue/satchel
-	backpack_contents = list(
-		/obj/item/flashlight/flare/torch = 1,
-		/obj/item/recipe_book/survival = 1,
-		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
-		/obj/item/rogueweapon/huntingknife/bronze = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1
-		)
 	H.set_blindness(0)
 	switch(H.patron?.type)
 		if(/datum/patron/old_god)

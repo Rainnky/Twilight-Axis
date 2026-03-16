@@ -28,8 +28,7 @@
 		/datum/skill/craft/cooking = SKILL_LEVEL_LEGENDARY,
 	)
 
-/datum/outfit/job/roguetown/adventurer/masterchef/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/adventurer/masterchef
 	belt = /obj/item/storage/belt/rogue/leather
 	pants = /obj/item/clothing/under/roguetown/tights/random
 	shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt/random
@@ -43,6 +42,9 @@
 	mouth = /obj/item/rogueweapon/huntingknife/chefknife/cleaver
 	beltl = /obj/item/flint
 	r_hand = /obj/item/flashlight/flare/torch
+
+/datum/outfit/job/roguetown/adventurer/masterchef/pre_equip(mob/living/carbon/human/H)
+	..()
 	var/packcontents = pickweight(list("Honey" = 1, "Truffles" = 1, "Bacon" = 1)) // What is our special ingredient? Honey, truffles, or BACON?
 	switch(packcontents)
 		if("Honey")

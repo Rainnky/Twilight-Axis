@@ -41,6 +41,28 @@
 /datum/outfit/job/roguetown/confessor
 	job_bitflag = BITFLAG_HOLY_WARRIOR
 
+	cloak = /obj/item/storage/backpack/rogue/satchel/beltpack
+	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
+	gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves
+	neck = /obj/item/clothing/neck/roguetown/gorget
+	backr = /obj/item/storage/backpack/rogue/satchel/otavan
+	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon
+	beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
+	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
+	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
+	mask = /obj/item/clothing/mask/rogue/facemask/steel/confessor
+	id = /obj/item/clothing/ring/signet/silver
+	backpack_contents = list(
+		/obj/item/roguekey/inquisitionmanor = 1,
+		/obj/item/rope/inqarticles/inquirycord = 1,
+		/obj/item/lockpickring/mundane = 1,
+		/obj/item/clothing/head/inqarticles/blackbag = 1,
+		/obj/item/inqarticles/garrote = 1,
+		/obj/item/grapplinghook = 1,
+		/obj/item/paper/inqslip/arrival/ortho = 1,
+		/obj/item/rogueweapon/huntingknife/idagger/silver/psydagger = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1
+		)
 /datum/outfit/job/roguetown/confessor/pre_equip(mob/living/carbon/human/H, visualsOnly)
 	..()
 	if(H.mind)
@@ -89,28 +111,6 @@
 					if("Sunderbolts - Silver-Tipped, Halved Damage")
 						beltl = /obj/item/quiver/bolt/holy
 
-	cloak = /obj/item/storage/backpack/rogue/satchel/beltpack
-	wrists = /obj/item/clothing/neck/roguetown/psicross/silver
-	gloves = /obj/item/clothing/gloves/roguetown/otavan/psygloves
-	neck = /obj/item/clothing/neck/roguetown/gorget
-	backr = /obj/item/storage/backpack/rogue/satchel/otavan
-	belt = /obj/item/storage/belt/rogue/leather/knifebelt/black/psydon
-	beltr = /obj/item/storage/belt/rogue/pouch/coins/mid
-	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan
-	shoes = /obj/item/clothing/shoes/roguetown/boots/psydonboots
-	mask = /obj/item/clothing/mask/rogue/facemask/steel/confessor
-	id = /obj/item/clothing/ring/signet/silver
-	backpack_contents = list(
-		/obj/item/roguekey/inquisitionmanor = 1,
-		/obj/item/rope/inqarticles/inquirycord = 1,
-		/obj/item/lockpickring/mundane = 1,
-		/obj/item/clothing/head/inqarticles/blackbag = 1,
-		/obj/item/inqarticles/garrote = 1,
-		/obj/item/grapplinghook = 1,
-		/obj/item/paper/inqslip/arrival/ortho = 1,
-		/obj/item/rogueweapon/huntingknife/idagger/silver/psydagger = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1
-		)
 	
 	if(!isdarkelf(H)) //TA EDIT
 		change_origin(H, /datum/virtue/origin/otava, "Holy order")

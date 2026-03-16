@@ -81,17 +81,7 @@
 		/datum/skill/craft/tanning = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/archivist/basic/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
-	if(should_wear_femme_clothes(H))
-		shirt = /obj/item/clothing/suit/roguetown/shirt/robe/archivist
-		head  = /obj/item/clothing/head/roguetown/roguehood/black
-	else
-		shirt = /obj/item/clothing/suit/roguetown/shirt/robe/archivist
-		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/sailor/nightman
-		pants = /obj/item/clothing/under/roguetown/tights/black
-		head = /obj/item/clothing/head/roguetown/nightman
+/datum/outfit/job/roguetown/archivist/basic
 	backr = /obj/item/storage/backpack/rogue/satchel
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	belt = /obj/item/storage/belt/rogue/leather/plaquesilver
@@ -107,6 +97,18 @@
 		/obj/item/paper,
 		/obj/item/paper
 	)
+
+/datum/outfit/job/roguetown/archivist/basic/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
+	if(should_wear_femme_clothes(H))
+		shirt = /obj/item/clothing/suit/roguetown/shirt/robe/archivist
+		head  = /obj/item/clothing/head/roguetown/roguehood/black
+	else
+		shirt = /obj/item/clothing/suit/roguetown/shirt/robe/archivist
+		armor = /obj/item/clothing/suit/roguetown/armor/leather/vest/sailor/nightman
+		pants = /obj/item/clothing/under/roguetown/tights/black
+		head = /obj/item/clothing/head/roguetown/nightman
 
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/teach)

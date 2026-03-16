@@ -60,8 +60,7 @@
 		/datum/skill/misc/reading = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/farmer/basic/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/farmer/basic
 	head = /obj/item/clothing/head/roguetown/cap
 	mask = /obj/item/clothing/head/roguetown/roguehood
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
@@ -76,6 +75,9 @@
 		/obj/item/rogueweapon/huntingknife = 1,
 		/obj/item/flint = 1,
 		)
+
+/datum/outfit/job/roguetown/farmer/basic/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(should_wear_femme_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/random
 		shirt = /obj/item/clothing/suit/roguetown/shirt/tunic/random

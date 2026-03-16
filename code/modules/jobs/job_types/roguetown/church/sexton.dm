@@ -52,9 +52,7 @@
 		/datum/skill/craft/carpentry = SKILL_LEVEL_NOVICE, //potential for repairs
 	) //A little bit of every basic labor/craft skill, but zero combat skills
 
-/datum/outfit/job/roguetown/sexton/groundskeeper/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
+/datum/outfit/job/roguetown/sexton/groundskeeper
 	armor = /obj/item/clothing/suit/roguetown/armor/workervest
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 	gloves = /obj/item/clothing/gloves/roguetown/leather
@@ -69,6 +67,10 @@
 		/obj/item/storage/keyring/acolyte = 1,
 		/obj/item/natural/cloth = 1,
 	)
+
+/datum/outfit/job/roguetown/sexton/groundskeeper/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
 	switch(H.patron?.type)
 		if(/datum/patron/divine/undivided)
 			neck = /obj/item/clothing/neck/roguetown/psicross/undivided
@@ -128,9 +130,6 @@
 	allowed_patrons = list(/datum/patron/divine/necra)
 	has_loadout = TRUE
 
-/datum/outfit/job/roguetown/sexton/gravetender/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
 	head = /obj/item/clothing/head/roguetown/inqhat/gravehat
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/gravecoat
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
@@ -148,6 +147,9 @@
 		/obj/item/storage/keyring/acolyte = 1,
 		/obj/item/flashlight/flare/torch/lantern = 1,
 	)
+/datum/outfit/job/roguetown/sexton/gravetender/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_ORI, passive_gain = CLERIC_REGEN_MINOR, devotion_limit = CLERIC_REQ_0)	//Orison and Locate Dead only.
 	if(H.mind)

@@ -53,14 +53,23 @@
 		/datum/skill/misc/tracking = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/roguetown/vampire_spawn/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/vampire_spawn
 	neck = /obj/item/clothing/neck/roguetown/bevor
 	gloves = /obj/item/clothing/gloves/roguetown/plate
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	shoes = /obj/item/clothing/shoes/roguetown/boots/armor
 	belt = /obj/item/storage/belt/rogue/leather/steel
 	backr = /obj/item/storage/backpack/rogue/satchel/black
+	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
+	pants = /obj/item/clothing/under/roguetown/chainlegs
+	backpack_contents = list(
+		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
+		/obj/item/rope/chain = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1
+	)
+
+/datum/outfit/job/roguetown/vampire_spawn/pre_equip(mob/living/carbon/human/H)
+	..()
 
 	if(H.mind)
 		var/weapons = list(
@@ -117,8 +126,6 @@
 				r_hand = /obj/item/rogueweapon/spear/partizan
 				backl = /obj/item/rogueweapon/scabbard/gwstrap
 
-	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail
-	pants = /obj/item/clothing/under/roguetown/chainlegs
 
 	if(H.mind)
 		var/helmets = list(
@@ -147,10 +154,5 @@
 		var/armorchoice = input(H, "Choose your armor.", "TAKE UP ARMOR") as anything in armors
 		armor = armors[armorchoice]
 
-	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1, 
-		/obj/item/rope/chain = 1, 
-		/obj/item/rogueweapon/scabbard/sheath = 1
-	)
 	H.grant_language(/datum/language/common)
 #undef CTAG_VAMPIRE_SPAWN

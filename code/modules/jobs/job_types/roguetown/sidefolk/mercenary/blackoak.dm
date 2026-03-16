@@ -39,10 +39,7 @@
 		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/mercenary/blackoak/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
-	has_loadout = TRUE
+/datum/outfit/job/roguetown/mercenary/blackoak
 	head = /obj/item/clothing/head/roguetown/helmet/heavy/elven_helm
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/elven_plate
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
@@ -61,6 +58,11 @@
 		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		)
+
+/datum/outfit/job/roguetown/mercenary/blackoak/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
+	has_loadout = TRUE
 	H.merctype = 2
 
 /datum/outfit/job/roguetown/mercenary/blackoak/choose_loadout(mob/living/carbon/human/H)
@@ -109,10 +111,7 @@
 		/datum/skill/labor/farming = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/mercenary/blackoak_ranger/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
-	has_loadout = TRUE
+/datum/outfit/job/roguetown/mercenary/blackoak_ranger
 	neck = /obj/item/clothing/neck/roguetown/chaincoif/full
 	beltl = /obj/item/quiver/arrows
 	backr = /obj/item/gun/ballistic/revolver/grenadelauncher/bow/recurve
@@ -131,6 +130,11 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/flashlight/flare/torch = 1,
 		)
+
+/datum/outfit/job/roguetown/mercenary/blackoak_ranger/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
+	has_loadout = TRUE
 	H.merctype = 2
 
 /datum/outfit/job/roguetown/mercenary/blackoak_ranger/choose_loadout(mob/living/carbon/human/H)

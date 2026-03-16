@@ -37,7 +37,7 @@
         "Sewing Kit" =  /obj/item/repair_kit,
     )
 
-/datum/outfit/job/roguetown/wretch/berserker/pre_equip(mob/living/carbon/human/H)
+/datum/outfit/job/roguetown/wretch/berserker
 	cloak = /obj/item/clothing/cloak/raincloak/furcloak/brown
 	gloves = /obj/item/clothing/gloves/roguetown/plate
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
@@ -56,6 +56,8 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	//Small health vial
 		)
+
+/datum/outfit/job/roguetown/wretch/berserker/pre_equip(mob/living/carbon/human/H)
 	H.dna.species.soundpack_m = new /datum/voicepack/male/warrior()
 	if(H.mind)
 		var/weapons = list("Discipline - Unarmed","Discipline - Bodybuilder","Katar","Knuckledusters","Punch Dagger","Battle Axe","Grand Mace","Falx")

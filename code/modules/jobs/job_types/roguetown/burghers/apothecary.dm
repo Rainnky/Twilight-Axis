@@ -50,9 +50,7 @@
 		/datum/skill/craft/alchemy = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/roguetown/apothecary/basic/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
+/datum/outfit/job/roguetown/apothecary/basic
 	head = /obj/item/clothing/head/roguetown/roguehood/black
 	pants = /obj/item/clothing/under/roguetown/trou/apothecary
 	shirt = /obj/item/clothing/suit/roguetown/shirt/apothshirt
@@ -73,6 +71,10 @@
 		/obj/item/roguekey/keeper = 1,
 		/obj/item/mini_flagpole/apothecary,
 	)
+
+/datum/outfit/job/roguetown/apothecary/basic/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 	if(H.mind)

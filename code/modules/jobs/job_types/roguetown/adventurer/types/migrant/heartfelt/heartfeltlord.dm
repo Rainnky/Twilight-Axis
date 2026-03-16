@@ -60,8 +60,7 @@
 		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/heartfelt/lord/lord/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/heartfelt/lord/lord
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt
 	belt = /obj/item/storage/belt/rogue/leather/black
 	shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
@@ -82,6 +81,9 @@
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpotnew = 2,
 		)
 	id = /obj/item/scomstone
+
+/datum/outfit/job/heartfelt/lord/lord/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/heartfelt)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/heartfelt/retreat)
@@ -131,8 +133,7 @@
 		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/heartfelt/lord/archmage/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/heartfelt/lord/archmage
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
 	belt = /obj/item/storage/belt/rogue/leather/black
 	shoes = /obj/item/clothing/shoes/roguetown/boots/nobleboot
@@ -155,6 +156,9 @@
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpotnew = 1,
 	)
 	id = /obj/item/scomstone
+
+/datum/outfit/job/heartfelt/lord/archmage/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/heartfelt)
 		H?.mind.adjust_spellpoints(16)
@@ -213,8 +217,7 @@
 		/datum/skill/misc/riding = SKILL_LEVEL_JOURNEYMAN,
 	)
 
-/datum/outfit/job/heartfelt/lord/chief/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/heartfelt/lord/chief
 	head = /obj/item/clothing/head/roguetown/helmet/sallet/beastskull
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy
 	belt = /obj/item/storage/belt/rogue/leather/battleskirt/faulds
@@ -235,6 +238,9 @@
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpotnew = 1,
 		)
 	id = /obj/item/scomstone
+
+/datum/outfit/job/heartfelt/lord/chief/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/convertrole/heartfelt)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/order/heartfelt/retreat)

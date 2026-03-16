@@ -33,9 +33,7 @@
 		/datum/skill/misc/sneaking = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/adventurer/ranger/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("You are a ranger well-versed in traversing untamed lands, with years of experience taking odd jobs as a pathfinder and bodyguard in areas of wilderness untraversable to common soldiery."))
+/datum/outfit/job/roguetown/adventurer/ranger
 	cloak = /obj/item/clothing/cloak/raincloak/furcloak/darkgreen
 	neck = /obj/item/clothing/neck/roguetown/coif
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/hide
@@ -54,6 +52,10 @@
 		/obj/item/recipe_book/survival = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
+
+/datum/outfit/job/roguetown/adventurer/ranger/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("You are a ranger well-versed in traversing untamed lands, with years of experience taking odd jobs as a pathfinder and bodyguard in areas of wilderness untraversable to common soldiery."))
 	if(H.mind)
 		var/weapons = list("Recurve Bow","Crossbow")
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
@@ -95,9 +97,7 @@
 		/datum/skill/misc/lockpicking = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/adventurer/assassin/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("You've lived the life of a hired killer and have spent your time training with blades and crossbows alike."))
+/datum/outfit/job/roguetown/adventurer/assassin
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	pants = /obj/item/clothing/under/roguetown/trou/leather
@@ -116,6 +116,10 @@
 		/obj/item/recipe_book/survival = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
+
+/datum/outfit/job/roguetown/adventurer/assassin/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("You've lived the life of a hired killer and have spent your time training with blades and crossbows alike."))
 	H.set_blindness(0)
 
 /datum/advclass/ranger/bombadier
@@ -141,9 +145,7 @@
 		/datum/skill/craft/crafting = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/adventurer/bombadier/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("Bombs? You've got them. Plenty of them - and the skills to make more. You've spent years training under skilled alchemists and have found the perfect mix to create some chaos - now go blow something up!"))
+/datum/outfit/job/roguetown/adventurer/bombadier
 	shoes = /obj/item/clothing/shoes/roguetown/boots
 	neck = /obj/item/storage/belt/rogue/pouch/coins/poor
 	head = /obj/item/clothing/head/roguetown/roguehood
@@ -164,6 +166,10 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/flint = 1,
 		)
+
+/datum/outfit/job/roguetown/adventurer/bombadier/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("Bombs? You've got them. Plenty of them - and the skills to make more. You've spent years training under skilled alchemists and have found the perfect mix to create some chaos - now go blow something up!"))
 	H.set_blindness(0)
 
 /datum/advclass/ranger/bwanderer
@@ -195,9 +201,7 @@
 	)
 	extra_context = "Selecting Light Armor grants +1 SPD. Selecting Medium Armor grants +1 STR along with the corresponding traits."
 
-/datum/outfit/job/roguetown/adventurer/bwanderer/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("The dangers of the wilds vary upon the plains they rest upon, You happen to be experienced in many."))
+/datum/outfit/job/roguetown/adventurer/bwanderer
 	head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
 	shoes = /obj/item/clothing/shoes/roguetown/boots/leather
 	shirt = /obj/item/clothing/suit/roguetown/shirt/tunic
@@ -212,6 +216,10 @@
 		/obj/item/flashlight/flare/torch/lantern = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
+
+/datum/outfit/job/roguetown/adventurer/bwanderer/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("The dangers of the wilds vary upon the plains they rest upon, You happen to be experienced in many."))
 	if(H.mind)
 		var/weapons = list("Recurve Bow","Billhook","Sling","Crossbow")
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons

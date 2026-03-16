@@ -52,9 +52,6 @@
 /datum/outfit/job/roguetown/cook/basic
 	has_loadout = TRUE
 
-/datum/outfit/job/roguetown/cook/basic/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
 	belt = /obj/item/storage/belt/rogue/leather
 	beltl = /obj/item/roguekey/tavern
 	backr = /obj/item/storage/backpack/rogue/satchel
@@ -62,14 +59,17 @@
 	head = /obj/item/clothing/head/roguetown/cookhat
 	shoes = /obj/item/clothing/shoes/roguetown/shortboots
 	neck = /obj/item/storage/belt/rogue/pouch/coins/mid
+	backpack_contents = list(
+		/obj/item/recipe_book/survival,
+		/obj/item/mini_flagpole/innkeeper,
+	)
+/datum/outfit/job/roguetown/cook/basic/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
 	if(should_wear_masc_clothes(H))
 		pants = /obj/item/clothing/under/roguetown/tights/black
 		shirt = /obj/item/clothing/suit/roguetown/shirt/shortshirt/random
 	else if(should_wear_femme_clothes(H))
 		armor = /obj/item/clothing/suit/roguetown/shirt/dress/gen/random
-	backpack_contents = list(
-		/obj/item/recipe_book/survival,
-		/obj/item/mini_flagpole/innkeeper,
-	)
 	if(H.mind)
 		SStreasury.give_money_account(ECONOMIC_LOWER_MIDDLE_CLASS, H, "Savings.")

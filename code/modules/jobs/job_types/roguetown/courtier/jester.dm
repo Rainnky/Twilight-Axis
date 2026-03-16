@@ -22,8 +22,7 @@
 	max_pq = null
 	round_contrib_points = 2
 
-/datum/outfit/job/roguetown/jester/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/jester
 	shoes = /obj/item/clothing/shoes/roguetown/jester
 	saiga_shoes = /obj/item/clothing/shoes/roguetown/horseshoes/gold
 	pants = /obj/item/clothing/under/roguetown/tights
@@ -33,6 +32,9 @@
 	beltl = /obj/item/storage/belt/rogue/pouch
 	head = /obj/item/clothing/head/roguetown/jester
 	neck = /obj/item/clothing/neck/roguetown/coif
+
+/datum/outfit/job/roguetown/jester/pre_equip(mob/living/carbon/human/H)
+	..()
 	H.adjust_skillrank(/datum/skill/combat/knives, 3, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/reading, 4, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/sneaking, 4, TRUE)

@@ -1,9 +1,11 @@
-/datum/outfit/job/roguetown/lord/pre_equip(mob/living/carbon/human/H)
-	. = ..()
+/datum/outfit/job/roguetown/lord
 	backpack_contents = list()
 	belt = /obj/item/storage/belt/rogue/leather/twilight_holsterbelt/lord
 	beltl = /obj/item/twilight_powderflask
 	beltr = /obj/item/quiver/twilight_bullet/lead
+
+/datum/outfit/job/roguetown/lord/pre_equip(mob/living/carbon/human/H)
+	. = ..()
 
 /datum/outfit/job/roguetown/lord/warrior/pre_equip(mob/living/carbon/human/H)
 	. = ..()

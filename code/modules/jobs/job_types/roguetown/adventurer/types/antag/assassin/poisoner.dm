@@ -37,8 +37,7 @@
 		/datum/skill/misc/lockpicking = SKILL_LEVEL_EXPERT,
 	)
 
-/datum/outfit/job/roguetown/assassin/poisoner/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/assassin/poisoner
 	cloak = /obj/item/clothing/cloak/cotehardie
 	belt = /obj/item/storage/belt/rogue/leather/black
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
@@ -62,6 +61,9 @@
 	neck = /obj/item/clothing/neck/roguetown/coif/heavypadding
 	head = /obj/item/clothing/head/roguetown/physician
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/studded
+
+/datum/outfit/job/roguetown/assassin/poisoner/pre_equip(mob/living/carbon/human/H)
+	..()
 
 	if(!istype(H.patron, /datum/patron/inhumen/graggar))
 		var/inputty = input(H, "Would you like to change your patron to Graggar?", "The beast roars", "No") as anything in list("Yes", "No")

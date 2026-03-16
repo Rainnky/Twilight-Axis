@@ -61,8 +61,7 @@
 	)
 	adv_stat_ceiling = list(STAT_STRENGTH = 6)
 
-/datum/outfit/job/roguetown/keeper/basic/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/keeper/basic
 	neck = /obj/item/clothing/neck/roguetown/psicross/pestra
 	cloak = /obj/item/clothing/cloak/templar/pestran
 	gloves = /obj/item/clothing/gloves/roguetown/leather
@@ -75,14 +74,17 @@
 	beltl = /obj/item/flashlight/flare/torch/lantern
 	backl = /obj/item/storage/backpack/rogue/backpack
 	backpack_contents = list(/obj/item/rogueweapon/huntingknife/idagger/steel/parrying = 1,
-							 /obj/item/rogueweapon/scabbard/sheath = 1,
-							 /obj/item/storage/belt/rogue/pouch/coins/mid = 1,
-							 /obj/item/heart_canister = 2,
-							 /obj/item/heart_blood_vial/filled = 2,
-							 /obj/item/heart_blood_canister/filled = 1,
-							 /obj/item/heart_blood_vial = 5,
-							 /obj/item/heart_blood_canister = 1,
-							 /obj/item/storage/keyring/keeper = 1)
+							/obj/item/rogueweapon/scabbard/sheath = 1,
+							/obj/item/storage/belt/rogue/pouch/coins/mid = 1,
+							/obj/item/heart_canister = 2,
+							/obj/item/heart_blood_vial/filled = 2,
+							/obj/item/heart_blood_canister/filled = 1,
+							/obj/item/heart_blood_vial = 5,
+							/obj/item/heart_blood_canister = 1,
+							/obj/item/storage/keyring/keeper = 1)
+
+/datum/outfit/job/roguetown/keeper/basic/pre_equip(mob/living/carbon/human/H)
+	..()
 	H.put_in_hands(new /obj/item/storage/belt/rogue/surgery_bag/full/physician(H))
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T3, passive_gain = CLERIC_REGEN_MINOR, start_maxed = TRUE)

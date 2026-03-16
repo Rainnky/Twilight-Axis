@@ -33,22 +33,9 @@
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,		//Trust me, they'll need it due to stamina drain on their base-sword.
 	)
 
-/datum/outfit/job/roguetown/mercenary/grenzelhoft/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("You are a Doppelsoldner - \"Double-pay Mercenary\" - an experienced frontline swordsman trained by the Zenitstadt fencing guild."))
+/datum/outfit/job/roguetown/mercenary/grenzelhoft
 	backl = /obj/item/rogueweapon/scabbard/gwstrap
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/blacksteel
-	if(H.mind)
-		var/weapons = list("Zweihander", "Kriegmesser & Buckler")
-		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-		switch(weapon_choice)
-			if("Zweihander")
-				r_hand = /obj/item/rogueweapon/greatsword/grenz
-			if("Kriegmesser & Buckler") // Buckler cuz they have no shield skill.
-				beltr = /obj/item/rogueweapon/scabbard/sword
-				r_hand = /obj/item/rogueweapon/sword/long/kriegmesser
-				l_hand = /obj/item/rogueweapon/shield/buckler
-	//General gear regardless of class.
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	belt = /obj/item/storage/belt/rogue/leather
 	neck = /obj/item/clothing/neck/roguetown/gorget
@@ -65,6 +52,21 @@
 		/obj/item/rogueweapon/huntingknife = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
+
+/datum/outfit/job/roguetown/mercenary/grenzelhoft/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("You are a Doppelsoldner - \"Double-pay Mercenary\" - an experienced frontline swordsman trained by the Zenitstadt fencing guild."))
+	if(H.mind)
+		var/weapons = list("Zweihander", "Kriegmesser & Buckler")
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		switch(weapon_choice)
+			if("Zweihander")
+				r_hand = /obj/item/rogueweapon/greatsword/grenz
+			if("Kriegmesser & Buckler") // Buckler cuz they have no shield skill.
+				beltr = /obj/item/rogueweapon/scabbard/sword
+				r_hand = /obj/item/rogueweapon/sword/long/kriegmesser
+				l_hand = /obj/item/rogueweapon/shield/buckler
+	//General gear regardless of class.
 	H.merctype = 7
 
 /datum/advclass/mercenary/grenzelhoft/halberdier
@@ -95,20 +97,9 @@
 		/datum/skill/misc/athletics = SKILL_LEVEL_EXPERT,		// Foot soldier that carries the Big Fuckin Polearm around. Also polearm stam drain from the fact they gon' be catching swings all day.
 	)
 
-/datum/outfit/job/roguetown/mercenary/grenzelhoft_halberdier/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("You're an experienced soldier skilled in the use of polearms and axes. Your equals make up the bulk of the mercenary guild's forces."))
+/datum/outfit/job/roguetown/mercenary/grenzelhoft_halberdier
 	backl = /obj/item/rogueweapon/scabbard/gwstrap
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/blacksteel
-	if(H.mind)
-		var/weapons = list("Halberd", "Partizan")
-		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
-		switch(weapon_choice)
-			if("Halberd")
-				r_hand = /obj/item/rogueweapon/halberd
-			if("Partizan")
-				r_hand = /obj/item/rogueweapon/spear/partizan
-	//General gear regardless of class.
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	belt = /obj/item/storage/belt/rogue/leather
 	neck = /obj/item/clothing/neck/roguetown/gorget
@@ -125,6 +116,19 @@
 		/obj/item/rogueweapon/huntingknife = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
+
+/datum/outfit/job/roguetown/mercenary/grenzelhoft_halberdier/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("You're an experienced soldier skilled in the use of polearms and axes. Your equals make up the bulk of the mercenary guild's forces."))
+	if(H.mind)
+		var/weapons = list("Halberd", "Partizan")
+		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons
+		switch(weapon_choice)
+			if("Halberd")
+				r_hand = /obj/item/rogueweapon/halberd
+			if("Partizan")
+				r_hand = /obj/item/rogueweapon/spear/partizan
+	//General gear regardless of class.
 	H.merctype = 7
 
 //crossbow and axe class. Rearguard. Utility skills, no medium armor, no dodge expert. This is NOT a go-face-first-into-war class.
@@ -161,10 +165,30 @@
 	)
 	extra_context = "Choose between Arquebus, Crossbow and Heavy Crossbow as your tool of the trade, gaining Mastery of selected weapon." //TA EDIT END
 
+/datum/outfit/job/roguetown/mercenary/grenzelhoft_crossbowman
+	beltl = /obj/item/rogueweapon/stoneaxe/woodcut/wardenpick/jager //TA EDIT
+	wrists = /obj/item/clothing/wrists/roguetown/bracers
+	belt = /obj/item/storage/belt/rogue/leather
+	neck = /obj/item/clothing/neck/roguetown/gorget
+	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/grenzelhoft
+	head = /obj/item/clothing/head/roguetown/grenzelhofthat
+	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/grenzelpants
+	shoes = /obj/item/clothing/shoes/roguetown/grenzelhoft
+	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves
+	backl = /obj/item/storage/backpack/rogue/backpack
+	backpack_contents = list(
+		/obj/item/roguekey/mercenary = 1,
+		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
+		/obj/item/flashlight/flare/torch = 1,
+		/obj/item/rogueweapon/huntingknife = 1,
+		/obj/item/flint = 1,
+		/obj/item/bedroll = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1
+		)
+
 /datum/outfit/job/roguetown/mercenary/grenzelhoft_crossbowman/pre_equip(mob/living/carbon/human/H)
 	..()
 	to_chat(H, span_warning("Trackers, Huntsmen, Marksmen. Those are the first words that describe a Jäger of the Freikorps. Usually drafted from recruits with hunting background, Jägers serve as support troops for the Imperial armies, scouting ahead of the main force, assassinating enemy officers, arranging crossings and foraging for much-needed supplies. As one of those elite soldiers, you are expected to provide the Guild with your expertise in tracking, and scouting. Alongside your marksmanship.")) //TA EDIT
-	beltl = /obj/item/rogueweapon/stoneaxe/woodcut/wardenpick/jager //TA EDIT
 	if(H.mind)
 		var/armor_options = list("Light Brigandine", "Studded Leather Vest")
 		var/armor_choice = input(H, "Choose your armor.", "DRESS UP") as anything in armor_options
@@ -193,24 +217,6 @@
 				H.adjust_skillrank_up_to(/datum/skill/combat/twilight_firearms, 5, TRUE)
 				ADD_TRAIT(H, TRAIT_FIREARMS_MARKSMAN, TRAIT_GENERIC)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/takeapprentice) //TA EDIT
-	wrists = /obj/item/clothing/wrists/roguetown/bracers
-	belt = /obj/item/storage/belt/rogue/leather
-	neck = /obj/item/clothing/neck/roguetown/gorget
-	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/grenzelhoft
-	head = /obj/item/clothing/head/roguetown/grenzelhofthat
-	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/grenzelpants
-	shoes = /obj/item/clothing/shoes/roguetown/grenzelhoft
-	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves
-	backl = /obj/item/storage/backpack/rogue/backpack
-	backpack_contents = list(
-		/obj/item/roguekey/mercenary = 1,
-		/obj/item/storage/belt/rogue/pouch/coins/poor = 1,
-		/obj/item/flashlight/flare/torch = 1,
-		/obj/item/rogueweapon/huntingknife = 1,
-		/obj/item/flint = 1,
-		/obj/item/bedroll = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1
-		)
 	H.merctype = 7
 
 /datum/advclass/mercenary/grenzelhoft/mage
@@ -250,14 +256,11 @@
 		/datum/skill/craft/alchemy = SKILL_LEVEL_APPRENTICE,
 	)
 
-/datum/outfit/job/roguetown/mercenary/grenzelhoft_mage/pre_equip(mob/living/carbon/human/H)
-	..()
-	to_chat(H, span_warning("You are a Gefechtgelehrter - \"Combat Scholar\" - A proud magos from the Celestial Academy of Magos, who's skills in Siege Magic and Arcyne Physics are unmatched."))
+/datum/outfit/job/roguetown/mercenary/grenzelhoft_mage
 	belt = /obj/item/storage/belt/rogue/leather/battleskirt
 	backl = /obj/item/rogueweapon/woodstaff/emerald/blacksteelstaff
 	cloak = /obj/item/clothing/cloak/tabard/stabard/grenzelmage
 	armor = /obj/item/clothing/suit/roguetown/armor/brigandine/light
-	//General gear regardless of class.
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/grenzelhoft
@@ -273,6 +276,11 @@
 		/obj/item/rogueweapon/huntingknife = 1,
 		/obj/item/rogueweapon/scabbard/sheath = 1
 		)
+
+/datum/outfit/job/roguetown/mercenary/grenzelhoft_mage/pre_equip(mob/living/carbon/human/H)
+	..()
+	to_chat(H, span_warning("You are a Gefechtgelehrter - \"Combat Scholar\" - A proud magos from the Celestial Academy of Magos, who's skills in Siege Magic and Arcyne Physics are unmatched."))
+	//General gear regardless of class.
 	if(H.mind) // State mandated spells c:
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/fireball/artillery)

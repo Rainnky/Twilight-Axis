@@ -36,8 +36,7 @@
         "Sewing Kit" =  /obj/item/repair_kit,
     )
 
-/datum/outfit/job/roguetown/wretch/outlaw/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/wretch/outlaw
 	head = /obj/item/clothing/head/roguetown/helmet/kettle
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 	armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
@@ -60,6 +59,9 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1
 		)
+
+/datum/outfit/job/roguetown/wretch/outlaw/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.mind)
 		var/weapons = list("Rapier","Parrying Dagger", "Whip")
 		var/weapon_choice = input(H, "Choose your weapon.", "TAKE UP ARMS") as anything in weapons

@@ -40,8 +40,7 @@
 	/datum/skill/misc/riding = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/heartfelt/retinue/magos/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/heartfelt/retinue/magos
 	neck = /obj/item/clothing/neck/roguetown/talkstone
 	cloak = /obj/item/clothing/cloak/black_cloak
 	armor = /obj/item/clothing/suit/roguetown/shirt/robe/black
@@ -61,6 +60,9 @@
 		/obj/item/rogueweapon/huntingknife/idagger/silver/arcyne = 1,
 		/obj/item/scrying = 1,
 		)
+
+/datum/outfit/job/roguetown/heartfelt/retinue/magos/pre_equip(mob/living/carbon/human/H)
+	..()
 	if(H.age == AGE_OLD)
 		H.adjust_skillrank(/datum/skill/magic/arcane, 1, TRUE)
 		H.change_stat("speed", -1)

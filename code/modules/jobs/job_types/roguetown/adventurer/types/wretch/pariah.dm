@@ -51,17 +51,6 @@
 /datum/outfit/job/roguetown/wretch/pariah
 	var/subclass_selected
 
-/datum/outfit/job/roguetown/wretch/pariah/Topic(href, href_list)
-	. = ..()
-	if(href_list["subclass"])
-		subclass_selected = href_list["subclass"]
-	else if(href_list["close"])
-		if(!subclass_selected)
-			subclass_selected = "blade"
-
-/datum/outfit/job/roguetown/wretch/pariah/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
 	shoes = /obj/item/clothing/shoes/roguetown/boots/elven_boots
 	cloak = /obj/item/clothing/cloak/forrestercloak
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
@@ -78,6 +67,18 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/reagent_containers/glass/bottle/alchemical/healthpot = 1,	//Small health vial
 		)
+	armor = /obj/item/clothing/suit/roguetown/armor/leather/trophyfur
+/datum/outfit/job/roguetown/wretch/pariah/Topic(href, href_list)
+	. = ..()
+	if(href_list["subclass"])
+		subclass_selected = href_list["subclass"]
+	else if(href_list["close"])
+		if(!subclass_selected)
+			subclass_selected = "blade"
+
+/datum/outfit/job/roguetown/wretch/pariah/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
 
 	to_chat(H, span_warning("You start with Bind Weapon. Remember to Bind your weapon so you can use your abilities and build up Arcyne Momentum."))
 
@@ -122,7 +123,6 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/mending)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/enchant_weapon)
 
-	armor = /obj/item/clothing/suit/roguetown/armor/leather/trophyfur
 
 	switch(subclass_selected)
 		if("blade")

@@ -34,8 +34,7 @@
 		/datum/skill/craft/cooking = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/bandit/hedgemage/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/bandit/hedgemage
 	shoes = /obj/item/clothing/shoes/roguetown/simpleshoes
 	pants = /obj/item/clothing/under/roguetown/trou/leather
 	shirt = /obj/item/clothing/suit/roguetown/shirt/undershirt/random
@@ -54,8 +53,11 @@
 	neck = /obj/item/clothing/neck/roguetown/coif
 	head = /obj/item/clothing/head/roguetown/helmet/leather/volfhelm
 	id = /obj/item/mattcoin
-
 	r_hand = /obj/item/rogueweapon/woodstaff/diamond
+
+/datum/outfit/job/roguetown/bandit/hedgemage/pre_equip(mob/living/carbon/human/H)
+	..()
+
 	if(H.age == AGE_OLD)
 		head = /obj/item/clothing/head/roguetown/wizhat/gen
 		armor = /obj/item/clothing/suit/roguetown/shirt/robe

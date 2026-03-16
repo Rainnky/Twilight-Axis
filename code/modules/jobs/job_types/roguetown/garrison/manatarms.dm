@@ -93,12 +93,21 @@
 		/datum/skill/misc/tracking = SKILL_LEVEL_NOVICE,
 	)
 
-/datum/outfit/job/roguetown/manorguard/footsman/pre_equip(mob/living/carbon/human/H)
-	..()
-
+/datum/outfit/job/roguetown/manorguard/footsman
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	gloves = /obj/item/clothing/gloves/roguetown/plate/iron
+	backpack_contents = list(
+		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
+		/obj/item/rope/chain = 1,
+		/obj/item/storage/keyring/manatarms = 1,
+		/obj/item/rogueweapon/scabbard/sheath = 1,
+		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
+		)
+
+/datum/outfit/job/roguetown/manorguard/footsman/pre_equip(mob/living/carbon/human/H)
+	..()
+
 
 	H.adjust_blindness(-3)
 	if(H.mind)
@@ -126,13 +135,6 @@
 				r_hand = /obj/item/rogueweapon/greataxe
 				backl = /obj/item/rogueweapon/scabbard/gwstrap
 				beltr = /obj/item/rogueweapon/scabbard/sword
-	backpack_contents = list(
-		/obj/item/rogueweapon/huntingknife/idagger/steel/special = 1,
-		/obj/item/rope/chain = 1,
-		/obj/item/storage/keyring/manatarms = 1,
-		/obj/item/rogueweapon/scabbard/sheath = 1,
-		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
-		)
 	H.verbs |= /mob/proc/haltyell
 
 	if(H.mind)
@@ -199,11 +201,13 @@
 	)
 	extra_context = "Chooses between Light Armor (Dodge Expert) & Medium Armor."
 
-/datum/outfit/job/roguetown/manorguard/skirmisher/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/manorguard/skirmisher
 	neck = /obj/item/clothing/neck/roguetown/chaincoif
 	shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
 	gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
+
+/datum/outfit/job/roguetown/manorguard/skirmisher/pre_equip(mob/living/carbon/human/H)
+	..()
 
 	H.adjust_blindness(-3)
 	if(H.mind)
@@ -289,14 +293,16 @@
 		/datum/virtue/utility/riding
 	)
 
-/datum/outfit/job/roguetown/manorguard/cavalry/pre_equip(mob/living/carbon/human/H)
-	..()
+/datum/outfit/job/roguetown/manorguard/cavalry
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/scale
 	shirt = /obj/item/clothing/suit/roguetown/armor/chainmail/iron
 	wrists = /obj/item/clothing/wrists/roguetown/bracers
 	gloves = /obj/item/clothing/gloves/roguetown/chain
 	pants = /obj/item/clothing/under/roguetown/chainlegs
+
+/datum/outfit/job/roguetown/manorguard/cavalry/pre_equip(mob/living/carbon/human/H)
+	..()
 
 	H.adjust_blindness(-3)
 	if(H.mind)
@@ -380,9 +386,7 @@
 		"Branding iron" = /obj/item/branding_iron
 	)
 
-/datum/outfit/job/roguetown/manorguard/bailiff/pre_equip(mob/living/carbon/human/H)
-	..()
-
+/datum/outfit/job/roguetown/manorguard/bailiff
 	head = /obj/item/clothing/head/roguetown/menacing/executioner
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	mask = /obj/item/clothing/head/roguetown/roguehood/black
@@ -392,10 +396,6 @@
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants
 	beltr = /obj/item/rogueweapon/whip/antique
 	backl = /obj/item/rogueweapon/sword/long/exe/cloth
-
-	H.adjust_blindness(-3)
-	if(H.mind)
-		H.set_blindness(0)
 	backpack_contents = list(
 		/obj/item/rogueweapon/huntingknife = 1,
 		/obj/item/rope/chain = 1,
@@ -403,6 +403,14 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1
 		)
+
+/datum/outfit/job/roguetown/manorguard/bailiff/pre_equip(mob/living/carbon/human/H)
+	..()
+
+
+	H.adjust_blindness(-3)
+	if(H.mind)
+		H.set_blindness(0)
 	H.verbs |= /mob/proc/haltyell
 
 	if(H.mind)
@@ -438,9 +446,7 @@
 	)
 	maximum_possible_slots = 1 // Haha... no... unless...?
 
-/datum/outfit/job/roguetown/manorguard/standard_bearer/pre_equip(mob/living/carbon/human/H)
-	..()
-	H.adjust_blindness(-3)
+/datum/outfit/job/roguetown/manorguard/standard_bearer
 	neck = /obj/item/clothing/neck/roguetown/gorget
 	gloves = /obj/item/clothing/gloves/roguetown/chain/iron
 	head = /obj/item/clothing/head/roguetown/helmet/kettle
@@ -457,6 +463,10 @@
 		/obj/item/rogueweapon/scabbard/sheath = 1,
 		/obj/item/reagent_containers/glass/bottle/rogue/healthpot = 1,
 	)
+
+/datum/outfit/job/roguetown/manorguard/standard_bearer/pre_equip(mob/living/carbon/human/H)
+	..()
+	H.adjust_blindness(-3)
 	H.verbs |= /mob/proc/haltyell
 
 // These are really hacky, but it works.
