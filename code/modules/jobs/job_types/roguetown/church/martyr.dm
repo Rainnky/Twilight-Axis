@@ -920,7 +920,8 @@
 	toggle_state = null
 	is_important = TRUE
 	throwforce = 40
-	special = /datum/special_intent/martyr_blazing_trident
+	var/is_being_thrown_by_special = FALSE
+	special = /datum/special_intent/martyr_abyssor_harpoon
 
 /obj/item/rogueweapon/spear/partizan/martyr/ComponentInitialize()
 	AddComponent(\

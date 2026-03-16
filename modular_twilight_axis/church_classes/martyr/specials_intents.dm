@@ -68,6 +68,43 @@
 	var/fire_stacks_tick = 1
 	var/slow_tick = 1
 
+/obj/effect/temp_visual/abyssor_trident_trail
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "curseblob"
+	layer = BELOW_MOB_LAYER
+	duration = 0.35 SECONDS
+	alpha = 170
+
+/obj/effect/temp_visual/abyssor_trident_hit
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "splash"
+	layer = ABOVE_MOB_LAYER
+	duration = 0.6 SECONDS
+	alpha = 220
+
+/obj/effect/temp_visual/abyssor_trident_reel
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "curseblob"
+	layer = ABOVE_MOB_LAYER
+	duration = 0.4 SECONDS
+	alpha = 210
+
+/obj/effect/temp_visual/abyssor_trident_finish
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "stab"
+	layer = ABOVE_MOB_LAYER
+	duration = 0.5 SECONDS
+	alpha = 255
+
+/obj/effect/abyssor_trident_flight
+	name = "abyssor trident"
+	anchored = TRUE
+	density = FALSE
+	mouse_opacity = FALSE
+	layer = ABOVE_MOB_LAYER
+	pixel_x = -16
+	pixel_y = -16
+
 /obj/effect/malum_scorched_ground/Initialize(mapload, duration_override = 20 SECONDS)
 	. = ..()
 	end_time = world.time + duration_override
@@ -775,3 +812,475 @@
 				timerlist.Add(step)
 
 #undef MARTYR_MALUM_WAVE2_DELAY
+
+/datum/special_intent/martyr_abyssor_harpoon
+	name = "Abyssor's Harpoon"
+	desc = "Ты бросаешь трезубец в сторону курсора. Первый задетый враг оказывается пронзен и притягивается к тебе. Если трезубец никого не находит, то возвращается обратно."
+	use_clickloc = TRUE
+	respect_adjacency = FALSE
+	respect_dir = FALSE
+	cooldown = 30 SECONDS
+	stamcost = 20
+	range = 9
+
+	var/hook_damage = 0
+	var/final_damage = 0
+	var/flight_delay = 1
+	var/reel_delay = 1
+	var/max_range = 9
+	var/active_cast = FALSE
+
+	var/base_fatdrain = 10
+	var/depth_bends_dizzy = 10
+	var/depth_bends_blur = 20
+
+	var/mob/living/hooked_target
+	var/obj/effect/abyssor_trident_flight/flight_fx
+
+	var/saved_alpha = 255
+	var/saved_invisibility = 0
+	var/original_slot = null
+
+	var/turf/throw_target
+	var/final_wave_length = 4
+
+	var/list/abyssor_cries = list(
+		"Поймай мне добычу, трезубец!",
+		"Абиссор требует свое!"
+	)
+
+/datum/special_intent/martyr_abyssor_harpoon/_reset()
+	active_cast = FALSE
+	hooked_target = null
+	original_slot = null
+	throw_target = null
+
+	if(flight_fx)
+		qdel(flight_fx)
+		flight_fx = null
+
+	saved_alpha = 255
+	saved_invisibility = 0
+
+	hook_damage = 0
+	final_damage = 0
+	. = ..()
+
+/datum/special_intent/martyr_abyssor_harpoon/process_attack()
+	SHOULD_CALL_PARENT(FALSE)
+
+	if(!howner || !iparent)
+		return
+
+	if(active_cast)
+		return
+
+	if(!(howner.mobility_flags & MOBILITY_STAND))
+		to_chat(howner, span_warning("Мне нужно стоять на ногах, чтобы метнуть трезубец!"))
+		return
+
+	if(!click_loc)
+		return
+
+	if(!check_range(howner, click_loc))
+		return
+
+	if(!_do_after())
+		return
+
+	if(!apply_cost(howner))
+		return
+
+	var/turf/start_turf = get_turf(howner)
+	if(!start_turf)
+		return
+
+	throw_target = click_loc
+	if(!throw_target)
+		return
+
+	var/obj/item/rogueweapon/W = iparent
+	var/scalemod = max(((howner.STASTR + howner.STAPER + howner.STAWIL) / 30), 1)
+
+	hook_damage = W.force_dynamic * scalemod * 0.7
+	final_damage = W.force_dynamic * scalemod * 1.45
+
+	_add_log()
+	_reset()
+	active_cast = TRUE
+	throw_target = click_loc
+
+	howner.setDir(get_dir(start_turf, throw_target))
+
+	spawn_flight_visual()
+	hide_weapon()
+
+	howner.say(pick(abyssor_cries))
+	playsound(howner, 'sound/foley/bubb (5).ogg', 100, TRUE)
+
+	apply_cooldown(cooldown)
+	continue_outbound(start_turf, max_range)
+
+/datum/special_intent/martyr_abyssor_harpoon/proc/hide_weapon()
+	var/obj/item/rogueweapon/spear/partizan/martyr/W = iparent
+	if(!W || !flight_fx || !howner)
+		return
+
+	saved_alpha = W.alpha
+	saved_invisibility = W.invisibility
+
+	if(length(howner.held_items) >= 1 && howner.held_items[1] == W)
+		original_slot = 1
+	else if(length(howner.held_items) >= 2 && howner.held_items[2] == W)
+		original_slot = 2
+	else
+		original_slot = null
+
+	W.is_being_thrown_by_special = TRUE
+
+	howner.temporarilyRemoveItemFromInventory(W, TRUE)
+	W.forceMove(flight_fx)
+	W.alpha = 0
+	W.invisibility = INVISIBILITY_ABSTRACT
+
+	howner.regenerate_icons()
+
+/datum/special_intent/martyr_abyssor_harpoon/proc/restore_weapon()
+	var/obj/item/rogueweapon/spear/partizan/martyr/W = iparent
+	if(!W)
+		return
+
+	W.alpha = saved_alpha
+	W.invisibility = saved_invisibility
+	W.is_being_thrown_by_special = FALSE
+
+	if(howner && !QDELETED(howner))
+		W.forceMove(get_turf(howner))
+		if(!howner.put_in_hands(W))
+			W.forceMove(get_turf(howner))
+	else
+		if(flight_fx && !QDELETED(flight_fx))
+			W.forceMove(get_turf(flight_fx))
+
+	if(howner)
+		howner.regenerate_icons()
+
+/datum/special_intent/martyr_abyssor_harpoon/proc/spawn_flight_visual()
+	var/obj/item/rogueweapon/W = iparent
+	var/turf/T = get_turf(howner)
+	if(!W || !T)
+		return
+
+	flight_fx = new /obj/effect/abyssor_trident_flight(T)
+	flight_fx.icon = W.icon
+	flight_fx.icon_state = W.icon_state
+	if(throw_target)
+		flight_fx.dir = get_dir(T, throw_target)
+	else
+		flight_fx.dir = howner.dir
+
+/datum/special_intent/martyr_abyssor_harpoon/proc/continue_outbound(turf/current_turf, remaining_range)
+	if(!active_cast || !howner || QDELETED(howner))
+		cleanup_cast()
+		return
+
+	if(!current_turf || remaining_range <= 0)
+		begin_return()
+		return
+
+	if(!throw_target)
+		begin_return()
+		return
+
+	if(current_turf == throw_target)
+		begin_return()
+		return
+
+	var/turf/next_turf = get_step_towards(current_turf, throw_target)
+	if(!next_turf || next_turf == current_turf)
+		begin_return()
+		return
+
+	new /obj/effect/temp_visual/abyssor_trident_trail(next_turf)
+
+	if(flight_fx)
+		flight_fx.forceMove(next_turf)
+		flight_fx.dir = get_dir(current_turf, next_turf)
+
+	var/mob/living/found_target = null
+	for(var/mob/living/L in next_turf)
+		if(L == howner)
+			continue
+		if(QDELETED(L))
+			continue
+		found_target = L
+		break
+
+	if(found_target)
+		hooked_target = found_target
+		on_hook_target()
+		return
+
+	if(next_turf.density)
+		begin_return()
+		return
+
+	addtimer(CALLBACK(src, PROC_REF(continue_outbound), next_turf, remaining_range - 1), flight_delay)
+
+/datum/special_intent/martyr_abyssor_harpoon/proc/apply_depth_bends(mob/living/target)
+	if(!target || QDELETED(target))
+		return
+
+	if(istype(target, /mob/living/carbon))
+		var/mob/living/carbon/C = target
+		if(C.patron?.type != /datum/patron/divine/abyssor)
+			var/fatdrain = 0
+			if(howner)
+				fatdrain = howner.get_skill_level(/datum/skill/magic/holy) * base_fatdrain
+			if(fatdrain <= 0)
+				fatdrain = 20
+			C.stamina_add(fatdrain)
+
+	target.Dizzy(depth_bends_dizzy)
+	target.blur_eyes(depth_bends_blur)
+	target.emote("drown")
+
+/datum/special_intent/martyr_abyssor_harpoon/proc/on_hook_target()
+	if(!hooked_target || QDELETED(hooked_target))
+		begin_return()
+		return
+
+	var/turf/target_turf = get_turf(hooked_target)
+	if(!target_turf)
+		begin_return()
+		return
+
+	if(flight_fx)
+		flight_fx.forceMove(target_turf)
+		flight_fx.layer = ABOVE_MOB_LAYER
+
+	new /obj/effect/temp_visual/abyssor_trident_hit(target_turf)
+
+	hooked_target.visible_message(
+		span_warning("[hooked_target] оказывается пронзен трезубцем, который начинает его тянуть к мученику!"),
+		span_userdanger("Трезубец впивается в меня и тянет к мученику!")
+	)
+
+	if(hooked_target.mobility_flags & MOBILITY_STAND)
+		apply_generic_weapon_damage(hooked_target, hook_damage, "stab", BODY_ZONE_CHEST, bclass = BCLASS_STAB)
+
+	apply_depth_bends(hooked_target)
+	hooked_target.Immobilize(0.6 SECONDS)
+	hooked_target.apply_status_effect(/datum/status_effect/debuff/exposed, 4 SECONDS)
+
+	playsound(target_turf, 'sound/combat/sidesweep_hit.ogg', 100, TRUE)
+
+	continue_reel_target()
+
+/datum/special_intent/martyr_abyssor_harpoon/proc/continue_reel_target()
+	if(!active_cast || !howner || QDELETED(howner))
+		cleanup_cast()
+		return
+
+	if(!hooked_target || QDELETED(hooked_target))
+		begin_return()
+		return
+
+	var/turf/owner_turf = get_turf(howner)
+	var/turf/target_turf = get_turf(hooked_target)
+
+	if(!owner_turf || !target_turf)
+		begin_return()
+		return
+
+	if(target_turf.z != owner_turf.z)
+		begin_return()
+		return
+
+	if(get_dist(hooked_target, howner) <= 1)
+		finish_reel()
+		return
+
+	var/turf/next_turf = get_step_towards(target_turf, owner_turf)
+	if(!next_turf || next_turf == target_turf)
+		finish_reel()
+		return
+
+	if(next_turf.density)
+		finish_reel()
+		return
+
+	for(var/mob/living/L in next_turf)
+		if(L == hooked_target)
+			continue
+		if(L == howner)
+			continue
+		if(QDELETED(L))
+			continue
+		finish_reel()
+		return
+
+	new /obj/effect/temp_visual/abyssor_trident_reel(next_turf)
+
+	hooked_target.forceMove(next_turf)
+	hooked_target.Immobilize(0.2 SECONDS)
+
+	if(flight_fx)
+		flight_fx.forceMove(next_turf)
+		flight_fx.dir = get_dir(target_turf, next_turf)
+
+	addtimer(CALLBACK(src, PROC_REF(continue_reel_target)), reel_delay)
+
+/datum/special_intent/martyr_abyssor_harpoon/proc/finish_reel()
+	if(!active_cast)
+		return
+	if(!howner || QDELETED(howner))
+		cleanup_cast()
+		return
+
+	var/turf/owner_turf = get_turf(howner)
+	if(!owner_turf)
+		cleanup_cast()
+		return
+
+	var/turf/wave_target = throw_target
+	if(hooked_target && !QDELETED(hooked_target))
+		wave_target = get_turf(hooked_target)
+
+	if(!wave_target)
+		wave_target = get_step(owner_turf, howner.dir)
+
+	if(!wave_target)
+		cleanup_cast()
+		return
+
+	var/list/impact_turfs = list()
+	var/turf/current = owner_turf
+
+	for(var/i in 1 to final_wave_length)
+		var/turf/next_turf = get_step_towards(current, wave_target)
+		if(!next_turf || next_turf == current)
+			break
+		if(next_turf.density)
+			break
+
+		impact_turfs += next_turf
+		current = next_turf
+
+	for(var/turf/T in impact_turfs)
+		new /obj/effect/temp_visual/abyssor_trident_finish(T)
+
+	for(var/turf/T in impact_turfs)
+		apply_hit(T)
+
+	playsound(owner_turf, 'sound/foley/bubb (5).ogg', 100, TRUE)
+
+	cleanup_cast()
+
+/datum/special_intent/martyr_abyssor_harpoon/apply_hit(turf/T)
+	for(var/mob/living/L in get_hearers_in_view(0, T))
+		if(L == howner)
+			continue
+
+		apply_depth_bends(L)
+		L.apply_status_effect(/datum/status_effect/debuff/vulnerable, 4 SECONDS)
+		L.apply_status_effect(/datum/status_effect/debuff/exposed, 3 SECONDS)
+
+		if(L.mobility_flags & MOBILITY_STAND)
+			apply_generic_weapon_damage(L, final_damage, "stab", BODY_ZONE_CHEST, bclass = BCLASS_PICK)
+
+		L.visible_message(
+			span_danger("[L] пронзен трезубцем!"),
+			span_userdanger("Меня пронзают трезубцем!")
+		)
+
+	..()
+
+/datum/special_intent/martyr_abyssor_harpoon/proc/begin_return()
+	if(!active_cast)
+		return
+
+	if(!flight_fx || !howner || QDELETED(howner))
+		cleanup_cast()
+		return
+
+	continue_return()
+
+/datum/special_intent/martyr_abyssor_harpoon/proc/continue_return()
+	if(!active_cast || !howner || QDELETED(howner))
+		cleanup_cast()
+		return
+
+	if(!flight_fx)
+		cleanup_cast()
+		return
+
+	var/turf/current_turf = get_turf(flight_fx)
+	var/turf/owner_turf = get_turf(howner)
+
+	if(!current_turf || !owner_turf)
+		cleanup_cast()
+		return
+
+	if(current_turf == owner_turf)
+		cleanup_cast()
+		return
+
+	var/turf/next_turf = get_step_towards(current_turf, owner_turf)
+	if(!next_turf || next_turf == current_turf)
+		cleanup_cast()
+		return
+
+	new /obj/effect/temp_visual/abyssor_trident_trail(next_turf)
+
+	if(flight_fx)
+		flight_fx.forceMove(next_turf)
+		flight_fx.dir = get_dir(current_turf, next_turf)
+
+	if(!hooked_target)
+		var/mob/living/found_target = null
+		for(var/mob/living/L in next_turf)
+			if(L == howner)
+				continue
+			if(QDELETED(L))
+				continue
+			found_target = L
+			break
+
+		if(found_target)
+			hooked_target = found_target
+			on_hook_target()
+			return
+
+	if(next_turf == owner_turf)
+		cleanup_cast()
+		return
+
+	addtimer(CALLBACK(src, PROC_REF(continue_return)), flight_delay)
+
+/datum/special_intent/martyr_abyssor_harpoon/proc/cleanup_cast()
+	restore_weapon()
+
+	if(flight_fx)
+		qdel(flight_fx)
+		flight_fx = null
+
+	hooked_target = null
+	active_cast = FALSE
+	original_slot = null
+	throw_target = null
+
+/obj/item/rogueweapon/spear/partizan/martyr/attack(mob/living/target, mob/living/user)
+	if(is_being_thrown_by_special)
+		return FALSE
+	return ..()
+
+/obj/item/rogueweapon/spear/partizan/martyr/afterattack(atom/target, mob/user, proximity_flag, click_parameters)
+	if(is_being_thrown_by_special)
+		return FALSE
+	return ..()
+
+/obj/item/rogueweapon/spear/partizan/martyr/attack_self(mob/user)
+	if(is_being_thrown_by_special)
+		return FALSE
+	return ..()
