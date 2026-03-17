@@ -2131,6 +2131,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/flowercrown/rosa/resprite
 	donatitem = TRUE
 
+/datum/loadout_item/donat/etrusca_hat
+	name = "Этрусская шляпа"
+	category = list("Головные уборы", "Донат")
+	path = /obj/item/clothing/head/roguetown/duelhat/etrusca
+	donatitem = TRUE
+
 /datum/loadout_item/tw_d_horns_donat
 	name = "horns helmkleinod(Донат - Т2)"
 	category = list("Головные уборы", "Донат")

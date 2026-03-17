@@ -65,4 +65,4 @@
 	shirt = /obj/item/clothing/suit/roguetown/shirt/freifechter
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer
 	backr = /obj/item/rogueweapon/scabbard/sword
-	backpack_contents = list(/obj/item/roguekey/mercenary = 1, /obj/item/twilight_powderflask = 1, /obj/item/rogueweapon/huntingknife/idagger/navaja = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/clothing/head/roguetown/duelhat = 1, /obj/item/lockpickring/mundane = 1)
+	backpack_contents = list(/obj/item/roguekey/mercenary = 1, /obj/item/twilight_powderflask = 1, /obj/item/rogueweapon/huntingknife/idagger/navaja = 1, /obj/item/storage/belt/rogue/pouch/coins/poor = 1, /obj/item/clothing/head/roguetown/duelhat/etrusca = 1, /obj/item/lockpickring/mundane = 1)
