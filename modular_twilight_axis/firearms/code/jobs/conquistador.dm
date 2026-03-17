@@ -8,6 +8,7 @@
 	/datum/species/anthromorph,\
 	/datum/species/demihuman,\
 	/datum/species/aura,\
+	/datum/species/tieberian,\
 	/datum/species/human/halfelf,\
 	/datum/species/elf/dark,\
 	/datum/species/elf/dark/raider,\
