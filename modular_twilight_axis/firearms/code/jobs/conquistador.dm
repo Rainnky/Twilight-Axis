@@ -60,7 +60,7 @@
 	pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan/generic
 	wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 	belt = /obj/item/storage/belt/rogue/leather/twilight_holsterbelt
-	neck = /obj/item/clothing/neck/roguetown/gorget/steel
+	neck = /obj/item/clothing/neck/roguetown/gorget
 	shirt = /obj/item/clothing/suit/roguetown/shirt/freifechter
 	armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/fencer
 	backr = /obj/item/rogueweapon/scabbard/sword
