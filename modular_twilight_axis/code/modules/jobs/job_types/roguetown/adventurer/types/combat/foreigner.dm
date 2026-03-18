@@ -135,7 +135,7 @@
 	subclass_stats = list(
 		STATKEY_WIL = 1,
 		STATKEY_CON = 2,
-		STATKEY_LCK = 2,
+		STATKEY_PER = 1,
 	)
 	subclass_skills = list(
 		/datum/skill/combat/knives = SKILL_LEVEL_APPRENTICE,
@@ -158,23 +158,20 @@
 		switch(weapon_choice)
 			if("Falchion & Buckler")
 				H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_EXPERT, TRUE)
-				H.adjust_skillrank_up_to(/datum/skill/misc/athletics, SKILL_LEVEL_EXPERT, TRUE)
 				backr = /obj/item/rogueweapon/shield/buckler
 				beltr = /obj/item/rogueweapon/scabbard/sword
 				r_hand = /obj/item/rogueweapon/sword/short/falchion
 				H.change_stat(STATKEY_SPD, 2)
-				H.change_stat(STATKEY_PER, 1)  
 			if("Axe % Shield")
 				H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_EXPERT, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/combat/shields, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				backr = /obj/item/rogueweapon/shield/iron
 				r_hand = /obj/item/rogueweapon/stoneaxe/woodcut/steel
 				H.change_stat(STATKEY_STR, 2)
-				H.change_stat(STATKEY_PER, 1)  
 
 		armor = /obj/item/clothing/suit/roguetown/armor/plate/cuirass/iron
-		shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/lord/heavy
-		pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/otavan/generic
+		shirt = /obj/item/clothing/suit/roguetown/armor/gambeson
+		pants = /obj/item/clothing/under/roguetown/splintlegs
 		neck = /obj/item/clothing/neck/roguetown/gorget
 		gloves = /obj/item/clothing/gloves/roguetown/fingerless/shadowgloves
 		head = /obj/item/clothing/head/roguetown/headband/monk/barbarian
