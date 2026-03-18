@@ -2467,11 +2467,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					var/link = tgui_input_text(user, "Input the image/video link (https):", "OOC Extra Image", ooc_extra_img_link, encode = FALSE)
 					if(link == null)
 						return
-					if(link == "")
-						link = null
-						ShowChoices(user)
-						return
-					if(link == " ")
+					if(!link || !length(trim(link)))
 						ooc_extra_img = null
 						ooc_extra_img_link = null
 						to_chat(user, "<span class='notice'>Successfully deleted OOC Extra Image.</span>")
@@ -2503,11 +2499,7 @@ Slots: [job.spawn_positions] [job.round_contrib_points ? "RCP: +[job.round_contr
 					var/link = tgui_input_text(user, "Input the image/video link (https):", "NSFW OOC Extra Image", nsfw_ooc_extra_img_link, encode = FALSE)
 					if(link == null)
 						return
-					if(link == "")
-						link = null
-						ShowChoices(user)
-						return
-					if(link == " ")
+					if(!link || !length(trim(link)))
 						nsfw_ooc_extra_img = null
 						nsfw_ooc_extra_img_link = null
 						to_chat(user, "<span class='notice'>Successfully deleted NSFW OOC Extra Image.</span>")
