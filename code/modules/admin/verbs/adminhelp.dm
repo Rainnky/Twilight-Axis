@@ -619,14 +619,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		
 		MessageNoRecipient(msg)
 
-		//send it to irc if nobody is on and tell us how many were on
-		var/admin_number_present = send2irc_adminless_only(initiator_ckey, "Ticket #[id]: [name]")
-		log_admin_private("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
-		if(admin_number_present <= 0)
-			to_chat(C, span_notice("No active admins are online, your adminhelp was sent to the admin irc."))
-			heard_by_no_admins = TRUE
-		else
-			to_chat(C, span_notice("Your adminhelp has been sent to [admin_number_present] admin[admin_number_present > 1 ? "s" : ""]."))
+		to_chat(C, span_notice("Your adminhelp has been sent to [admin_number_present] admin[admin_number_present > 1 ? "s" : ""]."))
 
 	GLOB.ahelp_tickets.active_tickets += src
 	
