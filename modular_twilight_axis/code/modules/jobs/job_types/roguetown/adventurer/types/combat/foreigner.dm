@@ -162,7 +162,7 @@
 				beltr = /obj/item/rogueweapon/scabbard/sword
 				r_hand = /obj/item/rogueweapon/sword/short/falchion
 				H.change_stat(STATKEY_SPD, 2)
-			if("Axe % Shield")
+			if("Axe & Shield")
 				H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_EXPERT, TRUE)
 				H.adjust_skillrank_up_to(/datum/skill/combat/shields, SKILL_LEVEL_JOURNEYMAN, TRUE)
 				backr = /obj/item/rogueweapon/shield/iron
