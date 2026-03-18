@@ -18,6 +18,6 @@
 /obj/structure/fluff/statue/zizo
 	name = "zaelorian statue"
 	desc = "Мраморная и серебряная статуя Заэлориан Кринзарис - тёмная эльфийка, стремившаяся к миру и прогрессу, \
-	которая ныне известна как Зизо. По крайней мере так видят или хотели видеть ее последователи."
+	которая ныне печально известна как Зизо. По крайней мере так видят или хотели видеть ее последователи."
 	icon_state = "zaelorian_crynsaris"
 	icon = 'modular_twilight_axis/icons/roguetown/misc/statue_zizo.dmi'
