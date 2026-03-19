@@ -2302,16 +2302,16 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/clothing/suit/roguetown/shirt/courtphysician/female
 	donatitem = TRUE
 
-/datum/loadout_item/sanguine_coat
-	name = "Sanguine Coat"
+/datum/loadout_item/donator_sanguine_coat
+	name = "Donator Kit - Sanguine Coat - Required: Hardened Leather Coat"
 	category = list("Одежда", "Донат")
-	path = /obj/item/clothing/suit/roguetown/armor/leather/heavy/jacket/courtphysician
+	path = /obj/item/enchantingkit/sanguine_coat
 	donatitem = TRUE
 
-/datum/loadout_item/sanguine_jacket
-	name = "Sanguine Jacket"
+/datum/loadout_item/donator_sanguine_jacket
+	name = "Donator Kit - Sanguine Jacket - Required: Hardened Leather Jacket or Fencing Jacket"
 	category = list("Одежда", "Донат")
-	path = /obj/item/clothing/suit/roguetown/armor/leather/heavy/jacket/courtphysician/female
+	path = /obj/item/enchantingkit/sanguine_jacket
 	donatitem = TRUE
 
 /datum/loadout_item/sanguine_hat
