@@ -44,7 +44,6 @@
 							/obj/item/magic/artifact = 0.15,
 							/obj/structure/voidstoneobelisk = 0.1,
 							/obj/structure/flora/roguegrass/herb/manabloom = 0.2,
-							/obj/item/magic/manacrystal = 0.15,
 							/obj/structure/closet/dirthole/closed/loot = 2,
 							/obj/structure/flora/roguegrass/swampweed = 1.2,
 							/obj/structure/flora/roguegrass/herb/random = 3,
@@ -87,7 +86,6 @@
 							/obj/structure/leyline = 0.3,
 							/obj/structure/voidstoneobelisk = 1,
 							/obj/structure/flora/roguegrass/herb/manabloom = 1,
-							/obj/item/magic/manacrystal = 0.5,
 							/obj/item/grown/log/tree/stick = 5,
 							/obj/structure/flora/roguetree/stump/log = 2,
 							/obj/structure/flora/roguetree/stump = 2,
@@ -99,7 +97,7 @@
 							/obj/effect/decal/remains/human = 2,
 							/obj/structure/zizo_bane = 3,
 							/obj/structure/leyline/normal/coast = 0.5,
-							/obj/structure/leyline/powerful = 1)
+							/obj/structure/leyline/powerful = 0.5)
 	spawnableTurfs = list(/turf/open/floor/rogue/dirt/road=3,
 						/turf/open/water/swamp=3)
 
