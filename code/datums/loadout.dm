@@ -2356,6 +2356,18 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/clothing/shoes/courtphysician
 	donatitem = TRUE
 
+/datum/loadout_item/donat_sheathnoble
+	name = "Decorated Sheath, Silver"
+	category = list("Оружие", "Донат")
+	path = /obj/item/rogueweapon/scabbard/sheath/noble
+	donatitem = TRUE
+
+/datum/loadout_item/donat_scabbardnoble
+	name = "Decorated Scabbard, Silver"
+	category = list("Оружие", "Донат")
+	path = /obj/item/rogueweapon/scabbard/sword/noble
+	donatitem = TRUE
+
 // Sanguine Kits
 
 /datum/loadout_item/donator_sanguine_vest
