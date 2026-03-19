@@ -168,11 +168,8 @@
 				player_message = player_interaction_message)
 
 			else		//recipient is an admin but sender is not
-				var/replymsg = "Reply PM from-<b>[key_name(src, recipient, 1)]</b>: <span class='linkify'>[keywordparsedmsg]</span>"
-				. = admin_ticket_log(src, "<font color='red'>[replymsg]</font>", "<font color='red'>[replymsg]</font>")
-				to_chat(recipient, span_danger("[replymsg]"))
-				to_chat(src, span_notice("PM to-<b>Admins</b>: <span class='linkify'>[msg]</span>"))
-			
+				current_ticket.MessageNoRecipient(keywordparsedmsg)
+
 			SEND_SOUND(recipient, sound('sound/adminhelp.ogg'))
 
 			//play the receiving admin the adminhelp sound (if they have them enabled)
@@ -181,8 +178,10 @@
 
 		else if(holder)	//sender is an admin but recipient is not. Do BIG RED TEXT
 			var/datum/admin_help/created_ticket
+			var/newticket = FALSE
 			if(!recipient.current_ticket)
-				created_ticket = new /datum/admin_help(msg, recipient, TRUE)
+				created_ticket = new /datum/admin_help(msg, recipient, TRUE, src)
+				newticket = TRUE
 			else
 				created_ticket = recipient.current_ticket
 				. = created_ticket
@@ -190,11 +189,12 @@
 			to_chat(recipient, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
 			to_chat(recipient, span_adminsay("Admin PM from-<b>[key_name(src, recipient, 0)]</b>: <span class='linkify'>[msg]</span>"))
 			// Provide explicit ticket controls for the new ticket system
-			to_chat(recipient, span_adminsay("<i><a href='?viewticket=1'>View ticket</a> | <a href='?replyticket=1'>Quick reply</a></i>"))
+			to_chat(recipient, span_adminsay("<i><a href='?viewticket=1'>View ticket</a></i>"))
 			to_chat(src, span_notice("Admin PM to-<b>[key_name(recipient, src, 1)]</b>: <span class='linkify'>[msg]</span>"))
 
-			admin_ticket_log(recipient, "<font color='purple'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>")
+			message_admins_without(span_notice("Admin PM from <b>[src]</b> to-<b>[key_name(recipient)]</b>: <span class='linkify'>[msg]</span>"), src)
 
+			admin_ticket_log(recipient, "<font color='purple'>PM From [key_name_admin(src)]: [keywordparsedmsg]</font>")
 			//always play non-admin recipients the adminhelp sound
 			SEND_SOUND(recipient, sound('sound/adminhelp.ogg'))
 
@@ -207,7 +207,17 @@
 			if(created_ticket && usr)
 				GLOB.ahelp_tickets.selected_tickets[usr.ckey] = created_ticket.id
 				GLOB.ahelp_tickets.ui_interact(usr)
-
+			if(!newticket)
+				created_ticket.AddInteraction("<font color='blue'>PM from [key_name_admin(src)]: [msg]</font")
+				var/list/data = list(
+					"type"= "areply",
+					"id"= "[created_ticket.id]",
+					"initiator"= usr.ckey,
+					"admin"= "1",
+					"message"= discord_sanitize_ahelp(msg)
+				)
+				send2discordwh(data)  
+			
 		else		//neither are admins
 			to_chat(src, span_danger("Error: Admin-PM: Non-admin to non-admin PM communication is forbidden."))
 			return

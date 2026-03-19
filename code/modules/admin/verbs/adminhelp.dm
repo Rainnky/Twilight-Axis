@@ -251,33 +251,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			if(!message)
 				return FALSE
 
-			// Use full key_name_admin normally; suppress the character name if the admin toggled it off
-			var/show_charname = !IsAdminInHideCharname(user.ckey)
-			var/admin_name = key_name_admin(user, show_charname)
-
 			// Admin is responding
-			ticket.AddInteraction("<font color='blue'>PM from [admin_name]: [message]</font>")
-
-			// Send to player if connected
-			if(ticket.initiator)
-				to_chat(ticket.initiator, span_adminhelp("<b>Admin PM from-<font color='red'>[user.client.holder.fakekey ? user.client.holder.fakekey : user.key]</font></b>: <span class='linkify'>[message]</span>"))
-				SEND_SOUND(ticket.initiator, sound('sound/adminhelp.ogg'))
-				window_flash(ticket.initiator, ignorepref = TRUE)
-
-			// Log with real name for accountability (strip <br> for log readability)
-			var/log_msg = replacetext(message, "<br>", "\n")
-			log_admin_private("Ticket #[ticket.id]: [key_name(user)] -> [ticket.initiator_key_name]: [log_msg]")
-			// Notify other admins in chat with real identity
-			message_admins(span_adminnotice("<font color='blue'>Ticket #[ticket.id] [ticket.TicketHref("Show Ticket")] - [key_name_admin(user)] replied to [ticket.initiator_key_name]:</font> <font color='#c87941'>[log_msg]</font>"))
-			var/list/data = list(
-				"type"= "areply",
-				"id"= "[ticket_id]",
-				"initiator"= user.client.ckey,
-				"admin"= "1",
-				"message"= message
-			)
-			send2discordwh(data)  
-
+			user.client.cmd_admin_pm(ticket.initiator, message)
 			return TRUE
 		
 		if("jump_to", "observe", "pm")
@@ -579,7 +554,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 //call this on its own to create a ticket, don't manually assign current_ticket
 //msg is the title of the ticket: usually the ahelp text
 //is_bwoink is TRUE if this ticket was started by an admin PM
-/datum/admin_help/New(msg, client/C, is_bwoink)
+/datum/admin_help/New(msg, client/C, is_bwoink, author)
 	//clean the input msg
 	msg = copytext_char(msg,1,MAX_MESSAGE_LEN)
 	if(!msg || !C || !C.mob)
@@ -617,7 +592,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		// Add a clean initial message for the player's view
 		AddInteraction("<font color='green'>Ticket opened. Your message has been sent to the admin team.</font>")
 		
-		MessageNoRecipient(msg)
+		MessageNoRecipient(msg, newticket = TRUE)
 
 		//send it to irc if nobody is on and tell us how many were on
 		var/admin_number_present = send2irc_adminless_only(initiator_ckey, "Ticket #[id]: [name]")
@@ -686,7 +661,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 //message from the initiator without a target, all admins will see this
 //won't bug irc
-/datum/admin_help/proc/MessageNoRecipient(msg, play_sound = TRUE)
+/datum/admin_help/proc/MessageNoRecipient(msg, play_sound = TRUE, newticket = FALSE)
 	msg = copytext_char(msg, 1, MAX_MESSAGE_LEN)
 	var/ref_src = "[REF(src)]"
 	// Simplified message to be sent to all admins, including title and action links
@@ -706,6 +681,16 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	//show it to the person adminhelping too
 	to_chat(initiator, span_adminnotice("PM to-<b>Admins</b>: <font color='#FFA040'><span class='linkify'>[msg]</span></font>"))
+
+	if(!newticket)
+		var/list/data = list(
+			"type"= "areply",
+			"id"= "[src.id]",
+			"initiator"= initiator.ckey,
+			"admin"= "0",
+			"message"= discord_sanitize_ahelp(msg)
+		)
+		send2discordwh(data)  
 
 //Reopen a closed ticket
 /datum/admin_help/proc/Reopen(key_name = null)
@@ -789,7 +774,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	log_admin_private(msg)
 	AddInteraction("Marked as mechanics issue by [key_name]")
 	AddInteraction("Marked as mechanics issue by [key_name]", player_message = "<font color='green'>Marked as mechanics issue!</font>")
-	Resolve(silent = TRUE)
+	Resolve(key_name = key_name, silent = TRUE)
 
 //Mark open ticket as resolved/legitimate, returns ahelp verb
 /datum/admin_help/proc/Resolve(key_name = null, silent = FALSE)
@@ -836,7 +821,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	message_admins(msg)
 	log_admin_private(msg)
 	AddInteraction("Rejected by [key_name].", player_message = "Ticket rejected!")
-	Close(silent = TRUE)
+	Close(key_name = key_name, silent = TRUE)
 
 //Resolve ticket with IC Issue message
 /datum/admin_help/proc/ICIssue(key_name = null)
@@ -857,10 +842,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	message_admins(msg)
 	log_admin_private(msg)
 	AddInteraction("Marked as IC issue by [key_name]", player_message = "Marked as IC issue!")
-	Resolve(silent = TRUE)
+	Resolve(key_name = key_name, silent = TRUE)
 
 //Let the initiator know their ahelp is being handled
-/datum/admin_help/proc/handle_issue(key_name = null)
+/datum/admin_help/proc/handle_issue(key_name = null, irc = FALSE)
 	if(!key_name)
 		var/show_charname = !GLOB.ahelp_tickets.IsAdminInHideCharname(usr?.ckey)
 		key_name = key_name_admin(usr, show_charname)
@@ -868,8 +853,11 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(state != AHELP_ACTIVE)
 		return FALSE
 
-	if(handler && handler == usr.ckey) // No need to handle it twice as the same person ;)
-		return TRUE
+	if(handler)  // No need to handle it twice as the same person ;)
+		if(irc && handler == key_name)
+			return TRUE
+		if(handler == usr.ckey)
+			return TRUE
 
 	var/msg = span_adminhelp("Your ticket is now being handled by [key_name]! Please wait while they type their response and/or gather relevant information.")
 
@@ -882,7 +870,10 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	log_admin_private(msg)
 	AddInteraction("Being handled by [key_name]", "Being handled by [key_name_admin(usr, FALSE)]")
 
-	handler = "[usr.ckey]"
+	if(irc)
+		handler = key_name
+	else
+		handler = "[usr.ckey]"
 	return TRUE
 
 //Show the ticket panel
@@ -1117,7 +1108,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		if("send_message")
 			if(state != AHELP_ACTIVE)
 				return FALSE
-			
+
 			var/message = params["message"]
 			if(!message)
 				return FALSE
@@ -1130,14 +1121,6 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 			// Send the message
 			MessageNoRecipient(message, FALSE)
 			TimeoutVerb()
-			var/list/data = list(
-				"type"= "areply",
-				"id"= "[src.id]",
-				"initiator"= usr.client.ckey,
-				"admin"= "0",
-				"message"= message
-			)
-			send2discordwh(data)  
 			
 			return TRUE
 		

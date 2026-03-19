@@ -5,23 +5,54 @@
 	var/list/data = list(
 		"type"= "roundend"
 	)
-	send2discordwh(data)    
+	send2discordwh(data)
 
-/datum/admin_help/New(msg, client/C, is_bwoink)
+/proc/discord_sanitize_ahelp(input)
+    if(isnull(input))
+        return ""
+
+    var/text = "[input]"
+
+    text = replacetext(text, "<br>", "\n")
+    text = replacetext(text, "<br/>", "\n")
+    text = replacetext(text, "<br />", "\n")
+    text = replacetext(text, "&nbsp;", " ")
+    text = replacetext(text, "&lt;", "<")
+    text = replacetext(text, "&gt;", ">")
+    text = replacetext(text, "&quot;", "\"")
+    text = replacetext(text, "&#34;", "\"")
+    text = replacetext(text, "&#39;", "'")
+    text = replacetext(text, "&amp;", "&")
+
+    while(findtext(text, "<"))
+        var/start = findtext(text, "<")
+        var/end = findtext(text, ">", start + 1)
+        if(!start || !end)
+            break
+        text = copytext(text, 1, start) + copytext(text, end + 1)
+
+    text = trim(text)
+    return text
+
+/datum/admin_help/New(msg, client/C, is_bwoink, author = FALSE)
 	. = ..()
+	var/initiator_who = author ? author : initiator
 	var/list/data = list(
 		"type"= "ahelp",
 		"id"= "[id]",
 		"round_id"= GLOB.rogue_round_id,
 		"opened_at"= "[opened_at]",
-		"initiator"= "[initiator]",
-		"adminstarted"= "[is_bwoink]",
+		"initiator"= "[initiator_who]",
+		"admin"= "[is_bwoink]",
 		"message"= msg
 	)
 	send2discordwh(data)
 
 /datum/admin_help/Close(key_name, silent)
 	. = ..()
+	if(silent)
+		return
+
 	if(!key_name)
 		var/show_charname = !GLOB.ahelp_tickets.IsAdminInHideCharname(usr?.ckey)
 		key_name = key_name(usr, FALSE, show_charname)
@@ -63,6 +94,8 @@
 
 /datum/admin_help/Resolve(key_name, silent)
 	. = ..()
+	if(silent)
+		return
 	if(!key_name)
 		var/show_charname = !GLOB.ahelp_tickets.IsAdminInHideCharname(usr?.ckey)
 		key_name = key_name(usr, FALSE, show_charname)
@@ -127,7 +160,6 @@
 		send2discordwh(data)
 
 /datum/admin_help_tickets/ClientLogout(client/C)
-	. = ..()
 	if(C.current_ticket)
 		var/list/data = list(
 			"type"= "logout",
@@ -135,6 +167,7 @@
 			"initiator"= "[C.ckey]",
 		)
 		send2discordwh(data)
+	. = ..()
 
 /datum/world_topic/reopen_ticket
 	keyword = "reopen"
@@ -226,7 +259,7 @@
 		return
 
 	var/irc_tagged = "[sender]"
-	ticket.handle_issue(irc_tagged)
+	ticket.handle_issue(irc_tagged, TRUE)
 
 /datum/world_topic/reply_ticket
 	keyword = "areply"
@@ -240,18 +273,17 @@
 		return
 
 	ticket.AddInteraction("<font color='blue'>IRC-PM from [irc_name]: [message]</font>")
-
 	// Send to player if connected
 	if(ticket.initiator)
-		to_chat(ticket.initiator, span_adminhelp("<b>Admin PM from-<font color='red'>(IRC) [irc_name]</font></b>: <span class='linkify'>[message]</span>"))
+		to_chat(ticket.initiator, "<font color='red' size='4'><b>-- Administrator private message --</b></font>")
+		to_chat(ticket.initiator, span_adminsay("Admin IRC PM from-<b>[irc_name]</b>: <span class='linkify'>[message]</span>"))
+		to_chat(ticket.initiator, span_adminsay("<i><a href='?viewticket=1'>View ticket</a></i>"))
+		admin_ticket_log(ticket.initiator, "<font color='purple'>IRC PM From [irc_name]: [message]</font>")
+		//always play non-admin recipients the adminhelp sound
 		SEND_SOUND(ticket.initiator, sound('sound/adminhelp.ogg'))
-		window_flash(ticket.initiator, ignorepref = TRUE)
 
-	// Log with real name for accountability (strip <br> for log readability)
-	var/log_msg = replacetext(message, "<br>", "\n")
-	log_admin_private("Ticket #[ticket.id]: (IRC) [irc_name] -> [ticket.initiator_key_name]: [log_msg]")
-	// Notify other admins in chat with real identity
-	message_admins(span_adminnotice("<font color='blue'>Ticket #[ticket.id] [ticket.TicketHref("Show Ticket")] - [irc_name] replied to [ticket.initiator_key_name]: [log_msg]</font>"))
+		message_admins(span_notice("Admin IRC PM from <b>[irc_name]</b> to-<b>[key_name(ticket.initiator)]</b>: <span class='linkify'>[message]</span>"))
+
 	var/list/data = list(
 		"type"= "areply",
 		"id"= "[ticket.id]",

@@ -136,9 +136,7 @@ GLOBAL_LIST_EMPTY(respawncounts)
 		var/msg = input(src, "Reply to the admin team:", "Adminhelp reply") as message|null
 		if(!msg)
 			return
-		// Route through the normal adminhelp flow so spam checks and
-		// ticket reuse logic continue to apply.
-		adminhelp(msg)
+		current_ticket.MessageNoRecipient(msg, FALSE)
 		return
 
 	if(href_list["playerlistrogue"])
