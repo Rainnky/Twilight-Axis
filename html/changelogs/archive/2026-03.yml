@@ -930,3 +930,9 @@
   - rscadd: Implements a remap of the University, Clinic, and the Sanctum of Pestra.
       All are now integrated in the original position of the University, directly
       south of the city keep.
+2026-03-20:
+  FreeStylaLT:
+  - balance: Arcyne campfires can be kicked over and vanish before expiring.
+  WeNeedMorePhoron:
+  - rscdel: Randomly generated half elven name no longer append "Halfelfen" as the
+      last name because that's stupid
