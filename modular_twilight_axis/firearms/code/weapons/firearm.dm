@@ -784,6 +784,7 @@
 	pixel_y = 0
 	pixel_x = 0
 	force = 10
+	damfactor = 0.8
 	possible_item_intents = list(/datum/intent/shoot/twilight_firearm, /datum/intent/arc/twilight_firearm, /datum/intent/mace/strike/wood)
 	associated_skill = /datum/skill/combat/maces
 	gripped_intents = null
