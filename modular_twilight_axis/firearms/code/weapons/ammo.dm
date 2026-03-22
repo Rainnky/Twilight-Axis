@@ -14,7 +14,6 @@
 	min_range = MIN_BULLET_RANGE
 	max_range = MAX_BULLET_RANGE
 	dam_falloff_factor = DMG_FALLOFF_BULLET
-	ap_falloff_factor = AP_FALLOFF_BULLET
 
 /obj/item/ammo_casing
 	var/obj/item/quiver/twilight_bullet/runicbag/linked_bag = null
