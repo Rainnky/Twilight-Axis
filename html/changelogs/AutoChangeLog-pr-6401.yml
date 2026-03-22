@@ -1,4 +1,4 @@
 author: "FreeStylaLT"
 delete-after: True
 changes:
-  - balance: "Reworked nets."
+  - rscadd: "Added a Toggle for Instrument songs."
