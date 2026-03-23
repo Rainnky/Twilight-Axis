@@ -2237,6 +2237,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/clothing/shoes/roguetown/boots/hammerhold_boots
 	donatitem = TRUE
 
+/datum/loadout_item/etruscan_boots
+	name = "Donator Kit - Этрусские ботфорты (только для женщин)"
+	category = list ("Обувь", "Донат")
+	path = /obj/item/enchantingkit/etruscan_boots
+	donatitem = TRUE
+
 // Одежда на шею
 
 /datum/loadout_item/woolencollar
