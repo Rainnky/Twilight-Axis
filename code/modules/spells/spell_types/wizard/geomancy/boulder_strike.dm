@@ -24,7 +24,7 @@
 	charge_drain = 1
 	charge_slowdown = CHARGING_SLOWDOWN_MEDIUM
 	charge_sound = 'sound/magic/charging_fire.ogg'
-	cooldown_time = 20 SECONDS
+	cooldown_time = 15 SECONDS
 
 	associated_skill = /datum/skill/magic/arcane
 	spell_impact_intensity = SPELL_IMPACT_HIGH
@@ -62,9 +62,10 @@
 	for(var/i in 1 to frag_count)
 		var/obj/projectile/magic/gravel_blast/frag = new(impact)
 		frag.damage = frag_damage
-		frag.range = 1
+		frag.range = 3
 		frag.ricochets_max = 0
 		frag.ricochet_chance = 0
+		frag.firer = firer
 		frag.name = "gravel fragment"
 		var/angle = rand(0, 359)
 		frag.fire(angle)
@@ -79,5 +80,7 @@
 			playsound(get_turf(M), 'sound/magic/magic_nulled.ogg', 100)
 			qdel(src)
 			return
+		if(M == firer)
+			damage = round(damage / 2)
 	return ..()
 

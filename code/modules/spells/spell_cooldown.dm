@@ -324,6 +324,14 @@
 	if(click_to_activate)
 		on_activation(on_who)
 
+		// Defensive cleanup: unregister ALL other spells' stale MOUSEDOWN/MOUSEUP
+		// from the client before we register ours. Belt-and-suspenders for edge cases.
+		if(on_who.client)
+			for(var/datum/action/cooldown/spell/other_spell in on_who.actions)
+				if(other_spell == src)
+					continue
+				other_spell.UnregisterSignal(on_who.client, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP))
+
 		if(charge_required)
 			// If pointed we setup signals to override mouse down to call InterceptClickOn()
 			RegisterSignal(owner.client, COMSIG_CLIENT_MOUSEDOWN, PROC_REF(start_casting))
@@ -353,8 +361,10 @@
 			on_who.balloon_alert(on_who, "Channeling was interrupted!")
 		on_deactivation(on_who, refund_cooldown = refund_cooldown)
 
+		// Clean up our own MOUSEDOWN/MOUSEUP and any lingering mob-level charge signals
 		if(on_who.client)
-			UnregisterSignal(on_who.client, COMSIG_CLIENT_MOUSEDOWN)
+			UnregisterSignal(on_who.client, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP))
+		UnregisterSignal(on_who, list(COMSIG_MOB_LOGOUT, COMSIG_MOB_DEATH, COMSIG_MOVABLE_MOVED, COMSIG_MOB_KICKED_SUCCESSFUL, COMSIG_CARBON_SWAPHANDS))
 
 	return ..()
 
@@ -450,7 +460,8 @@
 
 	return Activate(target)
 
-/// Returns TRUE if the caster is holding a non-implement rogueweapon (not a shield) in either hand.
+/// Returns TRUE if the caster is holding a non-implement rogueweapon (not a shield) or ranged weapon in either hand,
+/// or recently had one.
 /datum/action/cooldown/spell/proc/check_weapon_in_hand()
 	if(!weapon_cast_penalized)
 		return FALSE
@@ -458,6 +469,8 @@
 		return FALSE
 	var/mob/living/carbon/human/H = owner
 	for(var/obj/item/held in list(H.get_active_held_item(), H.get_inactive_held_item()))
+		if(istype(held, /obj/item/gun))
+			return TRUE
 		if(!istype(held, /obj/item/rogueweapon))
 			continue
 		if(istype(held, /obj/item/rogueweapon/shield))
@@ -465,6 +478,8 @@
 		var/obj/item/rogueweapon/W = held
 		if(W.implement_multiplier)
 			continue
+		return TRUE
+	if(H.has_status_effect(/datum/status_effect/recent_weapon))
 		return TRUE
 	return FALSE
 
@@ -632,7 +647,7 @@
 	// Check for weapon-in-hand penalty before cast
 	weapon_penalty_active = check_weapon_in_hand()
 	if(weapon_penalty_active)
-		to_chat(owner, span_warning("Holding a weapon in my hand interferes with my arcyne conduits! This spell is more exhausting than usual."))
+		to_chat(owner, span_warning("Recently holding a weapon interferes with my arcyne conduits! This spell is more exhausting than usual."))
 
 	// Actually cast the spell. Main effects go here
 	var/cast_result = cast(target)
