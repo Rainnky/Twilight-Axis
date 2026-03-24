@@ -40,12 +40,6 @@
 	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/boots.dmi'
 
 /obj/item/clothing/shoes/roguetown/boots/leather/twilight_etruscan_boots/heavy
-	name = "etruscan jackboots"
-	desc = "High boots that are both beautiful and comfortable"
-	icon_state = "etrboots"
-	item_state = "etrboots"
 	max_integrity = 100
 	armor = ARMOR_LEATHER_GOOD
 	color = null
-	icon = 'modular_twilight_axis/icons/roguetown/clothing/boots.dmi'
-	mob_overlay_icon = 'modular_twilight_axis/icons/roguetown/clothing/onmob/boots.dmi'
