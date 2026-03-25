@@ -242,8 +242,6 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	sanitize_erp_organ_prefs()
 	//TA Addition end - new ERP SYSTEM
 	
-	//ROGUETOWN
-	parallax = PARALLAX_INSANE
 
 	verify_keybindings_valid()
 	return TRUE

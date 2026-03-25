@@ -352,7 +352,7 @@ SUBSYSTEM_DEF(ticker)
 			readied_count++
 	var/estimated_pop = round(readied_count * 1.1)
 	gnollslot_update()
-	update_scaling_slots(estimated_pop)
+//	update_scaling_slots(estimated_pop)
 
 	can_continue = can_continue && SSjob.DivideOccupations(list()) 				//Distribute jobs
 
