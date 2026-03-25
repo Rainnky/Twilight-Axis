@@ -399,7 +399,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 		aspect.apply_variant(src, variant)
 	else if(has_mastery)
 		aspect.apply_variant(src, "mastery")
-	ensure_prestidigitation()
+	ensure_mage_basics()
 	return TRUE
 
 /datum/mind/proc/remove_aspect(datum/magic_aspect/aspect)
@@ -879,16 +879,45 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 	if(length(spell_list) == 1 && current)
 		addtimer(CALLBACK(src, PROC_REF(show_spell_tip)), 3 SECONDS)
 
-/// Ensure prestidigitation is present in the spell list if the caster should have it, then bump it to the end.
-/datum/mind/proc/ensure_prestidigitation()
+/// Ensure arcyne ward and prestidigitation are present and bumped to the end of the spell list.
+/// Arcyne Ward is skipped if a dragonhide/crystalhide variant is already present (those replace it).
+/datum/mind/proc/ensure_mage_basics()
+	if(!current || !HAS_TRAIT(current, TRAIT_ARCYNE))
+		return
+
+	// Arcyne Ward - only granted if mage_aspect_config has "ward" = TRUE
+	if(mage_aspect_config && mage_aspect_config["ward"])
+		var/datum/action/cooldown/spell/conjure_arcyne_ward/base_ward
+		var/datum/action/cooldown/spell/conjure_arcyne_ward/variant_ward
+		for(var/datum/action/cooldown/spell/conjure_arcyne_ward/ward in spell_list)
+			if(ward.type == /datum/action/cooldown/spell/conjure_arcyne_ward)
+				base_ward = ward
+			else
+				variant_ward = ward
+		if(variant_ward)
+			if(base_ward)
+				RemoveSpell(base_ward)
+		else if(base_ward)
+			var/obj/item/clothing/suit/roguetown/armor/regenerating/skin/arcyne_ward/active_ward = base_ward.conjured_ward
+			if(active_ward)
+				base_ward.conjured_ward = null
+				active_ward.linked_spell = null
+			RemoveSpell(base_ward)
+			var/datum/action/cooldown/spell/conjure_arcyne_ward/new_ward_spell = new /datum/action/cooldown/spell/conjure_arcyne_ward
+			AddSpell(new_ward_spell)
+			if(active_ward && !QDELETED(active_ward))
+				new_ward_spell.conjured_ward = active_ward
+				active_ward.linked_spell = new_ward_spell
+		else
+			AddSpell(new /datum/action/cooldown/spell/conjure_arcyne_ward)
+
+	// Prestidigitation - always last
 	var/datum/presto = get_spell(/obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 	if(!presto)
-		if(HAS_TRAIT(current, TRAIT_ARCYNE))
-			AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
-		return
-	// Remove and re-add to bump to end of both spell_list and action buttons
-	RemoveSpell(presto)
-	AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
+		AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
+	else
+		RemoveSpell(presto)
+		AddSpell(new /obj/effect/proc_holder/spell/targeted/touch/prestidigitation)
 
 
 /datum/mind/proc/show_spell_tip()
@@ -897,7 +926,7 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 
 /datum/mind/proc/setup_mage_aspects(list/config)
 	mage_aspect_config = config
-	ensure_prestidigitation()
+	ensure_mage_basics()
 	check_learnspell()
 
 /datum/mind/proc/check_learnspell()
@@ -917,6 +946,13 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 			var/util_points_spent = 0
 			for(var/path in GLOB.utility_spells)
 				if(has_spell(path))
+					var/is_picked = FALSE
+					for(var/datum/action/cooldown/spell/S in spell_list)
+						if(S.type == path && S.aspect_picked)
+							is_picked = TRUE
+							break
+					if(!is_picked)
+						continue
 					if(ispath(path, /datum/action/cooldown/spell))
 						var/datum/action/cooldown/spell/S = path
 						util_points_spent += initial(S.point_cost)
@@ -925,18 +961,18 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 						util_points_spent += initial(S.cost)
 			has_remaining_util = (util_points_spent < max_util)
 		if(!has_remaining_slots && !has_remaining_util)
-			RemoveSpell(/obj/effect/proc_holder/spell/self/learnspell)
+			RemoveSpell(/datum/action/cooldown/spell/learnspell)
 			return
 		// Still has available slots/points — remove and re-add LearnSpell to bump it to end
-		RemoveSpell(/obj/effect/proc_holder/spell/self/learnspell)
-		AddSpell(new /obj/effect/proc_holder/spell/self/learnspell(null))
+		RemoveSpell(/datum/action/cooldown/spell/learnspell)
+		AddSpell(new /datum/action/cooldown/spell/learnspell())
 		return
 
 	// Arcyne casters without aspects still need learnspell to open the aspect picker
 	if(current)
 		if(HAS_TRAIT(current, TRAIT_ARCYNE) && !LAZYLEN(major_aspects))
-			RemoveSpell(/obj/effect/proc_holder/spell/self/learnspell)
-			AddSpell(new /obj/effect/proc_holder/spell/self/learnspell(null))
+			RemoveSpell(/datum/action/cooldown/spell/learnspell)
+			AddSpell(new /datum/action/cooldown/spell/learnspell())
 			return
 
 	return
@@ -979,6 +1015,15 @@ GLOBAL_LIST_EMPTY(personal_objective_minds)
 //To remove a specific spell from a mind
 /datum/mind/proc/RemoveSpell(datum/spell)
 	if(!spell)
+		return FALSE
+
+	// Handle type paths directly — match by type in spell_list
+	if(ispath(spell))
+		for(var/datum/S in spell_list)
+			if(S.type == spell)
+				spell_list -= S
+				qdel(S)
+				return TRUE
 		return FALSE
 
 	// Handle new action-based spells

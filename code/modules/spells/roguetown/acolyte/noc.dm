@@ -232,7 +232,7 @@ Somewhat fitting, considering the broadness of their domains. I also just think 
 	associated_skill = /datum/skill/magic/holy
 	var/chosen_bundle
 	var/list/utility_bundle = list(	//Utility means exactly that. Nothing offensive and nothing that can affect another person negatively. (Barring Fetch)
-		/obj/effect/proc_holder/spell/self/message,
+		/datum/action/cooldown/spell/message,
 		/datum/action/cooldown/spell/leap,
 		/datum/action/cooldown/spell/lesser_knock,
 		/datum/action/cooldown/spell/mending,
@@ -241,7 +241,7 @@ Somewhat fitting, considering the broadness of their domains. I also just think 
 	)
 	var/list/offensive_bundle = list(	//This is not meant to make them combat-capable. A weak offensive, and mostly defensive option.
 		/datum/action/cooldown/spell/projectile/greater_arcyne_bolt,
-		/datum/action/cooldown/spell/conjure_armor/dragonhide,
+		/datum/action/cooldown/spell/conjure_arcyne_ward/dragonhide,
 		/datum/action/cooldown/spell/arcyne_forge,
 	)
 	var/list/buff_bundle = list(	//Buffs! An Acolyte being a supportive caster is 100% what they already are, so this fits neatly. No debuffs -- every patron already has a plethora of those.

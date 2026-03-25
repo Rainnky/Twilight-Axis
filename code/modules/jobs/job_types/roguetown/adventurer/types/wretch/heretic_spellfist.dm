@@ -17,7 +17,7 @@
 		STATKEY_PER = 1,
 		STATKEY_CON = 1
 	)
-	subclass_mage_aspects = list("mastery" = FALSE, "major" = 0, "minor" = 0, "utilities" = 4)
+	subclass_mage_aspects = list("mastery" = FALSE, "major" = 0, "minor" = 0, "utilities" = 4, "ward" = TRUE)
 	subclass_skills = list(
 		/datum/skill/combat/wrestling = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/unarmed = SKILL_LEVEL_EXPERT,
@@ -65,11 +65,11 @@
 	)
 
 	if(H.mind)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/fist_of_psydon)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/grasp_of_psydon)
+		H.mind.AddSpell(new /datum/action/cooldown/spell/fist_of_psydon)
+		H.mind.AddSpell(new /datum/action/cooldown/spell/grasp_of_psydon())
 		H.mind.AddSpell(new /datum/action/cooldown/spell/blink)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/storm_of_psydon)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/self/empower_weapon)
+		H.mind.AddSpell(new /datum/action/cooldown/spell/storm_of_psydon())
+		H.mind.AddSpell(new /datum/action/cooldown/spell/empower_weapon)
 		H.mind.AddSpell(new /datum/action/cooldown/spell/mending)
 
 	var/datum/status_effect/buff/arcyne_momentum/momentum = H.apply_status_effect(/datum/status_effect/buff/arcyne_momentum)

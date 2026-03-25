@@ -128,7 +128,7 @@
 	H.adjust_skillrank(/datum/skill/combat/knives, 5, TRUE)
 	H.adjust_skillrank(/datum/skill/craft/crafting, 1, TRUE)
 	H.adjust_skillrank(/datum/skill/misc/medicine, 3, TRUE)
-	H?.mind.setup_mage_aspects(list("mastery" = TRUE, "major" = 2, "minor" = 3, "utilities" = 9))
+	H?.mind.setup_mage_aspects(list("mastery" = TRUE, "major" = 2, "minor" = 3, "utilities" = 9, "ward" = TRUE))
 	// Give it decent combat stats to make up for loss of 2 extra lives
 	H.change_stat(STATKEY_STR, 3)
 	H.change_stat(STATKEY_INT, 5)
@@ -145,7 +145,7 @@
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/bonechill)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/raise_undead)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/raise_undead_formation)
-		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/projectile/bloodlightning)
+		H.mind.AddSpell(new /datum/action/cooldown/spell/projectile/blood_bolt())
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/diagnose/secular)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/minion_order)
 		H.mind.AddSpell(new /obj/effect/proc_holder/spell/invoked/gravemark)

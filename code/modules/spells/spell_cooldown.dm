@@ -160,7 +160,9 @@
 	/// If TRUE, this spell benefits from implement damage bonus when the caster holds a spell implement.
 	// Only poke spells (low CD staple spammable projectiles) should ever get this.
 	var/is_implement_scaled_spell = FALSE
-	var/implement_aspect_name = ""
+	/// The school this spell attunes to. If set, holding a spell implement while casting will attune it (glow + name).
+	/// Use ASPECT_NAME defines (e.g. ASPECT_NAME_PYROMANCY). Null means no attunement.
+	var/attunement_school
 	/// If TRUE, casting this spell while holding a non-implement rogueweapon incurs a 30% cooldown and stamina penalty.
 	/// Offensive and CC spells should be TRUE. Buffs and utilities should be FALSE.
 	var/weapon_cast_penalized = FALSE
@@ -208,8 +210,18 @@
 /datum/action/cooldown/spell/Destroy()
 	QDEL_NULL(mob_charge_effect)
 	QDEL_NULL(spell_glow_light)
-	if(charge_required && owner)
-		cancel_casting()
+	// Defensive: clean up ALL spell state regardless of current phase
+	if(auto_cancel_timer)
+		deltimer(auto_cancel_timer)
+		auto_cancel_timer = null
+	if(owner)
+		if(currently_charging || charged)
+			cancel_casting()
+		// Unregister any lingering signals from any phase
+		if(owner.client)
+			UnregisterSignal(owner.client, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP))
+		UnregisterSignal(owner, list(COMSIG_MOB_LOGOUT, COMSIG_MOB_DEATH, COMSIG_MOVABLE_MOVED, COMSIG_MOB_KICKED_SUCCESSFUL, COMSIG_CARBON_SWAPHANDS))
+	STOP_PROCESSING(SSfastprocess, src)
 	charge_sound_instance = null
 	return ..()
 
@@ -321,16 +333,19 @@
 		if(on_who.hud_used)
 			on_who.hud_used.quad_intents?.switch_intent(null)
 
+	// Deactivate any active proc_holder ranged ability before we take over click_intercept
+	if(on_who.ranged_ability)
+		on_who.ranged_ability.deactivate(on_who)
+
 	if(click_to_activate)
 		on_activation(on_who)
 
-		// Defensive cleanup: unregister ALL other spells' stale MOUSEDOWN/MOUSEUP
-		// from the client before we register ours. Belt-and-suspenders for edge cases.
 		if(on_who.client)
 			for(var/datum/action/cooldown/spell/other_spell in on_who.actions)
 				if(other_spell == src)
 					continue
 				other_spell.UnregisterSignal(on_who.client, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP))
+			UnregisterSignal(on_who.client, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP))
 
 		if(charge_required)
 			// If pointed we setup signals to override mouse down to call InterceptClickOn()
@@ -348,6 +363,8 @@
 /datum/action/cooldown/spell/on_retrigger_reselect()
 	if(!owner?.client || !click_to_activate)
 		return
+	// Defensive: ensure clean slate before re-registering
+	UnregisterSignal(owner.client, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP))
 	if(charge_required)
 		RegisterSignal(owner.client, COMSIG_CLIENT_MOUSEDOWN, PROC_REF(start_casting))
 	else
@@ -635,6 +652,7 @@
 	// Extra safety
 	if(!check_cost())
 		if(charge_required && click_to_activate && owner?.client)
+			UnregisterSignal(owner.client, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP))
 			RegisterSignal(owner.client, COMSIG_CLIENT_MOUSEDOWN, PROC_REF(start_casting))
 		return FALSE
 
@@ -647,7 +665,17 @@
 	// Check for weapon-in-hand penalty before cast
 	weapon_penalty_active = check_weapon_in_hand()
 	if(weapon_penalty_active)
-		to_chat(owner, span_warning("Recently holding a weapon interferes with my arcyne conduits! This spell is more exhausting than usual."))
+		if(ishuman(owner))
+			var/mob/living/carbon/human/wpn_check = owner
+			var/has_weapon_now = FALSE
+			for(var/obj/item/held in list(wpn_check.get_active_held_item(), wpn_check.get_inactive_held_item()))
+				if(istype(held, /obj/item/gun) || (istype(held, /obj/item/rogueweapon) && !istype(held, /obj/item/rogueweapon/shield)))
+					has_weapon_now = TRUE
+					break
+			if(has_weapon_now)
+				to_chat(owner, span_warning("Holding a weapon interferes with my arcyne conduits! This spell is more exhausting than usual."))
+			else
+				to_chat(owner, span_warning("My hands still tingle from holding a weapon - my arcyne conduits are disrupted! This spell is more exhausting than usual."))
 
 	// Actually cast the spell. Main effects go here
 	var/cast_result = cast(target)
@@ -656,6 +684,7 @@
 	if(cast_result == FALSE)
 		weapon_penalty_active = FALSE
 		if(charge_required && click_to_activate && owner?.client)
+			UnregisterSignal(owner.client, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP))
 			RegisterSignal(owner.client, COMSIG_CLIENT_MOUSEDOWN, PROC_REF(start_casting))
 		build_all_button_icons()
 		return FALSE
@@ -945,10 +974,14 @@
 /datum/action/cooldown/spell/proc/cancel_casting()
 	if(QDELETED(src)) // Timer
 		return
+	if(auto_cancel_timer)
+		deltimer(auto_cancel_timer)
+		auto_cancel_timer = null
 	charged = FALSE
 	end_charging()
 	// Re-register mousedown so the spell can be cast again without reselecting
 	if(owner?.client && click_to_activate && charge_required)
+		UnregisterSignal(owner.client, list(COMSIG_CLIENT_MOUSEDOWN, COMSIG_CLIENT_MOUSEUP))
 		RegisterSignal(owner.client, COMSIG_CLIENT_MOUSEDOWN, PROC_REF(start_casting))
 
 /// Checks if the current OWNER of the spell is in a valid state to say the spell's invocation
@@ -1270,6 +1303,9 @@
 /datum/action/cooldown/spell/proc/start_casting(client/source, atom/_target, turf/location, control, params)
 	SIGNAL_HANDLER
 
+	if(QDELETED(src) || QDELETED(owner))
+		return
+
 	var/list/modifiers = params2list(params)
 	if(LAZYACCESS(modifiers, SHIFT_CLICKED))
 		return
@@ -1283,7 +1319,7 @@
 		return
 	if(!isturf(owner.loc))
 		return
-	if(charge_started_at)
+	if(charge_started_at || currently_charging)
 		return
 
 	if(istype(_target, /atom/movable/screen/inventory))
@@ -1317,9 +1353,13 @@
 /datum/action/cooldown/spell/proc/try_casting(client/source, atom/_target, turf/location, control, params)
 	SIGNAL_HANDLER
 
+	if(QDELETED(src) || QDELETED(owner))
+		return
+
 	// Stop the failsafe timer
 	if(auto_cancel_timer)
 		deltimer(auto_cancel_timer)
+		auto_cancel_timer = null
 
 	// This can happen
 	if(!source || !charge_started_at || !can_cast_spell(TRUE))
@@ -1364,12 +1404,16 @@
 /datum/action/cooldown/spell/proc/cast_after_charge(client/source, atom/_target, turf/location, control, params)
 	SIGNAL_HANDLER
 
+	if(QDELETED(src) || QDELETED(owner))
+		return
+
 	var/list/modifiers = params2list(params)
 	if(!LAZYACCESS(modifiers, MIDDLE_CLICK))
 		return
 
 	if(auto_cancel_timer)
 		deltimer(auto_cancel_timer)
+		auto_cancel_timer = null
 
 	if(!source || !charged || !can_cast_spell(TRUE))
 		cancel_casting()
@@ -1438,6 +1482,8 @@
 /datum/action/cooldown/spell/proc/signal_cancel()
 	SIGNAL_HANDLER
 
+	if(QDELETED(src))
+		return
 	cancel_casting()
 	if(!owner)
 		return
@@ -1446,6 +1492,8 @@
 /datum/action/cooldown/spell/proc/signal_cancel_full()
 	SIGNAL_HANDLER
 
+	if(QDELETED(src))
+		return
 	cancel_casting()
 
 // Spell visual effects — mob-owned for safety (if spell hard-deletes, mob Destroy still cleans up).
