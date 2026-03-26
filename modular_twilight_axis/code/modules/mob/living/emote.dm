@@ -184,7 +184,7 @@
 		else if(H.zone_selected == BODY_ZONE_PRECISE_L_HAND || H.zone_selected == BODY_ZONE_PRECISE_R_HAND)
 			message_param = "щипает %t за руку."
 		else if(H.zone_selected == BODY_ZONE_CHEST)
-			message_param = "шлепает грудь %t."
+			message_param = "щипает грудь %t."
 		else
 			var/ru_zone_selected = zone_translations[user.zone_selected]
 			message_param = "щипает %t за [ru_zone_selected]."
