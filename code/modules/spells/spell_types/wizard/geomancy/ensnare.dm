@@ -4,12 +4,12 @@
 	desc = "Tendrils of arcyne force hold anyone in a small area in place for a short while."
 	button_icon_state = "ensnare"
 	sound = 'sound/magic/webspin.ogg'
-	spell_color = GLOW_COLOR_METAL
+	spell_color = GLOW_COLOR_EARTHEN
 	glow_intensity = GLOW_INTENSITY_MEDIUM
 	attunement_school = ASPECT_NAME_GEOMANCY
 
 	click_to_activate = TRUE
-	cast_range = 7
+	cast_range = SPELL_RANGE_GROUND
 
 	primary_resource_type = SPELL_COST_STAMINA
 	primary_resource_cost = SPELLCOST_MAJOR_AOE

@@ -12,7 +12,7 @@
 	glow_intensity = GLOW_INTENSITY_MEDIUM
 
 	projectile_type = /obj/projectile/magic/soulshot
-	cast_range = 8
+	cast_range = SPELL_RANGE_PROJECTILE
 	point_cost = 3
 
 	primary_resource_type = SPELL_COST_STAMINA
@@ -27,7 +27,7 @@
 	charge_drain = 1
 	charge_slowdown = CHARGING_SLOWDOWN_SMALL
 	charge_sound = 'sound/magic/charging.ogg'
-	cooldown_time = 10 SECONDS
+	cooldown_time = 8 SECONDS
 	is_implement_scaled_spell = TRUE
 	attunement_school = ASPECT_NAME_KINESIS
 

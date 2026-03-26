@@ -7,11 +7,12 @@
 #define GLOW_COLOR_METAL "#B0B8C8" // Silver-steel
 #define GLOW_COLOR_EARTHEN "#8B6914" // Brown, for earthen / stone spells
 #define GLOW_COLOR_DISPLACEMENT "#9400D3" // Purple, for generic displacement / CC spells
-#define GLOW_COLOR_ARCANE "#6495ED" // Light Blue, for generic arcane spells
+#define GLOW_COLOR_ARCANE "#7878F0" // Blue-purple, for generic arcane spells
 #define GLOW_COLOR_KINESIS "#7B68EE" // Purple, pure arcana
 #define GLOW_COLOR_HEX "#b884f8" // Hex purple
 #define GLOW_COLOR_ILLUSION "#CE93D8" // Illusory pink-purple
 #define GLOW_COLOR_HEARTH "#FF8A65" // Warm hearthfire salmon
+#define GLOW_COLOR_LIGHT "#FFFDE7" // Pale warm white, for light spells
 
 // Constants for spell glow intensity. These are literally 1 2 3 4 but it is for documenting design purposes
 #define GLOW_INTENSITY_LOW 1 // For spam projectiles or generic buffs
@@ -63,8 +64,8 @@
 #define SPELLCOST_MAJOR_SKILL        50
 
 // Spellblade specific cost
-#define SPELLCOST_SB_POKE 15 // Roughly 3 attacks worth
-#define SPELLCOST_SB_MOBILITY 15 // Dashes / Teleports / Anchor
+#define SPELLCOST_SB_POKE 12 // Roughly 3 attacks worth
+#define SPELLCOST_SB_MOBILITY 12 // Dashes / Teleports / Anchor
 #define SPELLCOST_SB_ULT 50 // Their ult
 
 // Standardized charge times — keeps poke/major/heavy spells consistent for balance passes
@@ -78,6 +79,10 @@
 #define MAGE_PROJ_MEDIUM      1.75  // Mid-range projectiles (spitfire, lance)
 #define MAGE_PROJ_SLOW        2     // Heavier projectiles (gravel blast)
 #define MAGE_PROJ_VERY_SLOW   2.5   // Looming doom (fireball)
+
+// Standardized spell ranges
+#define SPELL_RANGE_PROJECTILE 10  // Standard projectile travel distance and projectile spell cast range
+#define SPELL_RANGE_GROUND     7   // Standard ground-targeted / AOE spell cast range
 
 // Charging slowdown tiers — how much the caster is slowed while charging
 #define CHARGING_SLOWDOWN_NONE 0       // Spellblade abilities, no movement penalty

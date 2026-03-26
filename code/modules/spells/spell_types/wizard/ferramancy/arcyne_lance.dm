@@ -11,11 +11,11 @@
 
 	projectile_type = /obj/projectile/magic/arcyne_lance
 	projectile_type_arc = /obj/projectile/magic/arcyne_lance/arc
-	cast_range = 9
+	cast_range = SPELL_RANGE_PROJECTILE
 	point_cost = 3
 
 	primary_resource_type = SPELL_COST_STAMINA
-	primary_resource_cost = SPELLCOST_MAJOR_PROJECTILE
+	primary_resource_cost = SPELLCOST_MINOR_PROJECTILE
 
 	invocations = list("Hastae Ferri!")
 	invocation_type = INVOCATION_SHOUT
@@ -39,7 +39,7 @@
 	icon = 'icons/obj/magic_projectiles.dmi'
 	icon_state = "air_blade_stab"
 	guard_deflectable = TRUE
-	damage = 60
+	damage = 55
 	damage_type = BRUTE
 	woundclass = BCLASS_STAB
 	npc_simple_damage_mult = 1.5
@@ -47,7 +47,7 @@
 	speed = MAGE_PROJ_MEDIUM
 	armor_penetration = PEN_LIGHT
 	movement_type = UNSTOPPABLE
-	range = 9
+	range = SPELL_RANGE_PROJECTILE
 	flag = "piercing"
 	hitsound = 'sound/combat/hits/bladed/genthrust (1).ogg'
 	/// How many mob targets have been pierced

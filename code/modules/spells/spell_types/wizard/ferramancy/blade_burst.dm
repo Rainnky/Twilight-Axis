@@ -12,7 +12,7 @@
 	attunement_school = ASPECT_NAME_FERRAMANCY
 
 	click_to_activate = TRUE
-	cast_range = 7
+	cast_range = SPELL_RANGE_GROUND
 
 	primary_resource_type = SPELL_COST_STAMINA
 	primary_resource_cost = SPELLCOST_MAJOR_AOE
@@ -62,7 +62,7 @@
 	for(var/turf/affected_turf in get_hear(area_of_effect, T))
 		if(!(affected_turf in get_hear(cast_range, source_turf)))
 			continue
-		new /obj/effect/temp_visual/trap(affected_turf)
+		new /obj/effect/temp_visual/trap/ferramancy(affected_turf)
 	playsound(T, 'sound/magic/blade_burst.ogg', 80, TRUE, soundping = TRUE)
 
 	addtimer(CALLBACK(src, PROC_REF(blade_burst_detonate), T, source_turf, H), delay)
@@ -88,7 +88,7 @@
 			if(ishuman(caster) && ishuman(L))
 				var/target_zone = caster.zone_selected || BODY_ZONE_CHEST
 				arcyne_strike(caster, L, null, total_damage, target_zone, \
-					BCLASS_STAB, spell_name = "Blade Burst", \
+					BCLASS_CUT, spell_name = "Blade Burst", \
 					damage_type = BRUTE, npc_simple_damage_mult = npc_simple_damage_mult, \
 					skip_animation = TRUE)
 			else
@@ -110,9 +110,13 @@
 	duration = 12
 	layer = MASSIVE_OBJ_LAYER
 
+/obj/effect/temp_visual/trap/ferramancy
+	color = GLOW_COLOR_METAL
+	light_color = GLOW_COLOR_METAL
+
 /obj/effect/temp_visual/blade_burst
-	icon = 'icons/effects/effects.dmi'
-	icon_state = "stab"
+	icon = 'icons/effects/wizard_spell_effects.dmi'
+	icon_state = "grassblade"
 	dir = NORTH
 	name = "arcyne blade"
 	desc = "Get out of the way!"
