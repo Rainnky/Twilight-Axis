@@ -15,6 +15,8 @@ type Origin = {
   selected: boolean;
   available: boolean;
   required_races_text?: string | null;
+  language_text?: string | null;
+  trait_text?: string | null;
   state_id: string;
   state_name: string;
   subgroup_name?: string | null;
@@ -343,6 +345,29 @@ export const OriginPicker = () => {
                           {previewOrigin.required_races_text
                             ? ` Нужны расы: ${previewOrigin.required_races_text}.`
                             : ''}
+                        </div>
+                      )}
+
+                      {(previewOrigin.language_text || previewOrigin.trait_text) && (
+                        <div
+                          style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            gap: '0.2rem',
+                            color: '#d9d0ff',
+                            fontSize: '0.95rem',
+                            lineHeight: 1.35,
+                          }}>
+                          {previewOrigin.language_text && (
+                            <div>
+                              <b>Даёт язык:</b> {previewOrigin.language_text}
+                            </div>
+                          )}
+                          {previewOrigin.trait_text && (
+                            <div>
+                              <b>Даёт трейт:</b> {previewOrigin.trait_text}
+                            </div>
+                          )}
                         </div>
                       )}
 

@@ -83,6 +83,79 @@
 
 	return result
 
+/proc/origin_picker_language_name(language_ref)
+	var/static/list/language_name_cache = list()
+
+	if(istype(language_ref, /datum/language))
+		var/datum/language/language_instance = language_ref
+		if(language_instance.name)
+			return language_instance.name
+		return "[language_instance.type]"
+
+	if(!ispath(language_ref, /datum/language))
+		return null
+
+	var/cache_key = "[language_ref]"
+	if(language_name_cache[cache_key])
+		return language_name_cache[cache_key]
+
+	var/datum/language/language_instance = new language_ref()
+	var/language_name = null
+
+	if(language_instance)
+		language_name = language_instance.name
+
+	if(!language_name)
+		language_name = "[language_ref]"
+
+	language_name_cache[cache_key] = language_name
+
+	if(language_instance)
+		qdel(language_instance)
+
+	return language_name
+
+/proc/origin_picker_language_list_text(list/language_refs)
+	if(!islist(language_refs) || !length(language_refs))
+		return null
+
+	var/list/names = list()
+	for(var/language_ref in language_refs)
+		var/language_name = origin_picker_language_name(language_ref)
+		if(language_name)
+			names += language_name
+
+	if(!length(names))
+		return null
+
+	return english_list(names, nothing_text = null, and_text = " и ")
+
+/proc/origin_picker_trait_name(trait_ref)
+	if(isnull(trait_ref))
+		return null
+
+	var/trait_name = "[trait_ref]"
+	if(!length(trait_name))
+		return null
+
+	trait_name = replacetext(trait_name, "_", " ")
+	return capitalize(lowertext(trait_name))
+
+/proc/origin_picker_trait_list_text(list/trait_refs)
+	if(!islist(trait_refs) || !length(trait_refs))
+		return null
+
+	var/list/names = list()
+	for(var/trait_ref in trait_refs)
+		var/trait_name = origin_picker_trait_name(trait_ref)
+		if(trait_name)
+			names += trait_name
+
+	if(!length(names))
+		return null
+
+	return english_list(names, nothing_text = null, and_text = " и ")
+
 /datum/asset/simple/origin_picker
 	assets = list(
 		"origin_picker_map.jpg" = 'modular_twilight_axis/lore/interface/origin_picker_map.jpg',
@@ -194,6 +267,15 @@
 					if(!is_available && islist(O.races) && length(O.races))
 						required_races_text = origin_picker_species_list_text(O.races)
 
+					var/language_text = origin_picker_language_list_text(O.added_languages)
+					if(O.extra_language)
+						if(language_text)
+							language_text += "; свободный выбор языка"
+						else
+							language_text = "свободный выбор языка"
+
+					var/trait_text = origin_picker_trait_list_text(O.added_traits)
+
 					var/is_selected = FALSE
 					if(current_origin && istype(current_origin, /datum/virtue/origin))
 						is_selected = (current_origin.type == O.type)
@@ -210,6 +292,8 @@
 						"selected" = is_selected,
 						"available" = is_available,
 						"required_races_text" = required_races_text,
+						"language_text" = language_text,
+						"trait_text" = trait_text,
 						"state_id" = state_id,
 						"state_name" = state_name,
 						"subgroup_name" = O.list_subgroup_name ? O.list_subgroup_name : null,
