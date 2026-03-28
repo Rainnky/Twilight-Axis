@@ -41,5 +41,5 @@
 
 /obj/item/clothing/shoes/roguetown/boots/leather/twilight_etruscan_boots/heavy
 	max_integrity = 100
-	armor = ARMOR_LEATHER_GOOD
+	armor = ARMOR_LEATHER
 	color = null
