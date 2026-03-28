@@ -14,7 +14,7 @@
 		STATKEY_CON = 2,
 		STATKEY_WIL = 3
 	)
-	subclass_skills = list( 
+	subclass_skills = list(
 		/datum/skill/magic/holy = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/maces = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/swords = SKILL_LEVEL_EXPERT,
