@@ -1041,34 +1041,34 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/clothing/ring/band
 
 /datum/loadout_item/chaperon
-    name = "Chaperon (Normal)"
-    category = "Головные уборы"
-    path = /obj/item/clothing/head/roguetown/chaperon
+	name = "Chaperon (Normal)"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/chaperon
 
 /datum/loadout_item/chaperon/alt
-    name = "Chaperon (Alt)"
-    category = "Головные уборы"
-    path = /obj/item/clothing/head/roguetown/chaperon/greyscale
+	name = "Chaperon (Alt)"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/chaperon/greyscale
 
 /datum/loadout_item/chaperon/burgherc
-    name = "Noble's Chaperon"
-    category = "Головные уборы"
-    path = /obj/item/clothing/head/roguetown/chaperon/noble
+	name = "Noble's Chaperon"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/chaperon/noble
 
 /datum/loadout_item/jesterhatc
-    name = "Jester's Hat"
-    category = "Головные уборы"
-    path = /obj/item/clothing/head/roguetown/jester
+	name = "Jester's Hat"
+	category = "Головные уборы"
+	path = /obj/item/clothing/head/roguetown/jester
 
 /datum/loadout_item/jestertunickc
-    name = "Jester's Tunick"
-    category = "Одежда"
-    path = /obj/item/clothing/suit/roguetown/shirt/jester
+	name = "Jester's Tunick"
+	category = "Одежда"
+	path = /obj/item/clothing/suit/roguetown/shirt/jester
 
 /datum/loadout_item/jestershoess
-    name = "Jester's Shoes"
-    category = "Обувь"
-    path = /obj/item/clothing/shoes/roguetown/jester
+	name = "Jester's Shoes"
+	category = "Обувь"
+	path = /obj/item/clothing/shoes/roguetown/jester
 
 /datum/loadout_item/cotehardie
 	name = "Fitted Coat"
@@ -1773,8 +1773,20 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 
 /datum/loadout_item/stargazer
 	name = "Мантия звездочета"
-	category = list ("Донат", "Одежда")
+	category = list("Одежда", "Донат")
 	path = /obj/item/clothing/suit/roguetown/shirt/robe/noc/stargazer
+	donatitem = TRUE
+
+/datum/loadout_item/donator_maesune
+	name = "Donator Item - Mercantile Union's Garb"
+	category = list("Одежда", "Донат")
+	path = /obj/item/clothing/suit/roguetown/shirt/maesune
+	donatitem = TRUE
+
+/datum/loadout_item/donator_funky
+	name = "Trimmed down padded dress"
+	category = list("Одежда", "Донат")
+	path = /obj/item/clothing/suit/roguetown/shirt/dress/funkydress
 	donatitem = TRUE
 
 /datum/loadout_item/donat/corset
@@ -2301,6 +2313,19 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	donatitem = TRUE
 	donat_tier = 2
 
+/datum/loadout_item/donator_koruu
+	name = "Donator Kit - Well-Worn Bamboo Hat"
+	category = list("Головные уборы", "Донат")
+	path = /obj/item/clothing/head/roguetown/mentorhat/koruu
+	donatitem = TRUE
+
+/datum/loadout_item/donator_eekasqueak
+	name = "Saffira encrusted tiara"
+	category = list("Головные уборы", "Донат")
+	path = /obj/item/clothing/head/roguetown/circlet/saffiratiara
+	donatitem = TRUE
+	donat_tier = 2
+
 // Пояса
 
 /datum/loadout_item/donat/hammerhold_sash
@@ -2474,6 +2499,30 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	name = "Decorated Scabbard, Silver"
 	category = list("Оружие", "Донат")
 	path = /obj/item/rogueweapon/scabbard/sword/noble
+	donatitem = TRUE
+
+/datum/loadout_item/donator_maesune_shield
+	name = "Donator Kit - Silver Shield - Required: Kite Shield"
+	category = list("Оружие", "Донат")
+	path = /obj/item/enchantingkit/weapon/maesune_shield
+	donatitem = TRUE
+
+/datum/loadout_item/donator_maesune_sabre
+	name = "Donator Kit - Decorated Sabre - Required: Falchion, Longsword, Sword, Silver Sword Or Kriegmesser"
+	category = list("Оружие", "Донат")
+	path = /obj/item/enchantingkit/weapon/maesune_sabre
+	donatitem = TRUE
+
+/datum/loadout_item/donator/koruu_kukri
+	name = "Donator Kit - Leachwhacker - Required: Any Dagger"
+	category = list("Оружие", "Донат")
+	path = /obj/item/enchantingkit/weapon/koruu_kukri
+	donatitem = TRUE
+
+/datum/loadout_item/donator/koruu_kukri_warden
+	name = "Donator Kit - Warden Leachwhacker - Required: Warden's Seax"
+	category = list("Оружие", "Донат")
+	path = /obj/item/enchantingkit/weapon/koruu_kukri/warden
 	donatitem = TRUE
 
 // Sanguine Kits
