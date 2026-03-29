@@ -1478,7 +1478,6 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = list("Оружие", "Донат")
 	path = /obj/item/enchantingkit/weapon/eiren
 	donatitem = TRUE
-	donat_tier = 2
 
 /datum/loadout_item/donator_eiren2
 	name = "Donator Kit - Lunae - Required: Sabre"
@@ -1497,7 +1496,6 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = list("Оружие", "Донат")
 	path = /obj/item/enchantingkit/weapon/waff
 	donatitem = TRUE
-	donat_tier = 2
 
 /datum/loadout_item/donator_inverserun
 	name = "Donator Kit - Votive Thorns - Required: Any Zweihander"
@@ -1702,14 +1700,12 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = list("Оружие", "Донат")
 	path = /obj/item/enchantingkit/koruu_glaive
 	donatitem = TRUE
-	donat_tier = 2
 
 /datum/loadout_item/donator_drd_lsword
 	name = "Donator Kit - Ornate Longsword - Required: Longsword"
 	category = list("Оружие", "Донат")
 	path = /obj/item/enchantingkit/drd_lsword
 	donatitem = TRUE
-	donat_tier = 2
 
 /datum/loadout_item/donator_weaponkitaxe
 	name = "Donator Kit - Valorian Axe - Required: Iron Axe or an Iron Hatchet"
@@ -1746,7 +1742,6 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	path = /obj/item/enchantingkit/dakken_alloybsword
 	category = list("Оружие", "Донат")
 	donatitem = TRUE
-	donat_tier = 2
 
 /datum/loadout_item/donator/eoranspike
 	name = "Donator Kit - Eoran Spike - Required: Steel Dagger"
