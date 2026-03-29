@@ -41,6 +41,15 @@
 		temp_recipe = new path()
 		var/datum/runeritual/r = temp_recipe
 		category = r.category
+	else if(ispath(path, /datum/ritual))
+		if(ispath(path, /datum/ritual/transmutation))
+			category = "Transmutation"
+		else if(ispath(path, /datum/ritual/fleshcrafting))
+			category = "Fleshcrafting"
+		else if(ispath(path, /datum/ritual/servantry))
+			category = "Servantry"
+		else
+			category = "Rituals"
 	else if(ispath(path, /obj/effect/proc_holder/spell))
 		var/tier = initial(path:spell_tier)
 		category = "Tier [tier]"
