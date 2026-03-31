@@ -99,6 +99,7 @@
 		/obj/item/rogueweapon/estoc							= /obj/item/rogueweapon/estoc/triumph
 		)
 	result_item = null
+	icon_loadout = /obj/item/rogueweapon/estoc/triumph
 
 /obj/item/enchantingkit/triumph_weaponkit_psy
 	name = "'Psycrucifix' longsword morphing elixir"

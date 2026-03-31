@@ -549,6 +549,7 @@
 //Maesune - Sabre/Shield
 /obj/item/enchantingkit/weapon/maesune_shield
 	name = "'Fy Annwyl' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Kite Shield"
 	target_items = list(
 		/obj/item/rogueweapon/shield/tower/metal
 	)
@@ -556,6 +557,7 @@
 
 /obj/item/enchantingkit/weapon/maesune_sabre
 	name = "'Y Ceirw' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Falchion, Longsword, Sword, Silver Sword Or Kriegmesser"
 	target_items = list(
 		/obj/item/rogueweapon/sword/short/falchion,
 		/obj/item/rogueweapon/sword/long,
@@ -569,6 +571,7 @@
 //NeroCavalier - Sword
 /obj/item/enchantingkit/weapon/noire_flsword
 	name = "'Blacksteel Longsword' morphing elixir"
+	desc = "A small container of special morphing dust, perfect to make a specifc item. Required: Longsword"
 	target_items = list(
 		/obj/item/rogueweapon/sword/long
 	)
