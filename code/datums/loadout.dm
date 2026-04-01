@@ -1758,7 +1758,7 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	donatitem = TRUE
 	donat_tier = 2
 
-/datum/loadout_item/donator/eoranspike
+/datum/loadout_item/donator_eoranspike
 	name = "Donator Kit - Eoran Spike - Required: Steel Dagger"
 	path = /obj/item/enchantingkit/shudderfly_dagger
 	category = list("Оружие", "Донат")
@@ -2507,13 +2507,13 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	donatitem = TRUE
 	donat_tier = 2
 
-/datum/loadout_item/donator/koruu_kukri
+/datum/loadout_item/donator_koruu_kukri
 	name = "Donator Kit - Leachwhacker - Required: Any Dagger"
 	category = list("Оружие", "Донат")
 	path = /obj/item/enchantingkit/weapon/koruu_kukri
 	donatitem = TRUE
 
-/datum/loadout_item/donator/koruu_kukri_warden
+/datum/loadout_item/donator_koruu_kukri_warden
 	name = "Donator Kit - Warden Leachwhacker - Required: Warden's Seax"
 	category = list("Оружие", "Донат")
 	path = /obj/item/enchantingkit/weapon/koruu_kukri/warden
