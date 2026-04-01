@@ -29,11 +29,11 @@
 	icon = 'modular_twilight_axis/firearms/icons/ammo.dmi'
 	icon_state = "musketball_proj"
 	ammo_type = /obj/item/ammo_casing/caseless/twilight_lead
-	range = 12		
+	range = 12
 	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
 	embedchance = 100
-	woundclass = BCLASS_STAB
-	flag = "stab"
+	woundclass = BCLASS_PIERCE
+	flag = "piercing"
 	armor_penetration = PEN_HEAVY
 	speed = 0.1
 
@@ -54,11 +54,11 @@
 	icon = 'modular_twilight_axis/firearms/icons/ammo.dmi'
 	icon_state = "musketball_proj"
 	ammo_type = /obj/item/ammo_casing/caseless/twilight_cannonball
-	range = 16		
+	range = 16
 	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
 	embedchance = 0
-	woundclass = BCLASS_STAB
-	flag = "stab"
+	woundclass = BCLASS_BLUNT
+	flag = "blunt"
 	armor_penetration = PEN_MEDIUM
 	speed = 0.1
 	var/cannon_aoe_radius = 1
@@ -76,8 +76,8 @@
 	range = 10
 	hitsound = 'sound/combat/hits/hi_arrow2.ogg'
 	embedchance = 100
-	woundclass = BCLASS_STAB
-	flag = "stab"
+	woundclass = BCLASS_PIERCE
+	flag = "piercing"
 	armor_penetration = PEN_HEAVY
 	speed = 0.1
 	critfactor = 0.67
@@ -99,8 +99,8 @@
 	range = 50
 	hitsound = 'sound/combat/hits/hi_bolt (2).ogg'
 	embedchance = 100
-	woundclass = BCLASS_STAB
-	flag = "stab"
+	woundclass = BCLASS_PIERCE
+	flag = "piercing"
 	armor_penetration = PEN_HEAVY
 
 /obj/projectile/bullet/twilight_lead/twilight_runelock/blessed
