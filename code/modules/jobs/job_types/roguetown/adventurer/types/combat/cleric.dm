@@ -615,7 +615,7 @@
 			backpack_contents[/obj/item/reagent_containers/eoran_seed] = 1
 			r_hand = /obj/item/rogueweapon/huntingknife/scissors
 		if (/datum/patron/divine/xylix)
-			cloak = /obj/item/clothing/cloak/templar/xylix
+			cloak = /obj/item/clothing/cloak/templar/xylixian
 		if(/datum/patron/inhumen/zizo)
 			cloak = /obj/item/clothing/suit/roguetown/shirt/robe 
 			head = /obj/item/clothing/head/roguetown/roguehood

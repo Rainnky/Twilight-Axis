@@ -2048,14 +2048,14 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 /datum/loadout_item/donat/tabard/abyssor
 	name = "Табард-плащ Абиссора"
 	category = list("Плащи", "Донат")
-	path = /obj/item/clothing/cloak/tabard/abyssortabard
+	path = /obj/item/clothing/cloak/tabard/abyssorite
 	donat_tier = 2
 	donatitem = TRUE
 
 /datum/loadout_item/donat/tabard/crusader/ravox
 	name = "Табард-плащ Равокса (старый)"
 	category = list("Плащи", "Донат")
-	path = /obj/item/clothing/cloak/cleric/ravox
+	path = /obj/item/clothing/cloak/templar/ravox
 	donatitem = TRUE
 
 /datum/loadout_item/donat/tabard/templar/ravox
