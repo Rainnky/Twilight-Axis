@@ -1062,37 +1062,31 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	name = "Wolf Talisman"
 	category = list("Аксессуары", "Донат")
 	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/gronn
-	donatitem = TRUE
 
 /datum/loadout_item/psicross/gronnbaotha
 	name = "Leopard Talisman"
 	category = list("Аксессуары", "Донат")
 	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/baothagronn
-	donatitem = TRUE
 
 /datum/loadout_item/psicross/gronnmatthios
 	name = "Bear Talisman"
 	category = list("Аксессуары", "Донат")
 	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/matthios/gronn
-	donatitem = TRUE
 
 /datum/loadout_item/psicross/gronngraggar
 	name = "Moose Talisman"
 	category = list("Аксессуары", "Донат")
 	path = /obj/item/clothing/neck/roguetown/psicross/inhumen/graggar/gronn
-	donatitem = TRUE
 
 /datum/loadout_item/psicross/gronndendor
 	name = "Volfskinned Talisman"
 	category = list("Аксессуары", "Донат")
 	path = /obj/item/clothing/neck/roguetown/psicross/dendor/gronn
-	donatitem = TRUE
 
 /datum/loadout_item/psicross/gronnabyssor
 	name = "Hadal Talisman"
 	category = list("Аксессуары", "Донат")
 	path = /obj/item/clothing/neck/roguetown/psicross/abyssor/gronn
-	donatitem = TRUE
 
 /datum/loadout_item/wedding_band
 	name = "silver wedding band"
