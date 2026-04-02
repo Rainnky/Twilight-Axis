@@ -171,7 +171,7 @@
 	var/datum/devotion/C = new /datum/devotion(H, H.patron)
 	C.grant_miracles(H, cleric_tier = CLERIC_T2, passive_gain = CLERIC_REGEN_WEAK, devotion_limit = CLERIC_REQ_2)	//Capped to T2 miracles.
 
-	var/weapons = list("Dagger + Parrying Dagger","Rapier + Parrying Dagger","Recurve Bow + Dagger","Slurbow + Dagger")
+	var/weapons = list("Dagger + Parrying Dagger","Rapier + Parrying Dagger","Recurve Bow + Dagger","Crossbow + Dagger")
 	var/weapon_choice = input(H,"Choose your weapon.", "TAKE UP ARMS") as anything in weapons
 	switch(weapon_choice)
 		if("Dagger + Parrying Dagger")
@@ -198,10 +198,10 @@
 			H.change_stat(STATKEY_SPD, 1)
 			H.adjust_skillrank_up_to(/datum/skill/combat/bows, SKILL_LEVEL_JOURNEYMAN, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_APPRENTICE, TRUE)
-		if("Slurbow + Dagger")
+		if("Сrossbow + Dagger")
 			l_hand = /obj/item/rogueweapon/huntingknife/idagger/steel/special
-			r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow/slurbow
-			beltl = /obj/item/quiver/bolt/light
+			r_hand = /obj/item/gun/ballistic/revolver/grenadelauncher/crossbow
+			beltl = /obj/item/quiver/bolt
 			H.change_stat(STATKEY_PER, 2)
 			H.change_stat(STATKEY_SPD, 1)
 			H.adjust_skillrank_up_to(/datum/skill/combat/crossbows, SKILL_LEVEL_JOURNEYMAN, TRUE)
