@@ -134,9 +134,14 @@
 	next_attack_msg.Cut()
 
 	var/on_hit_state = P.on_hit(src, armor)
+	var/actual_damage = P.damage
+	if(!mind && istype(src, /mob/living/simple_animal))
+		var/datum/component/saddleborn = GetComponent(/datum/component/precious_creature)
+		if(!saddleborn)
+			actual_damage *= P.npc_simple_damage_mult
 	var/nodmg = FALSE
 	if(!P.nodamage && on_hit_state != BULLET_ACT_BLOCK)
-		if(!apply_damage(P.damage, P.damage_type, def_zone, armor))
+		if(!apply_damage(actual_damage, P.damage_type, def_zone, armor))
 			nodmg = TRUE
 			next_attack_msg += VISMSG_ARMOR_BLOCKED
 		apply_effects(stun = P.stun, knockdown = P.knockdown, unconscious = P.unconscious, slur = P.slur, stutter = P.stutter, eyeblur = P.eyeblur, drowsy = P.drowsy, blocked = armor, stamina = P.stamina, jitter = P.jitter, paralyze = P.paralyze, immobilize = P.immobilize)
