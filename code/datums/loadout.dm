@@ -1191,6 +1191,66 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	category = list("Триумфы")
 	triumph_cost = 6
 
+/datum/loadout_item/triumph_weaponkit_fancymace
+	name = "Morphing Elixir, 'Rungu-Shishpar Mace' - Required: Iron Mace, an Iron Warhammer, a Steel Mace, a Steel Warhammer, or a Silver Mace."
+	path = /obj/item/enchantingkit/triumph_weaponkit_fancymace
+	category = list("Триумфы")
+	triumph_cost = 6
+
+/datum/loadout_item/triumph_weaponkit_krisdagger
+	name = "Morphing Elixir, 'Kris' - Required: Bauernwehr, a Combat Knife, an Iron Dagger, or a Steel Dagger."
+	path = /obj/item/enchantingkit/triumph_weaponkit_kris
+	category = list("Триумфы")
+	triumph_cost = 6
+
+/datum/loadout_item/triumph_weaponkit_njoradagger
+	name = "Morphing Elixir, 'Njora' - Required: Steel Dagger, an Iron Dagger, a Hunting Knife, or a Combat Knife."
+	path = /obj/item/enchantingkit/triumph_weaponkit_njora
+	category = list("Триумфы")
+	triumph_cost = 6
+
+/datum/loadout_item/triumph_weaponkit_alloywhip
+	name = "Morphing Elixir, 'Alloytip Whip' - Required: Bronze Whip, a Whip, or a Silver Whip."
+	path = /obj/item/enchantingkit/triumph_weaponkit_whip
+	category = list("Триумфы")
+	triumph_cost = 6
+
+/datum/loadout_item/triumph_weaponkit_kaskara
+	name = "Morphing Elixir, 'Kaskara' - Required: Iron Arming Sword, a Steel Arming Sword, or a Rapier."
+	path = /obj/item/enchantingkit/weapon/triumph_weaponkit_kaskara
+	category = list("Триумфы")
+	triumph_cost = 6
+
+/datum/loadout_item/triumph_weaponkit_ida
+	name = "Morphing Elixir, 'Ida' - Required: Iron Shortsword or a Steel Shortsword"
+	path = /obj/item/enchantingkit/weapon/triumph_weaponkit_ida
+	category = list("Триумфы")
+	triumph_cost = 6
+
+/datum/loadout_item/triumph_weaponkit_hwi
+	name = "Morphing Elixir, 'Hwi' - Required: Iron Hunting Sword, an Iron Dueling Messer, a Steel Messer, a Steel Hunting Sword, or a Falchion"
+	path = /obj/item/enchantingkit/weapon/triumph_weaponkit_hwi
+	category = list("Триумфы")
+	triumph_cost = 6
+
+/datum/loadout_item/triumph_weaponkit_ngombe
+	name = "Morphing Elixir, 'Ngombe' - Required: Iron Hunting Sword, an Iron Dueling Messer, a Steel Messer, a Steel Hunting Sword, or a Falchion"
+	path = /obj/item/enchantingkit/weapon/triumph_weaponkit_ngombe
+	category = list("Триумфы")
+	triumph_cost = 6
+
+/datum/loadout_item/triumph_weaponkit_ada
+	name = "Morphing Elixir, 'Ada' - Required: Iron Sabre, a Steel Sabre, a Falx, or a Falchion"
+	path = /obj/item/enchantingkit/weapon/triumph_weaponkit_ada
+	category = list("Триумфы")
+	triumph_cost = 6
+
+/datum/loadout_item/triumph_weaponkit_sengese
+	name = "Morphing Elixir, 'Sengese' - Required: Iron Sabre, a Steel Sabre, a Falx, or a Falchion"
+	path = /obj/item/enchantingkit/weapon/triumph_weaponkit_sengese
+	category = list("Триумфы")
+	triumph_cost = 6
+
 // -5 TRI Minisection.
 
 /datum/loadout_item/triumph_shortsatchel
@@ -1664,6 +1724,66 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 /datum/loadout_item/donator_weaponkit_estoc
 	name = "Donator Item - Azurian Estoc - Required: Estoc Or Stecher"
 	path = /obj/item/enchantingkit/triumph_weaponkit_estoc
+	category = list("Оружие", "Донат")
+	donatitem = TRUE
+
+/datum/loadout_item/donator_weaponkit_fancymace
+	name = "Donator Item - 'Rungu-Shishpar Mace' - Required: Iron Mace, an Iron Warhammer, a Steel Mace, a Steel Warhammer, or a Silver Mace."
+	path = /obj/item/enchantingkit/triumph_weaponkit_fancymace
+	category = list("Оружие", "Донат")
+	donatitem = TRUE
+
+/datum/loadout_item/donator_weaponkit_krisdagger
+	name = "Donator Item - 'Kris' - Required: Bauernwehr, a Combat Knife, an Iron Dagger, or a Steel Dagger."
+	path = /obj/item/enchantingkit/triumph_weaponkit_kris
+	category = list("Оружие", "Донат")
+	donatitem = TRUE
+
+/datum/loadout_item/donator_weaponkit_njoradagger
+	name = "Donator Item - 'Njora' - Required: Steel Dagger, an Iron Dagger, a Hunting Knife, or a Combat Knife."
+	path = /obj/item/enchantingkit/triumph_weaponkit_njora
+	category = list("Оружие", "Донат")
+	donatitem = TRUE
+
+/datum/loadout_item/donator_weaponkit_alloywhip
+	name = "Donator Item - 'Alloytip Whip' - Required: Bronze Whip, a Whip, or a Silver Whip."
+	path = /obj/item/enchantingkit/triumph_weaponkit_whip
+	category = list("Оружие", "Донат")
+	donatitem = TRUE
+
+/datum/loadout_item/donator_weaponkit_kaskara
+	name = "Donator Item - 'Kaskara' - Required: Iron Arming Sword, a Steel Arming Sword, or a Rapier."
+	path = /obj/item/enchantingkit/weapon/triumph_weaponkit_kaskara
+	category = list("Оружие", "Донат")
+	donatitem = TRUE
+
+/datum/loadout_item/donator_weaponkit_ida
+	name = "Donator Item - 'Ida' - Required: Iron Shortsword or a Steel Shortsword"
+	path = /obj/item/enchantingkit/weapon/triumph_weaponkit_ida
+	category = list("Оружие", "Донат")
+	donatitem = TRUE
+
+/datum/loadout_item/donator_weaponkit_hwi
+	name = "Donator Item - 'Hwi' - Required: Iron Hunting Sword, an Iron Dueling Messer, a Steel Messer, a Steel Hunting Sword, or a Falchion"
+	path = /obj/item/enchantingkit/weapon/triumph_weaponkit_hwi
+	category = list("Оружие", "Донат")
+	donatitem = TRUE
+
+/datum/loadout_item/donator_weaponkit_ngombe
+	name = "Donator Item - 'Ngombe' - Required: Iron Hunting Sword, an Iron Dueling Messer, a Steel Messer, a Steel Hunting Sword, or a Falchion"
+	path = /obj/item/enchantingkit/weapon/triumph_weaponkit_ngombe
+	category = list("Оружие", "Донат")
+	donatitem = TRUE
+
+/datum/loadout_item/donator_weaponkit_ada
+	name = "Donator Item - 'Ada' - Required: Iron Sabre, a Steel Sabre, a Falx, or a Falchion"
+	path = /obj/item/enchantingkit/weapon/triumph_weaponkit_ada
+	category = list("Оружие", "Донат")
+	donatitem = TRUE
+
+/datum/loadout_item/donator_weaponkit_sengese
+	name = "Donator Item - 'Sengese' - Required: Iron Sabre, a Steel Sabre, a Falx, or a Falchion"
+	path = /obj/item/enchantingkit/weapon/triumph_weaponkit_sengese
 	category = list("Оружие", "Донат")
 	donatitem = TRUE
 
