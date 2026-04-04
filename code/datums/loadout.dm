@@ -2695,6 +2695,14 @@ GLOBAL_LIST_EMPTY(loadout_items_by_category)
 	donatitem = TRUE
 	donat_tier = 2
 
+/datum/loadout_item/donator_her_verdict
+	name = "Donator Kit - Her Verdict - Required: Kriegmesser"
+	category = list("Оружие", "Донат")
+	path = /obj/item/enchantingkit/weapon/herverdict
+	donatitem = TRUE
+	donat_tier = 2
+	donat_ignore = list("uedhighcommand","imony")
+
 /datum/loadout_item/donator_maesune_sabre
 	name = "Donator Kit - Decorated Sabre - Required: Falchion, Longsword, Sword, Silver Sword Or Kriegmesser"
 	category = list("Оружие", "Донат")
