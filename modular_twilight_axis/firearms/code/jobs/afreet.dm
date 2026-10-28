@@ -77,12 +77,10 @@
 				beltl = /obj/item/quiver/twilight_bullet/lead
 			pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/grenzelpants
 			armor = /obj/item/clothing/suit/roguetown/armor/leather
-			pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/grenzelpants
 			beltr = /obj/item/rogueweapon/stoneaxe/woodcut/steel
 			backl = /obj/item/storage/backpack/rogue/backpack
 			shirt = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/grenzelhoft
 			head = /obj/item/clothing/head/roguetown/grenzelhofthat
-			pants = /obj/item/clothing/under/roguetown/heavy_leather_pants/grenzelpants
 			wrists = /obj/item/clothing/wrists/roguetown/bracers/leather
 			belt = /obj/item/storage/belt/rogue/leather
 			backpack_contents = list(
