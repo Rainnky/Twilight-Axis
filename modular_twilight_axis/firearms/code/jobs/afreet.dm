@@ -107,7 +107,6 @@
 				/obj/item/needle/thorn = 1,
 				/obj/item/natural/cloth/bandage = 1,
 				/obj/item/flashlight/flare/torch = 1,
-				/obj/item/rogueweapon/huntingknife/idagger/steel = 1,
 				/obj/item/rogueweapon/scabbard/sheath = 1
 			)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
