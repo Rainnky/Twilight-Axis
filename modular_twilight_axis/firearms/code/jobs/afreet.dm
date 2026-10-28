@@ -8,7 +8,11 @@
 	maximum_possible_slots = 2
 	subclass_languages = list(/datum/language/grenzelhoftian)
 	traits_applied = list(TRAIT_FIREARMS_MARKSMAN, TRAIT_STEELHEARTED, TRAIT_DODGEEXPERT)
-	classes = list("Jäger Deserter" = "Ex-soldier with handgonne, excellent survival skills and axe to chop some wood and heads", "Veteran" = "Long ago you were a soldier...or pretend to be. Now you are a man from the road with your trusty pistol and dagger")
+	classes = list(
+	    "Jäger Deserter" = "Ex-soldier with handgonne, excellent survival skills and axe to chop some wood and heads", 
+		"Veteran" = "Long ago you were a soldier...or pretend to be. Now you are a man from the road with your trusty pistol and dagger",
+		"Zybantine Marauder" = "The remnants of the Twilight War fell into your hands, and over time, you even learned how to use them",
+	)
 	subclass_stats = list(
 		STATKEY_STR = 1,
 		STATKEY_WIL = 2,
@@ -50,10 +54,12 @@
 	shoes = /obj/item/clothing/shoes/roguetown/grenzelhoft
 	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves
 	id = /obj/item/mattcoin
-	var/classes = list("Jäger Deserter", "Veteran")
+	var/classes = list("Jäger Deserter", "Veteran", "Zybantine Marauder")
 	var/classchoice = input(H, "Choose your archetypes", "Available archetypes") as anything in classes
 	switch(classchoice)
 		if("Jäger Deserter")
+			change_origin(H, /datum/virtue/origin/grenzelhoft, "Empire")
+			
 			mask = /obj/item/clothing/mask/rogue/facemask/steel
 			cloak = /obj/item/clothing/cloak/half/brown
 			var/list/firearm_choices = list("Arquebus Rifle", "Culverin")
@@ -108,3 +114,34 @@
 			)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/craft/alchemy, 1, TRUE)
+		if("Zybantine Marauder")
+			H.cmode_music = sound("sound/music/combat_desert2.ogg")
+			change_origin(H, /datum/virtue/origin/raneshen, "Desert")
+			
+			head   = /obj/item/clothing/head/roguetown/roguehood/shalal/hijab/raneshen
+			mask   = /obj/item/clothing/mask/rogue/ragmask/red
+			neck   = /obj/item/clothing/neck/roguetown/chaincoif/chainmantle
+			cloak  = /obj/item/clothing/cloak/dunestalker
+			armor  = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat/raneshen
+			shirt  = /obj/item/clothing/suit/roguetown/armor/gambeson/heavy/chargah
+			backl  = /obj/item/storage/backpack/rogue/satchel
+			gloves = /obj/item/clothing/gloves/roguetown/fingerless_leather
+			belt   = /obj/item/storage/belt/rogue/leather/shalal
+			beltr  = /obj/item/rogueweapon/scabbard/sword
+			beltl  = /obj/item/quiver/twilight_bullet/lead
+			pants  = /obj/item/clothing/under/roguetown/trou/leather/pontifex/raneshen
+			shoes  = /obj/item/clothing/shoes/roguetown/boots/leather/reinforced
+			
+			backr  = /obj/item/gun/ballistic/twilight_firearm/arquebus/jezail
+			l_hand = /obj/item/rogueweapon/sword/sabre
+
+			backpack_contents = list(
+				/obj/item/twilight_powderflask = 1,
+				/obj/item/needle/thorn = 1,
+				/obj/item/natural/cloth/bandage = 1,
+				/obj/item/flashlight/flare/torch = 1,
+				/obj/item/rogueweapon/huntingknife/idagger/steel = 1,
+				/obj/item/rogueweapon/scabbard/sheath = 1
+			)
+
+			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
