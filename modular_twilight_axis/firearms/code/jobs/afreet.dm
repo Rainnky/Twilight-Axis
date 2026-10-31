@@ -11,7 +11,7 @@
 	classes = list(
 	    "Jäger Deserter" = "Ex-soldier with handgonne, excellent survival skills and axe to chop some wood and heads", 
 		"Veteran" = "Long ago you were a soldier...or pretend to be. Now you are a man from the road with your trusty pistol and dagger",
-		"Zybantine Marauder" = "The remnants of the Twilight War fell into your hands, and over time, you even learned how to use them",
+		"Zybantine Prisoner" = "Fate is a cruel joke. After the Twilight War, you were taken prisoner by the Empire. You had two choices: join the Empire’s forces or die. Some time later, you managed to escape",
 	)
 	subclass_stats = list(
 		STATKEY_STR = 1,
@@ -54,12 +54,12 @@
 	shoes = /obj/item/clothing/shoes/roguetown/grenzelhoft
 	gloves = /obj/item/clothing/gloves/roguetown/angle/grenzelgloves
 	id = /obj/item/mattcoin
-	var/classes = list("Jäger Deserter", "Veteran", "Zybantine Marauder")
+	var/classes = list("Jäger Deserter", "Veteran", "Zybantine Prisoner")
 	var/classchoice = input(H, "Choose your archetypes", "Available archetypes") as anything in classes
 
 	// adjust_skillrank_down_to некорректно отрабатывает на текущий момент в pre_equip - навык не изменяется
 	// Поэтому сверх выдаётся классам, что должны иметь мастера стрельбы
-	if(classchoice != "Zybantine Marauder")
+	if(classchoice != "Zybantine Prisoner")
 		H.adjust_skillrank_up_to(/datum/skill/combat/twilight_firearms, SKILL_LEVEL_MASTER, TRUE)
 		
 	switch(classchoice)
@@ -117,7 +117,7 @@
 			)
 			H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_EXPERT, TRUE)
 			H.adjust_skillrank_up_to(/datum/skill/craft/alchemy, SKILL_LEVEL_NOVICE, TRUE)
-		if("Zybantine Marauder")
+		if("Zybantine Prisoner")
 			H.cmode_music = sound("sound/music/combat_desert2.ogg")
 			change_origin(H, /datum/virtue/origin/raneshen, "Desert")
 			
