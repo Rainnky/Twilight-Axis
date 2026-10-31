@@ -21,7 +21,7 @@
 		STATKEY_CON = 2,
 	)
 	subclass_skills = list(
-		/datum/skill/combat/twilight_firearms = SKILL_LEVEL_MASTER,
+		/datum/skill/combat/twilight_firearms = SKILL_LEVEL_EXPERT,
 		/datum/skill/combat/axes = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/knives = SKILL_LEVEL_JOURNEYMAN,
 		/datum/skill/combat/staves = SKILL_LEVEL_JOURNEYMAN,
@@ -56,6 +56,12 @@
 	id = /obj/item/mattcoin
 	var/classes = list("Jäger Deserter", "Veteran", "Zybantine Marauder")
 	var/classchoice = input(H, "Choose your archetypes", "Available archetypes") as anything in classes
+
+	// adjust_skillrank_down_to некорректно отрабатывает на текущий момент в pre_equip - навык не изменяется
+	// Поэтому сверх выдаётся классам, что должны иметь мастера стрельбы
+	if(classchoice != "Zybantine Marauder")
+		H.adjust_skillrank_up_to(/datum/skill/combat/twilight_firearms, SKILL_LEVEL_MASTER, TRUE)
+		
 	switch(classchoice)
 		if("Jäger Deserter")
 			change_origin(H, /datum/virtue/origin/grenzelhoft, "Empire")
@@ -91,7 +97,7 @@
 				/obj/item/natural/cloth/bandage = 1,
 				/obj/item/flashlight/flare/torch = 1
 			)
-			H.adjust_skillrank_up_to(/datum/skill/combat/axes, 4, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/axes, SKILL_LEVEL_EXPERT, TRUE)
 		if("Veteran")
 			mask = /obj/item/clothing/mask/rogue/ragmask/red
 			armor = /obj/item/clothing/suit/roguetown/armor/leather/heavy/coat
@@ -109,8 +115,8 @@
 				/obj/item/flashlight/flare/torch = 1,
 				/obj/item/rogueweapon/scabbard/sheath = 1
 			)
-			H.adjust_skillrank_up_to(/datum/skill/combat/knives, 4, TRUE)
-			H.adjust_skillrank_up_to(/datum/skill/craft/alchemy, 1, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/knives, SKILL_LEVEL_EXPERT, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/craft/alchemy, SKILL_LEVEL_NOVICE, TRUE)
 		if("Zybantine Marauder")
 			H.cmode_music = sound("sound/music/combat_desert2.ogg")
 			change_origin(H, /datum/virtue/origin/raneshen, "Desert")
@@ -141,4 +147,4 @@
 				/obj/item/rogueweapon/scabbard/sheath = 1
 			)
 
-			H.adjust_skillrank_up_to(/datum/skill/combat/swords, 4, TRUE)
+			H.adjust_skillrank_up_to(/datum/skill/combat/swords, SKILL_LEVEL_EXPERT, TRUE)
